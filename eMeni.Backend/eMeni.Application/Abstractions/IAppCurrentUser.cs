@@ -26,12 +26,12 @@ public interface IAppCurrentUser
     bool IsAdmin { get; }
 
     /// <summary>
-    /// Indicates whether the user is a manager.
+    /// Indicates whether the user is a owner of bussines.
     /// </summary>
-    bool IsManager { get; }
+    bool IsOwner { get; }
 
     /// <summary>
-    /// Indicates whether the user is a regular employee.
+    /// Indicates whether the user is a regular user.
     /// </summary>
-    bool IsEmployee { get; }
+    bool IsUser { get; }
 }

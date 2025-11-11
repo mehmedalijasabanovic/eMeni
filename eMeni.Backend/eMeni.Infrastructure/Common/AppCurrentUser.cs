@@ -26,9 +26,9 @@ public sealed class AppCurrentUser(IHttpContextAccessor httpContextAccessor)
     public bool IsAdmin =>
         _user?.FindFirstValue("is_admin")?.Equals("true", StringComparison.OrdinalIgnoreCase) ?? false;
 
-    public bool IsManager =>
+    public bool IsOwner =>
         _user?.FindFirstValue("is_owner")?.Equals("true", StringComparison.OrdinalIgnoreCase) ?? false;
 
-    public bool IsEmployee =>
+    public bool IsUser =>
         _user?.FindFirstValue("is_user")?.Equals("true", StringComparison.OrdinalIgnoreCase) ?? false;
 }

@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace eMeni.Infrastructure.Models.Configurations
 {
-    public partial class RefreshTokenEntityConfiguration : IEntityTypeConfiguration<RefreshToken>
+    public partial class RefreshTokenEntityConfiguration : IEntityTypeConfiguration<RefreshTokenEntity>
     {
-        public void Configure(EntityTypeBuilder<RefreshToken> entity)
+        public void Configure(EntityTypeBuilder<RefreshTokenEntity> entity)
         {
             entity.Property(e => e.Fingerprint).HasMaxLength(200);
             entity.Property(e => e.TokenHash)
@@ -19,6 +19,6 @@ namespace eMeni.Infrastructure.Models.Configurations
             OnConfigurePartial(entity);
         }
 
-        partial void OnConfigurePartial(EntityTypeBuilder<RefreshToken> entity);
+        partial void OnConfigurePartial(EntityTypeBuilder<RefreshTokenEntity> entity);
     }
 }
