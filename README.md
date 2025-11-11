@@ -1,2 +1,1 @@
-# eMeni
-rs1-project
+# rs1-template-project
