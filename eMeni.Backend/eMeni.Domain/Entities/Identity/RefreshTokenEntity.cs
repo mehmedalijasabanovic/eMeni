@@ -1,6 +1,4 @@
-﻿// RefreshTokenEntity.cs
-
-// RefreshTokenEntity.cs
+﻿
 using eMeni.Domain.Common;
 using eMeni.Infrastructure.Models;
 
