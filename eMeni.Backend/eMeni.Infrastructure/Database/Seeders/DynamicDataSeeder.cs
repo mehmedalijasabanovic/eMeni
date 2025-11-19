@@ -28,14 +28,24 @@ public static class DynamicDataSeeder
             return;
 
         var hasher = new PasswordHasher<eMeniUserEntity>();
-        var oneCity = new CityEntity
+        var Konjic = new CityEntity
         {
-            CityName = "Demo City",
+            CityName = "Konjic",
             CreatedAtUtc = DateTime.UtcNow,
             IsDeleted = false,
         };
-        
-
+        var Mostar = new CityEntity
+        {
+            CityName = "Mostar",
+            CreatedAtUtc = DateTime.UtcNow,
+            IsDeleted = false,
+        };
+        var Sarajevo = new CityEntity
+        {
+            CityName = "Sarajevo",
+            CreatedAtUtc = DateTime.UtcNow,
+            IsDeleted = false,
+        };
         var admin = new eMeniUserEntity
         {
             Email = "admin@eMeni.local",
@@ -87,7 +97,7 @@ public static class DynamicDataSeeder
             CreatedAtUtc = DateTime.UtcNow,
         };
         context.Users.AddRange(admin, user, dummyForSwagger, dummyForTests);
-        context.Cities.Add(oneCity);
+        context.Cities.AddRange(Konjic,Mostar,Sarajevo);
         await context.SaveChangesAsync();
 
         Console.WriteLine("✅ Dynamic seed: demo users added.");
