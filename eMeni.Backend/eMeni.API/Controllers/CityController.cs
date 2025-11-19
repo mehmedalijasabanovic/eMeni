@@ -1,5 +1,6 @@
 ﻿using eMeni.Application.Modules.Location.Commands.Create;
 using eMeni.Application.Modules.Location.Commands.Delete;
+using eMeni.Application.Modules.Location.Queries.List;
 
 namespace eMeni.API.Controllers
 {
@@ -18,6 +19,12 @@ namespace eMeni.API.Controllers
         public async Task Delete(int id, CancellationToken ct)
         {
             await sender.Send(new DeleteCityCommand { Id = id }, ct);
+        }
+        [HttpGet]
+
+        public async Task<PageResult<ListCityQueryDto>> List([FromQuery] ListCityQuery query,CancellationToken ct)
+        {
+            return await sender.Send(query, ct);
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿namespace eMeni.Application.Modules.Location.Queries.List
 {
-    public class ListCityQueryDto
+    public sealed class ListCityQueryDto
     {
-
+        public required int Id { get; init; }
+        public required string Name { get; init; }
     }
 }
