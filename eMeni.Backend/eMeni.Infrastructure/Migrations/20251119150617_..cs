@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eMeni.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class _ : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -82,27 +82,6 @@ namespace eMeni.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_QRCodeProductEntity", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RefreshToken",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TokenHash = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    ExpiresAtUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsRevoked = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    Fingerprint = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    RevokedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RefreshToken", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -206,11 +185,11 @@ namespace eMeni.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TokenHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TokenHash = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
                     ExpiresAtUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsRevoked = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    Fingerprint = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Fingerprint = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     RevokedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -596,9 +575,6 @@ namespace eMeni.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "PaymentEntity");
-
-            migrationBuilder.DropTable(
-                name: "RefreshToken");
 
             migrationBuilder.DropTable(
                 name: "RefreshTokens");
