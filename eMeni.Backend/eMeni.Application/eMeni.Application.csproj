@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\Catalog\" />
+    <Folder Include="Modules\Location\Commands\Delete\" />
+    <Folder Include="Modules\Location\Queries\List\" />
   </ItemGroup>
 
 </Project>
