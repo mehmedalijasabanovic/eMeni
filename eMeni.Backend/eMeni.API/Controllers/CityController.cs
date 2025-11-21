@@ -6,7 +6,7 @@ namespace eMeni.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CityController(ISender sender):ControllerBase
+    public sealed class CityController(ISender sender):ControllerBase
     {
         [HttpPost]
         public async Task<ActionResult<int>> CreateCity(CreateCityCommand command,CancellationToken ct)

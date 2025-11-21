@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eMeni.Shared.Constants;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,9 @@ namespace eMeni.Application.Modules.Location.Commands.Delete
         public async Task<Unit> Handle(DeleteCityCommand command,CancellationToken ct)
         {
             if (currentUser.UserId is null)
-                throw new eMeniBusinessRuleException("1", "User is not authenticated");
+                throw new eMeniBusinessRuleException(Messages.NotAuthenticatedCode, Messages.NotAuthenticated);
+            if (!currentUser.IsAdmin)
+                throw new eMeniBusinessRuleException(Messages.NotAuthorizedCode, Messages.NotAuthenticated);
 
             var city= await db.Cities.FirstOrDefaultAsync(x=>x.Id == command.Id,ct);
 
