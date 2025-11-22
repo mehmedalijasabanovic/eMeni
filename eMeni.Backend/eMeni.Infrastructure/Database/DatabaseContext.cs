@@ -9,6 +9,11 @@ public partial class DatabaseContext : DbContext, IAppDbContext
     public DbSet<eMeniUserEntity> Users => Set<eMeniUserEntity>();
     public DbSet<RefreshTokenEntity> RefreshTokens => Set<RefreshTokenEntity>();
     public DbSet<CityEntity> Cities => Set<CityEntity>();
+    public DbSet<BusinessesCategoryEntity> BusinessesCategories => Set<BusinessesCategoryEntity>();
+    public DbSet<BusinessEntity> Businesses => Set<BusinessEntity>();
+    public DbSet<MenuEntity> Menus => Set<MenuEntity>();
+    public DbSet<MenuCategoryEntity> MenuCategories => Set<MenuCategoryEntity>();
+    public DbSet<MenuItemEntity> MenuItems => Set<MenuItemEntity>();
 
     private readonly TimeProvider _clock;
     public DatabaseContext(DbContextOptions<DatabaseContext> options, TimeProvider clock) : base(options)

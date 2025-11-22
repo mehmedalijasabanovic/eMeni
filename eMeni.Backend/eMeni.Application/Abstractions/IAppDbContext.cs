@@ -1,4 +1,5 @@
 ﻿using eMeni.Infrastructure.Models;
+using System.ComponentModel.Design;
 
 namespace eMeni.Application.Abstractions;
 
@@ -9,5 +10,10 @@ public interface IAppDbContext
     DbSet<eMeniUserEntity> Users { get; }
     DbSet<RefreshTokenEntity> RefreshTokens { get; }
     DbSet<CityEntity> Cities { get; }
+    DbSet<BusinessesCategoryEntity> BusinessesCategories { get; }
+    DbSet<BusinessEntity> Businesses { get; }
+    DbSet<MenuEntity> Menus { get; }
+    DbSet<MenuCategoryEntity> MenuCategories { get; }
+    DbSet<MenuItemEntity> MenuItems { get; }
     Task<int> SaveChangesAsync(CancellationToken ct);
 }
