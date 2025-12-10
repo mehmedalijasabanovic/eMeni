@@ -1,7 +1,13 @@
 ﻿namespace eMeni.Application.Modules.Business.Business.Commands.Create
 {
-    public sealed class CreateBusinessComandHandler(IAppDbContext db):IRequestHandler<CreateBusinessCommand>
+    public class CreateBusinessCommandHandler(IAppDbContext db):IRequestHandler<CreateBusinessCommand,int>
     {
+        public async Task<int> Handle(CreateBusinessCommand command, CancellationToken ct)
+        {
 
+            return 0;
+        }
     }
+
+
 }
