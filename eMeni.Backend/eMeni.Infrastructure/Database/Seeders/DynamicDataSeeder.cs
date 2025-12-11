@@ -14,8 +14,8 @@ public static class DynamicDataSeeder
         // Osiguraj da baza postoji (bez migracija)
         await context.Database.EnsureCreatedAsync();
 
-        await SeedBusinessCategoryAsync(context);
         await SeedUsersAsync(context);
+        await SeedBusinessCategoryAsync(context);
         
         await SeedCitysAsync(context);
         

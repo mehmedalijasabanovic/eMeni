@@ -8,7 +8,7 @@ namespace eMeni.Infrastructure.Models;
 
 public sealed class BusinessEntity : BaseEntity
 {
-    public string BusninessName { get; set; }
+    public string BusinessName { get; set; }
 
     public int BusinessCategoryId { get; set; }
 

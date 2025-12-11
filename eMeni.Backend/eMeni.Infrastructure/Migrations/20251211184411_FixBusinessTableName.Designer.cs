@@ -12,8 +12,8 @@ using eMeni.Infrastructure.Database;
 namespace eMeni.Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20251119150617_.")]
-    partial class _
+    [Migration("20251211184411_FixBusinessTableName")]
+    partial class FixBusinessTableName
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,8 +40,7 @@ namespace eMeni.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Fingerprint")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -57,15 +56,14 @@ namespace eMeni.Infrastructure.Migrations
 
                     b.Property<string>("TokenHash")
                         .IsRequired()
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex(new[] { "UserId" }, "IX_RefreshTokens_UserId");
 
                     b.ToTable("RefreshTokens");
                 });
@@ -126,7 +124,7 @@ namespace eMeni.Infrastructure.Migrations
                     b.Property<int>("BusinessCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BusninessName")
+                    b.Property<string>("BusinessName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -165,7 +163,7 @@ namespace eMeni.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("BusinessEntity");
+                    b.ToTable("Business");
                 });
 
             modelBuilder.Entity("eMeni.Infrastructure.Models.BusinessesCategoryEntity", b =>
@@ -264,7 +262,7 @@ namespace eMeni.Infrastructure.Migrations
 
                     b.HasIndex("MenuId");
 
-                    b.ToTable("MenuCategoryEntity");
+                    b.ToTable("MenuCategories");
                 });
 
             modelBuilder.Entity("eMeni.Infrastructure.Models.MenuEntity", b =>
@@ -306,7 +304,7 @@ namespace eMeni.Infrastructure.Migrations
 
                     b.HasIndex("BusinessId");
 
-                    b.ToTable("MenuEntity");
+                    b.ToTable("Menus");
                 });
 
             modelBuilder.Entity("eMeni.Infrastructure.Models.MenuItemEntity", b =>
@@ -353,7 +351,7 @@ namespace eMeni.Infrastructure.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("MenuItemEntity");
+                    b.ToTable("MenuItems");
                 });
 
             modelBuilder.Entity("eMeni.Infrastructure.Models.OrderEntity", b =>
@@ -841,24 +839,24 @@ namespace eMeni.Infrastructure.Migrations
                         .WithMany("Businesses")
                         .HasForeignKey("BusinessCategoryId")
                         .IsRequired()
-                        .HasConstraintName("FK_Businesses_BusinessesCategory");
+                        .HasConstraintName("FK_Business_BusinessesCategory");
 
                     b.HasOne("eMeni.Infrastructure.Models.CityEntity", "City")
                         .WithMany("Businesses")
                         .HasForeignKey("CityId")
                         .IsRequired()
-                        .HasConstraintName("FK_Businesses_City");
+                        .HasConstraintName("FK_Business_City");
 
                     b.HasOne("eMeni.Infrastructure.Models.PackageEntity", "Package")
                         .WithMany("Businesses")
                         .HasForeignKey("PackageId")
-                        .HasConstraintName("FK_Businesses_Packages");
+                        .HasConstraintName("FK_Business_Packages");
 
                     b.HasOne("eMeni.Infrastructure.Models.eMeniUserEntity", "User")
                         .WithMany("Businesses")
                         .HasForeignKey("UserId")
                         .IsRequired()
-                        .HasConstraintName("FK_Businesses_Users");
+                        .HasConstraintName("FK_Business_Users");
 
                     b.Navigation("BusinessCategory");
 
@@ -884,7 +882,7 @@ namespace eMeni.Infrastructure.Migrations
                     b.HasOne("eMeni.Infrastructure.Models.BusinessEntity", "Business")
                         .WithMany("Menus")
                         .HasForeignKey("BusinessId")
-                        .HasConstraintName("FK_Menus_Businesses");
+                        .HasConstraintName("FK_Menus_Business");
 
                     b.Navigation("Business");
                 });
