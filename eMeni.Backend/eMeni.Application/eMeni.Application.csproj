@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\Business\Business\Commands\Delete\" />
     <Folder Include="Modules\Business\Business\Commands\Update\" />
     <Folder Include="Modules\Business\Business\Queries\List\" />
     <Folder Include="Modules\Business\Business\Queries\GetById\" />

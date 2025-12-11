@@ -2,7 +2,7 @@
 
 namespace eMeni.Application.Modules.Business.BusinessCategory.Commands.Delete
 {
-    public class DeleteBusinessesCategoryComandHandler(IAppDbContext db,IAppCurrentUser user) : IRequestHandler<DeleteBusinessesCategoryCommand,Unit>
+    public class DeleteBusinessesCategoryCommandHandler(IAppDbContext db,IAppCurrentUser user) : IRequestHandler<DeleteBusinessesCategoryCommand,Unit>
     {
         public async Task<Unit> Handle(DeleteBusinessesCategoryCommand command,CancellationToken ct)
         {
