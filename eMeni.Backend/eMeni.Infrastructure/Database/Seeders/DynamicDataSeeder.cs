@@ -14,7 +14,11 @@ public static class DynamicDataSeeder
         // Osiguraj da baza postoji (bez migracija)
         await context.Database.EnsureCreatedAsync();
 
+        await SeedBusinessCategoryAsync(context);
         await SeedUsersAsync(context);
+        
+        await SeedCitysAsync(context);
+        
     }
 
   
@@ -28,24 +32,8 @@ public static class DynamicDataSeeder
             return;
 
         var hasher = new PasswordHasher<eMeniUserEntity>();
-        var Konjic = new CityEntity
-        {
-            CityName = "Konjic",
-            CreatedAtUtc = DateTime.UtcNow,
-            IsDeleted = false,
-        };
-        var Mostar = new CityEntity
-        {
-            CityName = "Mostar",
-            CreatedAtUtc = DateTime.UtcNow,
-            IsDeleted = false,
-        };
-        var Sarajevo = new CityEntity
-        {
-            CityName = "Sarajevo",
-            CreatedAtUtc = DateTime.UtcNow,
-            IsDeleted = false,
-        };
+      
+  
         var admin = new eMeniUserEntity
         {
             Email = "admin@eMeni.local",
@@ -97,9 +85,64 @@ public static class DynamicDataSeeder
             CreatedAtUtc = DateTime.UtcNow,
         };
         context.Users.AddRange(admin, user, dummyForSwagger, dummyForTests);
-        context.Cities.AddRange(Konjic,Mostar,Sarajevo);
         await context.SaveChangesAsync();
 
         Console.WriteLine("✅ Dynamic seed: demo users added.");
+    }
+    private static async Task SeedCitysAsync(DatabaseContext context)
+    {
+        if (await context.Cities.AnyAsync())
+        {
+            return;
+        }
+        var Konjic = new CityEntity
+        {
+            CityName = "Konjic",
+            CreatedAtUtc = DateTime.UtcNow,
+            IsDeleted = false,
+        };
+        var Mostar = new CityEntity
+        {
+            CityName = "Mostar",
+            CreatedAtUtc = DateTime.UtcNow,
+            IsDeleted = false,
+        };
+        var Sarajevo = new CityEntity
+        {
+            CityName = "Sarajevo",
+            CreatedAtUtc = DateTime.UtcNow,
+            IsDeleted = false,
+        };
+        context.Cities.AddRange(Konjic, Mostar, Sarajevo);
+        await context.SaveChangesAsync();
+        Console.WriteLine("✅ Dynamic seed: demo cities added.");
+    }
+    private static async Task SeedBusinessCategoryAsync(DatabaseContext context)
+    {
+        if (await context.BusinessesCategories.AnyAsync())
+        {
+            return;
+        }
+        var ugostiteljstvo = new BusinessesCategoryEntity
+        {
+            CategoryName = "Ugostiteljstvo",
+            CreatedAtUtc = DateTime.UtcNow,
+            IsDeleted = false,
+        };
+        var rentAVan = new BusinessesCategoryEntity
+        {
+            CategoryName = "Rent a Van",
+            CreatedAtUtc = DateTime.UtcNow,
+            IsDeleted = false,
+        };
+        var trgovina = new BusinessesCategoryEntity
+        {
+            CategoryName = "Trgovine",
+            CreatedAtUtc = DateTime.UtcNow,
+            IsDeleted = false,
+        };
+        context.BusinessesCategories.AddRange(ugostiteljstvo,rentAVan,trgovina);
+        await context.SaveChangesAsync();
+        Console.WriteLine("✅ Dynamic seed: demo business categories added.");
     }
 }
