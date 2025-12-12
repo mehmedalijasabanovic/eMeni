@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace eMeni.Application.Abstractions
 {
-    internal class IAuthorizationHelper
+    public interface IAuthorizationHelper
     {
+        void EnsureAuthenticated();
+        void EnsureAdmin();
+        void EnsureOwner();
     }
+
 }
