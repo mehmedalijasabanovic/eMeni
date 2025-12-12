@@ -20,7 +20,7 @@ namespace eMeni.Application.Modules.Business.BusinessCategory.Commands.Delete
             else if (ctg.Businesses.Any())
                 throw new eMeniBusinessRuleException("CATEGORY_HAS_BUSINESSES", "Cannot delete category that has businesses");
             
-                db.BusinessesCategories.Remove(ctg);
+            db.BusinessesCategories.Remove(ctg);
             await db.SaveChangesAsync(ct);
             return Unit.Value;
         }
