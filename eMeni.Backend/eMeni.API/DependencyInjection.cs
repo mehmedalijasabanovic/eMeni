@@ -1,4 +1,6 @@
-﻿using eMeni.Infrastructure.Common;
+﻿using eMeni.Application.Abstractions;
+using eMeni.Application.Common.Services;
+using eMeni.Infrastructure.Common;
 using eMeni.Shared.Dtos;
 using eMeni.Shared.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -95,6 +97,8 @@ public static class DependencyInjection
 
         services.AddExceptionHandler<eMeniExceptionHandler>();
         services.AddProblemDetails();
+        services.AddScoped<IAuthorizationHelper, AuthorizationHelper>();
+
 
         return services;
     }
