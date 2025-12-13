@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eMeni.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class _ : Migration
+    public partial class FixBusinessTableName : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -138,12 +138,12 @@ namespace eMeni.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BusinessEntity",
+                name: "Business",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BusninessName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    BusinessName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     BusinessCategoryId = table.Column<int>(type: "int", nullable: false),
                     PackageId = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false),
@@ -156,24 +156,24 @@ namespace eMeni.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BusinessEntity", x => x.Id);
+                    table.PrimaryKey("PK_Business", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Businesses_BusinessesCategory",
+                        name: "FK_Business_BusinessesCategory",
                         column: x => x.BusinessCategoryId,
                         principalTable: "BusinessesCategory",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Businesses_City",
+                        name: "FK_Business_City",
                         column: x => x.CityId,
                         principalTable: "City",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Businesses_Packages",
+                        name: "FK_Business_Packages",
                         column: x => x.PackageId,
                         principalTable: "PackageEntity",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Businesses_Users",
+                        name: "FK_Business_Users",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id");
@@ -185,11 +185,11 @@ namespace eMeni.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TokenHash = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
+                    TokenHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ExpiresAtUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsRevoked = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    Fingerprint = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Fingerprint = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RevokedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -207,7 +207,7 @@ namespace eMeni.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MenuEntity",
+                name: "Menus",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -222,11 +222,11 @@ namespace eMeni.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MenuEntity", x => x.Id);
+                    table.PrimaryKey("PK_Menus", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Menus_Businesses",
+                        name: "FK_Menus_Business",
                         column: x => x.BusinessId,
-                        principalTable: "BusinessEntity",
+                        principalTable: "Business",
                         principalColumn: "Id");
                 });
 
@@ -254,7 +254,7 @@ namespace eMeni.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_Orders_Businesses",
                         column: x => x.BusinessId,
-                        principalTable: "BusinessEntity",
+                        principalTable: "Business",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Orders_Users",
@@ -285,7 +285,7 @@ namespace eMeni.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_Reservations_Businesses",
                         column: x => x.BusinessId,
-                        principalTable: "BusinessEntity",
+                        principalTable: "Business",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Reservations_Users",
@@ -314,7 +314,7 @@ namespace eMeni.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_Reviews_Businesses",
                         column: x => x.BusinessId,
-                        principalTable: "BusinessEntity",
+                        principalTable: "Business",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Reviews_Users",
@@ -340,12 +340,12 @@ namespace eMeni.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_Statistic_Businesses",
                         column: x => x.BusinessId,
-                        principalTable: "BusinessEntity",
+                        principalTable: "Business",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "MenuCategoryEntity",
+                name: "MenuCategories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -360,11 +360,11 @@ namespace eMeni.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MenuCategoryEntity", x => x.Id);
+                    table.PrimaryKey("PK_MenuCategories", x => x.Id);
                     table.ForeignKey(
                         name: "FK_MenuCategories_Menus",
                         column: x => x.MenuId,
-                        principalTable: "MenuEntity",
+                        principalTable: "Menus",
                         principalColumn: "Id");
                 });
 
@@ -431,7 +431,7 @@ namespace eMeni.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MenuItemEntity",
+                name: "MenuItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -447,11 +447,11 @@ namespace eMeni.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MenuItemEntity", x => x.Id);
+                    table.PrimaryKey("PK_MenuItems", x => x.Id);
                     table.ForeignKey(
                         name: "FK_MenuCategories_MenuItems",
                         column: x => x.CategoryId,
-                        principalTable: "MenuCategoryEntity",
+                        principalTable: "MenuCategories",
                         principalColumn: "Id");
                 });
 
@@ -461,39 +461,39 @@ namespace eMeni.Infrastructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessEntity_BusinessCategoryId",
-                table: "BusinessEntity",
+                name: "IX_Business_BusinessCategoryId",
+                table: "Business",
                 column: "BusinessCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessEntity_CityId",
-                table: "BusinessEntity",
+                name: "IX_Business_CityId",
+                table: "Business",
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessEntity_PackageId",
-                table: "BusinessEntity",
+                name: "IX_Business_PackageId",
+                table: "Business",
                 column: "PackageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessEntity_UserId",
-                table: "BusinessEntity",
+                name: "IX_Business_UserId",
+                table: "Business",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MenuCategoryEntity_MenuId",
-                table: "MenuCategoryEntity",
+                name: "IX_MenuCategories_MenuId",
+                table: "MenuCategories",
                 column: "MenuId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MenuEntity_BusinessId",
-                table: "MenuEntity",
-                column: "BusinessId");
+                name: "IX_MenuItems_CategoryId",
+                table: "MenuItems",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MenuItemEntity_CategoryId",
-                table: "MenuItemEntity",
-                column: "CategoryId");
+                name: "IX_Menus_BusinessId",
+                table: "Menus",
+                column: "BusinessId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderEntity_BusinessId",
@@ -568,7 +568,7 @@ namespace eMeni.Infrastructure.Migrations
                 name: "AiChatLogEntity");
 
             migrationBuilder.DropTable(
-                name: "MenuItemEntity");
+                name: "MenuItems");
 
             migrationBuilder.DropTable(
                 name: "OrderItemEntity");
@@ -589,7 +589,7 @@ namespace eMeni.Infrastructure.Migrations
                 name: "Statistic");
 
             migrationBuilder.DropTable(
-                name: "MenuCategoryEntity");
+                name: "MenuCategories");
 
             migrationBuilder.DropTable(
                 name: "QRCodeProductEntity");
@@ -598,10 +598,10 @@ namespace eMeni.Infrastructure.Migrations
                 name: "OrderEntity");
 
             migrationBuilder.DropTable(
-                name: "MenuEntity");
+                name: "Menus");
 
             migrationBuilder.DropTable(
-                name: "BusinessEntity");
+                name: "Business");
 
             migrationBuilder.DropTable(
                 name: "BusinessesCategory");

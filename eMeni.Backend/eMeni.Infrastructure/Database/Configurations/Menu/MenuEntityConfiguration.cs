@@ -18,7 +18,7 @@ namespace eMeni.Infrastructure.Models.Configurations
 
             entity.HasOne(d => d.Business).WithMany(p => p.Menus)
                 .HasForeignKey(d => d.BusinessId)
-                .HasConstraintName("FK_Menus_Businesses");
+                .HasConstraintName("FK_Menus_Business");
 
             OnConfigurePartial(entity);
         }

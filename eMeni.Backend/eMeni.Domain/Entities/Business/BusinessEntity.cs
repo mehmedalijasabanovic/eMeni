@@ -8,7 +8,7 @@ namespace eMeni.Infrastructure.Models;
 
 public sealed class BusinessEntity : BaseEntity
 {
-    public string BusninessName { get; set; }
+    public string BusinessName { get; set; }
 
     public int BusinessCategoryId { get; set; }
 
@@ -39,4 +39,11 @@ public sealed class BusinessEntity : BaseEntity
     public ICollection<StatisticEntity> Statistics { get; set; } = new List<StatisticEntity>();
 
     public eMeniUserEntity User { get; set; }
+    public static class Constraint
+    {
+        public const int AddressMaxLength = 100;
+        public const int BusinessNameMaxLength = 100;
+        public const int DescriptionMaxLength = 400;
+    }
+
 }
