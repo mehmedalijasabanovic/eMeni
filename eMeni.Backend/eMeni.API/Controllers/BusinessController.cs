@@ -34,11 +34,11 @@ namespace eMeni.API.Controllers
         {
             return await sender.Send(query,ct);
         }
-        [HttpGet ("{id:int}")]
-        public async Task<List<GetBusinessByUserIdQueryDto>> GetById(int id,CancellationToken ct)
+        [HttpGet ("my-businesses")]
+        public async Task<List<GetBusinessByUserIdQueryDto>> GetById(CancellationToken ct)
         {
         
-            return await sender.Send(new GetBusinessByUserIdQuery { UserId=id},ct);
+            return await sender.Send(new GetBusinessByUserIdQuery(),ct);
         }
     }
 }
