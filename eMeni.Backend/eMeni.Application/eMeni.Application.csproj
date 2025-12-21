@@ -20,4 +20,12 @@
     <ProjectReference Include="..\eMeni.Shared\eMeni.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modules\Identity\Commands\Delete\" />
+    <Folder Include="Modules\Identity\Commands\Update\" />
+    <Folder Include="Modules\Identity\Queries\List\" />
+    <Folder Include="Modules\Identity\Queries\GetById\" />
+    <Folder Include="Modules\Menu\" />
+  </ItemGroup>
+
 </Project>

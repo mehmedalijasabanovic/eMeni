@@ -44,4 +44,10 @@ public sealed class eMeniUserEntity : BaseEntity
     public ICollection<ReservationEntity> Reservations { get; set; } = new List<ReservationEntity>();
 
     public ICollection<ReviewEntity> Reviews { get; set; } = new List<ReviewEntity>();
+    public static class UserConstraints
+    {
+        public const int EmailMaxLength = 100;
+        public const int FullNameMaxLength = 80;
+        public const int PhoneMaxLength = 15;
+    }
 }
