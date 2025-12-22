@@ -21,8 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\Identity\Queries\List\" />
-    <Folder Include="Modules\Identity\Queries\GetById\" />
     <Folder Include="Modules\Menu\" />
   </ItemGroup>
 

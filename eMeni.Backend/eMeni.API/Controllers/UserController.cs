@@ -1,6 +1,8 @@
 ﻿using eMeni.Application.Modules.Identity.Commands.Create;
 using eMeni.Application.Modules.Identity.Commands.Delete;
 using eMeni.Application.Modules.Identity.Commands.Update;
+using eMeni.Application.Modules.Identity.Queries.GetById;
+using eMeni.Application.Modules.Identity.Queries.List;
 
 namespace eMeni.API.Controllers
 {
@@ -25,6 +27,16 @@ namespace eMeni.API.Controllers
         {
             command.Id=id;
             await sender.Send(command, ct);
+        }
+        [HttpGet]
+        public async Task<PageResult<ListUserQueryDto>> List([FromQuery]ListUserQuery query,CancellationToken ct)
+        {
+            return await sender.Send(query, ct);
+        }
+        [HttpGet ("{id:int}")]
+        public async Task<GetUserByIdQueryDto> GetById(int id,CancellationToken ct)
+        {
+            return await sender.Send(new GetUserByIdQuery { Id=id}, ct);
         }
     }
 }

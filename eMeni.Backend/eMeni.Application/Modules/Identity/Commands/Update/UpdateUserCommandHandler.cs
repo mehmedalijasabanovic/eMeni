@@ -17,9 +17,9 @@ namespace eMeni.Application.Modules.Identity.Commands.Update
             bool exists= await db.Users.AnyAsync(x=>x.Id==command.Id,ct);
             if (!exists) { throw new eMeniNotFoundException("Invalid user Id."); }
             var userUpdate=await db.Users.FirstOrDefaultAsync(x=>x.Id==command.Id,ct);
-            userUpdate.Email=command.Email;
-            userUpdate.FullName=command.FullName;
-            userUpdate.Phone=command.Phone;
+            userUpdate.Email=command.Email.Trim();
+            userUpdate.FullName=command.FullName.Trim();
+            userUpdate.Phone=command.Phone.Trim();
             await db.SaveChangesAsync(ct);
             return Unit.Value;
         }
