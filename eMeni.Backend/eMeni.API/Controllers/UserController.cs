@@ -1,5 +1,6 @@
 ﻿using eMeni.Application.Modules.Identity.Commands.Create;
 using eMeni.Application.Modules.Identity.Commands.Delete;
+using eMeni.Application.Modules.Identity.Commands.Update;
 
 namespace eMeni.API.Controllers
 {
@@ -14,10 +15,16 @@ namespace eMeni.API.Controllers
             int id = await sender.Send(cmd,ct);
             return Created(string.Empty, new { id });
         }
-        [HttpDelete]
-        public async Task Delete(DeleteUserCommand cmd,CancellationToken ct)
+        [HttpDelete ("{id:int}")]
+        public async Task Delete(int id,CancellationToken ct)
         {
-            await sender.Send(new DeleteUserCommand { Id=cmd.Id}, ct);
+            await sender.Send(new DeleteUserCommand { Id=id}, ct);
+        }
+        [HttpPut ("{id:int}")]
+        public async Task Update(int id,UpdateUserCommand command,CancellationToken ct)
+        {
+            command.Id=id;
+            await sender.Send(command, ct);
         }
     }
 }

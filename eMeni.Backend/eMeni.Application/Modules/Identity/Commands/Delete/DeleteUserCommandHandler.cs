@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace eMeni.Application.Modules.Identity.Commands.Delete
 {
-    public sealed class DeleteUserCommandHandler(IAppDbContext db):IRequestHandler<DeleteUserCommand,Unit>
+    public sealed class DeleteUserCommandHandler(IAppDbContext db,IAuthorizationHelper auth):IRequestHandler<DeleteUserCommand,Unit>
     {
         public async Task<Unit> Handle(DeleteUserCommand command,CancellationToken ct)
         {
+            auth.EnsureAdmin();
             bool exists=await db.Users.AnyAsync(x=>x.Id==command.Id,ct);
 
             if (!exists) { throw new eMeniNotFoundException("Invalid user ID."); }
