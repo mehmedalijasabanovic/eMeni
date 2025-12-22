@@ -20,4 +20,8 @@
     <ProjectReference Include="..\eMeni.Shared\eMeni.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modules\Menu\" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,9 @@
 ﻿namespace eMeni.API.Controllers
 {
-    public class MenuController
+    [ApiController]
+    [Route("[controller]")]
+    public class MenuController(ISender sender):ControllerBase
     {
+
     }
 }
