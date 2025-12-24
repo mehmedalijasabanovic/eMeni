@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eMeni.Application.Modules.Business.Queries.List
+namespace eMeni.Application.Modules.Business.BusinessCategory.Queries.List
 {
     public sealed class ListBusinessesCategoryQuery:BasePagedQuery<ListBusinessesCategoryQueryDto>
     {

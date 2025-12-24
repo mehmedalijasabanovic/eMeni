@@ -1,4 +1,4 @@
-﻿namespace eMeni.Application.Modules.Business.Queries.List
+﻿namespace eMeni.Application.Modules.Business.BusinessCategory.Queries.List
 {
     public sealed class ListBusinessesCategoryQueryDto
     {
