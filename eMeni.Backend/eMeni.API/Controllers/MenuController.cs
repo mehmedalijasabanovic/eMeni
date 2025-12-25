@@ -1,7 +1,10 @@
 ﻿using eMeni.Application.Modules.Menu.Menu.Commands.Create;
+using eMeni.Application.Modules.Menu.Menu.Commands.Delete;
 using eMeni.Application.Modules.Menu.Menu.Queries.List;
 using eMeni.Application.Modules.Menu.MenuCategory.Commands.Create;
+using eMeni.Application.Modules.Menu.MenuCategory.Commands.Delete;
 using eMeni.Application.Modules.Menu.MenuItem.Commands.Create;
+using eMeni.Application.Modules.Menu.MenuItem.Commands.Delete;
 
 namespace eMeni.API.Controllers
 {
@@ -35,6 +38,23 @@ namespace eMeni.API.Controllers
         public async Task<PageResult<ListMenuQueryDto>> GetList([FromQuery]ListMenuQuery query,CancellationToken ct)
         {
             return await sender.Send(query, ct);
+        }
+        [HttpDelete("{menuId:int}")]
+        public async Task DeleteMenu(int menuId, CancellationToken ct)
+        {
+            await sender.Send(new DeleteMenuCommand { Id = menuId }, ct);
+        }
+
+        [HttpDelete("categories/{categoryId:int}")]
+        public async Task DeleteMenuCategory(int categoryId, CancellationToken ct)
+        {
+            await sender.Send(new DeleteMenuCategoryCommand { Id = categoryId }, ct);
+        }
+
+        [HttpDelete("items/{itemId:int}")]
+        public async Task DeleteMenuItem(int itemId, CancellationToken ct)
+        {
+            await sender.Send(new DeleteMenuItemCommand { Id = itemId }, ct);
         }
     }
 }
