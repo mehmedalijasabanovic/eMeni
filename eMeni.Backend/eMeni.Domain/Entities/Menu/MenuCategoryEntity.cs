@@ -19,4 +19,9 @@ public sealed class MenuCategoryEntity:BaseEntity
     public MenuEntity Menu { get; set; }
 
     public ICollection<MenuItemEntity> MenuItems { get; set; } = new List<MenuItemEntity>();
+    public static class MenuCategoryConstraints
+    {
+        public const int CategoryNameMaxLength = 50;
+        public const int DescriptionMaxLength = 200;
+    }
 }

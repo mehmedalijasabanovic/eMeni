@@ -13,6 +13,14 @@ namespace eMeni.Application.Modules.Menu.MenuItem.Commands.Create
             if (!categoryExists)
                 throw new eMeniNotFoundException("Category not found.");
 
+            var category=await db.MenuCategories.FirstOrDefaultAsync(x=>x.Id== cmd.CategoryId,ct);
+            var menu=await db.Menus.Include(b=>b.Business).ThenInclude(p=>p.Package).FirstOrDefaultAsync(x=>x.Id==category.MenuId,ct);
+            
+            var maxOfImages = category.Menu.Business.Package.MaxImages;
+            var countOfImages=await db.MenuItems.Where(i=>i.ImageUrl!=null&&!i.IsDeleted&&i.Category.MenuId==menu.Id).CountAsync(ct);
+            if (maxOfImages == countOfImages)
+                throw new eMeniConflictException("You already have maximum images on this menu.");
+
             var item = new MenuItemEntity
             {
                 CategoryId = cmd.CategoryId,

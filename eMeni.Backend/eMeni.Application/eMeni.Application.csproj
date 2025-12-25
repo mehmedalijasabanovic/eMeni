@@ -21,7 +21,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\Menu\" />
+    <Folder Include="Modules\Menu\MenuCategory\Commands\Delete\" />
+    <Folder Include="Modules\Menu\MenuCategory\Commands\Update\" />
+    <Folder Include="Modules\Menu\MenuCategory\Queries\" />
+    <Folder Include="Modules\Menu\MenuItem\Commands\Delete\" />
+    <Folder Include="Modules\Menu\MenuItem\Commands\Update\" />
+    <Folder Include="Modules\Menu\MenuItem\Queries\" />
+    <Folder Include="Modules\Menu\Menu\Commands\Delete\" />
+    <Folder Include="Modules\Menu\Menu\Commands\Update\" />
   </ItemGroup>
 
 </Project>
