@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\Menu\" />
+    <Folder Include="Modules\Menu\MenuCategory\Queries\" />
+    <Folder Include="Modules\Menu\MenuItem\Queries\" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@ using eMeni.Application.Modules.Business.Business.Commands.Delete;
 using eMeni.Application.Modules.Business.Business.Commands.Update;
 using eMeni.Application.Modules.Business.Business.Queries.GetByUserId;
 using eMeni.Application.Modules.Business.Business.Queries.List;
-using eMeni.Application.Modules.Business.Queries.List;
+
 
 namespace eMeni.API.Controllers
 {

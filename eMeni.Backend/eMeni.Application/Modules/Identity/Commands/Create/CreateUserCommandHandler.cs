@@ -15,14 +15,17 @@ namespace eMeni.Application.Modules.Identity.Commands.Create
             {
                 throw new eMeniConflictException("User is already logged in.");
             }
+            var exists=await db.Users.AnyAsync(x=>x.Email.ToLower()==command.Email.ToLower().Trim(),ct);
+            if (exists) { throw new eMeniConflictException("This email is already in use."); }
+
             var hasher=new PasswordHasher<eMeniUserEntity>();
             var newUser = new eMeniUserEntity
             {
-                FullName = command.FullName,
+                FullName = command.FullName.Trim(),
                 CityId = command.CityId,
-                Phone = command.Phone,
-                Email = command.Email,
-                PasswordHash = hasher.HashPassword(null!, command.PasswordHash),
+                Phone = command.Phone.Trim(),
+                Email = command.Email.Trim(),
+                PasswordHash = hasher.HashPassword(null!, command.PasswordHash.Trim()),
                 TokenVersion = 0,
                 CreatedAtUtc = DateTime.UtcNow
             };

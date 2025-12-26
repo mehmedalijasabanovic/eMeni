@@ -1,6 +1,6 @@
 ﻿using eMeni.Application.Modules.Business.BusinessCategory.Commands.Create;
 using eMeni.Application.Modules.Business.BusinessCategory.Commands.Delete;
-using eMeni.Application.Modules.Business.Queries.List;
+using eMeni.Application.Modules.Business.BusinessCategory.Queries.List;
 using eMeni.Application.Modules.Location.Queries.List;
 
 namespace eMeni.API.Controllers

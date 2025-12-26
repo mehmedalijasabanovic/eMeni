@@ -21,4 +21,11 @@ public sealed class MenuItemEntity:BaseEntity
 
   
     public MenuCategoryEntity Category { get; set; }
+    public static class MenuItemConstraints
+    {
+        public const int ItemNameMaxLength = 50;
+        public const int ItemDescriptionMaxLength = 200;
+        public const int PriceMaxLength = 20;
+        public const int ImageUrlMaxLength = 200;
+    }
 }
