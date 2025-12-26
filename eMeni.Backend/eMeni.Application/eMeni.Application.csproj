@@ -21,11 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\Menu\MenuCategory\Commands\Update\" />
     <Folder Include="Modules\Menu\MenuCategory\Queries\" />
-    <Folder Include="Modules\Menu\MenuItem\Commands\Update\" />
     <Folder Include="Modules\Menu\MenuItem\Queries\" />
-    <Folder Include="Modules\Menu\Menu\Commands\Update\" />
   </ItemGroup>
 
 </Project>

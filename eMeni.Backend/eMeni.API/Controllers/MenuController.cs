@@ -1,10 +1,14 @@
 ﻿using eMeni.Application.Modules.Menu.Menu.Commands.Create;
 using eMeni.Application.Modules.Menu.Menu.Commands.Delete;
+using eMeni.Application.Modules.Menu.Menu.Commands.Update;
+using eMeni.Application.Modules.Menu.Menu.Commands.UpdatePromotionRank;
 using eMeni.Application.Modules.Menu.Menu.Queries.List;
 using eMeni.Application.Modules.Menu.MenuCategory.Commands.Create;
 using eMeni.Application.Modules.Menu.MenuCategory.Commands.Delete;
+using eMeni.Application.Modules.Menu.MenuCategory.Commands.Update;
 using eMeni.Application.Modules.Menu.MenuItem.Commands.Create;
 using eMeni.Application.Modules.Menu.MenuItem.Commands.Delete;
+using eMeni.Application.Modules.Menu.MenuItem.Commands.Update;
 
 namespace eMeni.API.Controllers
 {
@@ -38,6 +42,35 @@ namespace eMeni.API.Controllers
         public async Task<PageResult<ListMenuQueryDto>> GetList([FromQuery]ListMenuQuery query,CancellationToken ct)
         {
             return await sender.Send(query, ct);
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task UpdateMenu(int id,UpdateMenuCommand command,CancellationToken ct)
+        {
+            command.Id = id;
+            await sender.Send(command, ct);
+        }
+
+        [HttpPut("{id:int}/promotion-rank")]
+        public async Task UpdateMenuPromotionRank(int id,UpdateMenuPromotionRankCommand command,CancellationToken ct)
+        {
+            command.Id = id;
+            await sender.Send(command, ct);
+        }
+
+
+        [HttpPut("categories/{id:int}")]
+        public async Task UpdateMenuCategory( int id,UpdateMenuCategoryCommand command,CancellationToken ct)
+        {
+            command.Id = id;
+            await sender.Send(command, ct);
+        }
+
+        [HttpPut("items/{id:int}")]
+        public async Task UpdateMenuItem(int id, UpdateMenuItemCommand command,CancellationToken ct)
+        {
+            command.Id = id;
+            await sender.Send(command, ct);
         }
         [HttpDelete("{menuId:int}")]
         public async Task DeleteMenu(int menuId, CancellationToken ct)
