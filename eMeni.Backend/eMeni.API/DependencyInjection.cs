@@ -36,6 +36,19 @@ public static class DependencyInjection
                 };
             });
 
+        services.AddCors(options => 
+        { 
+            options.AddPolicy("AllowAngularDev", 
+                policy => 
+                { 
+                    policy
+                    .WithOrigins("http://localhost:4200")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials(); 
+                }); 
+        });
+
         // Typed options + validation on startup
         services.AddOptions<JwtOptions>()
             .Bind(configuration.GetSection(JwtOptions.SectionName))

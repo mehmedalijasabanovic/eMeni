@@ -64,6 +64,7 @@ public partial class Program
             app.UseExceptionHandler();
             app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
+            app.UseCors("AllowAngularDev");
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
