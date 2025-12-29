@@ -4,8 +4,10 @@ using eMeni.Infrastructure.Common;
 using eMeni.Shared.Dtos;
 using eMeni.Shared.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Threading.RateLimiting;
 using System.Text;
 
 namespace eMeni.API;
@@ -112,6 +114,74 @@ public static class DependencyInjection
         services.AddProblemDetails();
         services.AddScoped<IAuthorizationHelper, AuthorizationHelper>();
 
+        // Rate Limiting Configuration
+        var rateLimitConfig = configuration.GetSection("RateLimiting");
+        var globalLimit = rateLimitConfig.GetSection("Global").GetValue<int>("PermitLimit", 100);
+        var globalWindow = rateLimitConfig.GetSection("Global").GetValue<int>("WindowMinutes", 1);
+        var authLimit = rateLimitConfig.GetSection("Auth").GetValue<int>("PermitLimit", 5);
+        var authWindow = rateLimitConfig.GetSection("Auth").GetValue<int>("WindowMinutes", 1);
+        var apiLimit = rateLimitConfig.GetSection("Api").GetValue<int>("PermitLimit", 60);
+        var apiWindow = rateLimitConfig.GetSection("Api").GetValue<int>("WindowMinutes", 1);
+
+        services.AddRateLimiter(options =>
+        {
+            // Global rate limit policy - applies to all endpoints unless overridden
+            options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(context =>
+            {
+                // Use IP address as the partition key
+                var ipAddress = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+                
+                return RateLimitPartition.GetFixedWindowLimiter(
+                    partitionKey: ipAddress,
+                    factory: partition => new FixedWindowRateLimiterOptions
+                    {
+                        AutoReplenishment = true,
+                        PermitLimit = globalLimit,
+                        Window = TimeSpan.FromMinutes(globalWindow)
+                    });
+            });
+
+            // Policy for authentication endpoints (more restrictive)
+            options.AddPolicy("AuthPolicy", context =>
+            {
+                var ipAddress = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+                
+                return RateLimitPartition.GetFixedWindowLimiter(
+                    partitionKey: ipAddress,
+                    factory: partition => new FixedWindowRateLimiterOptions
+                    {
+                        AutoReplenishment = true,
+                        PermitLimit = authLimit,
+                        Window = TimeSpan.FromMinutes(authWindow)
+                    });
+            });
+
+            // Policy for general API endpoints (moderate)
+            options.AddPolicy("ApiPolicy", context =>
+            {
+                var ipAddress = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+                
+                return RateLimitPartition.GetFixedWindowLimiter(
+                    partitionKey: ipAddress,
+                    factory: partition => new FixedWindowRateLimiterOptions
+                    {
+                        AutoReplenishment = true,
+                        PermitLimit = apiLimit,
+                        Window = TimeSpan.FromMinutes(apiWindow)
+                    });
+            });
+
+            // Rejection response when rate limit is exceeded
+            options.OnRejected = async (context, cancellationToken) =>
+            {
+                context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
+                await context.HttpContext.Response.WriteAsJsonAsync(new ErrorDto
+                {
+                    Code = "rate_limit_exceeded",
+                    Message = "Too many requests. Please try again later."
+                }, cancellationToken);
+            };
+        });
 
         return services;
     }

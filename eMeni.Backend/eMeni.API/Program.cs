@@ -62,6 +62,10 @@ public partial class Program
 
             // Global exception handler (IExceptionHandler)
             app.UseExceptionHandler();
+            
+            // Rate limiting middleware (should be early in pipeline)
+            app.UseRateLimiter();
+            
             app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
             app.UseCors("AllowAngularDev");

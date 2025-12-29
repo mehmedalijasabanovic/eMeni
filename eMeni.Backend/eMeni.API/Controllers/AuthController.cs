@@ -1,9 +1,11 @@
 ﻿using eMeni.Application.Modules.Auth.Commands.Login;
 using eMeni.Application.Modules.Auth.Commands.Logout;
 using eMeni.Application.Modules.Auth.Commands.Refresh;
+using Microsoft.AspNetCore.RateLimiting;
 
 [ApiController]
 [Route("api/auth")]
+[EnableRateLimiting("AuthPolicy")] // Apply stricter rate limiting to auth endpoints
 public sealed class AuthController(IMediator mediator) : ControllerBase
 {
     [HttpPost("login")]
