@@ -62,10 +62,6 @@ public partial class Program
 
             // Global exception handler (IExceptionHandler)
             app.UseExceptionHandler();
-            
-            // Rate limiting middleware (should be early in pipeline)
-            app.UseRateLimiter();
-            
             app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
             app.UseCors("AllowAngularDev");
@@ -77,6 +73,8 @@ public partial class Program
 
             // Database migrations + seeding
             await app.Services.InitializeDatabaseAsync(app.Environment);
+
+            app.UseRateLimiter();
 
             Log.Information("eMeni API started successfully.");
             app.Run();
