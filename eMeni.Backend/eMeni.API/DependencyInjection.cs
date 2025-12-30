@@ -110,10 +110,6 @@ public static class DependencyInjection
             c.AddSecurityRequirement(new OpenApiSecurityRequirement { { bearer, Array.Empty<string>() } });
         });
 
-        services.AddExceptionHandler<eMeniExceptionHandler>();
-        services.AddProblemDetails();
-        services.AddScoped<IAuthorizationHelper, AuthorizationHelper>();
-
         // Rate Limiting Configuration
         var rateLimitConfig = configuration.GetSection("RateLimiting");
         var globalLimit = rateLimitConfig.GetSection("Global").GetValue<int>("PermitLimit", 100);
@@ -122,7 +118,6 @@ public static class DependencyInjection
         var authWindow = rateLimitConfig.GetSection("Auth").GetValue<int>("WindowMinutes", 1);
         var apiLimit = rateLimitConfig.GetSection("Api").GetValue<int>("PermitLimit", 60);
         var apiWindow = rateLimitConfig.GetSection("Api").GetValue<int>("WindowMinutes", 1);
-
         services.AddRateLimiter(options =>
         {
             // Global rate limit policy - applies to all endpoints unless overridden
@@ -130,7 +125,7 @@ public static class DependencyInjection
             {
                 // Use IP address as the partition key
                 var ipAddress = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
-                
+
                 return RateLimitPartition.GetFixedWindowLimiter(
                     partitionKey: ipAddress,
                     factory: partition => new FixedWindowRateLimiterOptions
@@ -145,7 +140,7 @@ public static class DependencyInjection
             options.AddPolicy("AuthPolicy", context =>
             {
                 var ipAddress = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
-                
+
                 return RateLimitPartition.GetFixedWindowLimiter(
                     partitionKey: ipAddress,
                     factory: partition => new FixedWindowRateLimiterOptions
@@ -160,7 +155,7 @@ public static class DependencyInjection
             options.AddPolicy("ApiPolicy", context =>
             {
                 var ipAddress = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
-                
+
                 return RateLimitPartition.GetFixedWindowLimiter(
                     partitionKey: ipAddress,
                     factory: partition => new FixedWindowRateLimiterOptions
@@ -182,6 +177,11 @@ public static class DependencyInjection
                 }, cancellationToken);
             };
         });
+
+        services.AddExceptionHandler<eMeniExceptionHandler>();
+        services.AddProblemDetails();
+        services.AddScoped<IAuthorizationHelper, AuthorizationHelper>();
+
 
         return services;
     }
