@@ -16,7 +16,7 @@ namespace eMeni.Infrastructure.Models.Configurations
             entity.Property(e => e.CategoryName)
                 .IsRequired()
                 .HasMaxLength(40);
-            entity.Property(e => e.CategoryDescription)
+            entity.Property(e => e.CategoryDescription).IsRequired()
                 .HasMaxLength(400);
             entity.Property(e => e.IsDeleted).HasDefaultValue(false);
 

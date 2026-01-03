@@ -14,6 +14,7 @@ public partial class DatabaseContext : DbContext, IAppDbContext
     public DbSet<MenuEntity> Menus => Set<MenuEntity>();
     public DbSet<MenuCategoryEntity> MenuCategories => Set<MenuCategoryEntity>();
     public DbSet<MenuItemEntity> MenuItems => Set<MenuItemEntity>();
+    public DbSet<PackageEntity> PackageEntity => Set<PackageEntity>();
 
     private readonly TimeProvider _clock;
     public DatabaseContext(DbContextOptions<DatabaseContext> options, TimeProvider clock) : base(options)

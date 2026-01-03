@@ -15,5 +15,6 @@ public interface IAppDbContext
     DbSet<MenuEntity> Menus { get; }
     DbSet<MenuCategoryEntity> MenuCategories { get; }
     DbSet<MenuItemEntity> MenuItems { get; }
+    DbSet<PackageEntity> PackageEntity { get; }
     Task<int> SaveChangesAsync(CancellationToken ct);
 }

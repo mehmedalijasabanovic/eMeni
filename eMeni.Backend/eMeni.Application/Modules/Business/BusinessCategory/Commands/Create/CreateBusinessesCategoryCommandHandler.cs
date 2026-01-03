@@ -7,7 +7,7 @@ namespace eMeni.Application.Modules.Business.BusinessCategory.Commands.Create
         public async Task<int> Handle(CreateBusinessesCategoryCommand command,CancellationToken ct)
         {
 
-            //Checks if user already has business name with that name
+            //Checks if already has business name with that name
             var bc = command.Name?.Trim();
             if (string.IsNullOrWhiteSpace(bc))
                 throw new ValidationException("Name is required.");
@@ -17,6 +17,7 @@ namespace eMeni.Application.Modules.Business.BusinessCategory.Commands.Create
             var newcategory = new BusinessesCategoryEntity
             {
                 CategoryName = bc,
+                CategoryDescription=command.Description?.Trim(),
                 CreatedAtUtc = DateTime.UtcNow,
             };
             db.BusinessesCategories.Add(newcategory);

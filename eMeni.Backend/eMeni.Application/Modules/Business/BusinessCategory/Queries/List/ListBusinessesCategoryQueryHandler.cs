@@ -17,8 +17,11 @@ namespace eMeni.Application.Modules.Business.BusinessCategory.Queries.List
             if (!query.Search.isNullOrWhiteSpace())
                 quer=quer.Where(x=>x.CategoryName.ToLower()==query.Search.ToLower());
             var projectedQuery = quer.
-                OrderBy(x => x.CategoryName).
-                Select(x => new ListBusinessesCategoryQueryDto { Id = x.Id, CategoryName = x.CategoryName });
+                OrderBy(x => x.Id).
+                Select(x => new ListBusinessesCategoryQueryDto { 
+                    Id = x.Id, 
+                    CategoryName = x.CategoryName,
+                    CategoryDescription=x.CategoryDescription });
 
             return await PageResult<ListBusinessesCategoryQueryDto>.FromQueryableAsync(projectedQuery, query.Paging, ct);
         }

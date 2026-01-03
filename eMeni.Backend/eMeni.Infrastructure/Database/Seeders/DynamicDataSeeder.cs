@@ -17,6 +17,7 @@ public static class DynamicDataSeeder
         await SeedCitysAsync(context);
         await SeedUsersAsync(context);
         await SeedBusinessCategoryAsync(context);
+        await SeedPackageAsync(context);
         
         
     }
@@ -67,6 +68,19 @@ public static class DynamicDataSeeder
             IsUser = true,
             CityId = 1,
             FullName = "Admin User",
+            Phone = "1234567890",
+            Active = true,
+            IsDeleted = false,
+            CreatedAtUtc = DateTime.UtcNow,
+        };
+        var ownerforswagger = new eMeniUserEntity
+        {
+            Email = "string1",
+            PasswordHash = hasher.HashPassword(null!, "string"),
+            IsUser = true,
+            IsOwner=true,
+            CityId = 1,
+            FullName = "Owner user",
             Phone = "1234567890",
             Active = true,
             IsDeleted = false,
@@ -126,23 +140,46 @@ public static class DynamicDataSeeder
         var ugostiteljstvo = new BusinessesCategoryEntity
         {
             CategoryName = "Ugostiteljstvo",
+            CategoryDescription="Lorem ipsum test test test test test test tetst test test",
             CreatedAtUtc = DateTime.UtcNow,
             IsDeleted = false,
         };
         var rentAVan = new BusinessesCategoryEntity
         {
             CategoryName = "Rent a Van",
+            CategoryDescription = "Lorem ipsum test test test test test test tetst test test",
             CreatedAtUtc = DateTime.UtcNow,
             IsDeleted = false,
         };
         var trgovina = new BusinessesCategoryEntity
         {
             CategoryName = "Trgovine",
+            CategoryDescription = "Lorem ipsum test test test test test test tetst test test",
             CreatedAtUtc = DateTime.UtcNow,
             IsDeleted = false,
         };
         context.BusinessesCategories.AddRange(ugostiteljstvo,rentAVan,trgovina);
         await context.SaveChangesAsync();
         Console.WriteLine("✅ Dynamic seed: demo business categories added.");
+    }
+    private static async Task SeedPackageAsync(DatabaseContext context)
+    {
+        if (await context.PackageEntity.AnyAsync())
+        {
+            return;
+        }
+        var test = new PackageEntity
+        {
+            Description = "test",
+            PackageName = "test",
+            MaxImages = 1,
+            MaxMenus = 1,
+            Price = 1,
+            IsDeleted = false,
+            CreatedAtUtc = DateTime.UtcNow
+        };
+        context.PackageEntity.Add(test);
+        await context.SaveChangesAsync();
+        Console.WriteLine("✅ Dynamic seed: demo packages added.");
     }
 }
