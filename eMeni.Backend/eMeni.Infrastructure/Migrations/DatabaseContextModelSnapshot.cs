@@ -171,6 +171,10 @@ namespace eMeni.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CategoryDescription")
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
+
                     b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasMaxLength(40)

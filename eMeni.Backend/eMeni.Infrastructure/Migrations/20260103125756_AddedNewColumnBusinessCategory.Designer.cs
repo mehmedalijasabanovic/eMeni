@@ -12,8 +12,8 @@ using eMeni.Infrastructure.Database;
 namespace eMeni.Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20251211184411_FixBusinessTableName")]
-    partial class FixBusinessTableName
+    [Migration("20260103125756_AddedNewColumnBusinessCategory")]
+    partial class AddedNewColumnBusinessCategory
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -173,6 +173,10 @@ namespace eMeni.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CategoryDescription")
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
 
                     b.Property<string>("CategoryName")
                         .IsRequired()

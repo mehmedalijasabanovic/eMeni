@@ -29,8 +29,4 @@
     <ProjectReference Include="..\eMeni.Shared\eMeni.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

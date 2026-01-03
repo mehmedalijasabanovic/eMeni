@@ -1,13 +1,14 @@
 import {NgModule} from '@angular/core';
 
 import {PublicRoutingModule} from './public-routing-module';
-import {PublicLayoutComponent} from './public-layout/public-layout.component';
+import {PublicLayout} from './public-layout/public-layout';
+
 
 
 
 @NgModule({
   declarations: [
-    PublicLayoutComponent,
+    PublicLayout,
 
   ],
   imports: [

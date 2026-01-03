@@ -21,6 +21,7 @@ namespace eMeni.API.Controllers
             await sender.Send(new DeleteBusinessesCategoryCommand { Id = id },ct);
         }
         [HttpGet]
+        [AllowAnonymous]
         public async Task<PageResult<ListBusinessesCategoryQueryDto>> List([FromQuery] ListBusinessesCategoryQuery query, CancellationToken ct)
         {
             return await sender.Send(query, ct);
