@@ -3,6 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {CustomTranslateLoader} from './core/services/custom-translate-loader';
+import {HttpClient} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -10,7 +14,14 @@ import { App } from './app';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => new CustomTranslateLoader(http),
+        deps: [HttpClient]
+      }
+    }),
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

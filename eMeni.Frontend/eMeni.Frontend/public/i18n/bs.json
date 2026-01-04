@@ -1,5 +1,17 @@
 {
   "APP": {
     "TITLE": "test"
+  },
+  "HEADER": {
+    "PREGLED": "Pregled",
+    "O_NAMA": "O nama",
+    "PAKETI": "Paketi",
+    "QR_DEKORACIJE": "QR dekoracije",
+    "KONTAKT": "Kontakt",
+    "LOGIN": "Login",
+    "REGISTER": "Register"
+  },
+  "CATEGORIES": {
+    "VIEW_MENUS": "Pogledaj eMenije"
   }
 }

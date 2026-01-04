@@ -1,5 +1,17 @@
 {
   "APP": {
-  "TITLE": "testung"
+    "TITLE": "testung"
+  },
+  "HEADER": {
+    "PREGLED": "Overview",
+    "O_NAMA": "About Us",
+    "PAKETI": "Packages",
+    "QR_DEKORACIJE": "QR Decorations",
+    "KONTAKT": "Contact",
+    "LOGIN": "Login",
+    "REGISTER": "Register"
+  },
+  "CATEGORIES": {
+    "VIEW_MENUS": "View eMenus"
   }
 }
