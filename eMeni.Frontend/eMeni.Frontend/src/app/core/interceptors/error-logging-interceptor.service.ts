@@ -94,6 +94,8 @@ export function getErrorMessage(error: HttpErrorResponse): string {
       return 'The requested resource was not found.';
     case 409:
       return 'Conflict. The operation cannot be completed.';
+    case 429:
+      return 'Too many requests. Please try again later.';
     case 500:
       return 'Server error. Please try again later.';
     case 503:

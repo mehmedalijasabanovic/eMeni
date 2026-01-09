@@ -1,10 +1,14 @@
 import { Component,OnInit, signal } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core'
+import {TranslateService} from '@ngx-translate/core';
+import { RouterOutlet } from '@angular/router';
+import { routeAnimations } from './core/animations/route-animations';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   standalone: false,
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
+  animations: [routeAnimations]
 })
 export class App {
   protected readonly title = signal('eMeni');
@@ -45,6 +49,10 @@ export class App {
         console.error('3. TranslateService not properly initialized');
       }
     });
+  }
+
+  prepareRoute(outlet: RouterOutlet): string {
+    return outlet?.activatedRouteData?.['animation'] || '';
   }
 
   switchLanguage(lang: string): void {

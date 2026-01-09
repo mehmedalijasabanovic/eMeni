@@ -1,5 +1,6 @@
 .header-toolbar {
-  background: linear-gradient(to right, #87CEEB, #00CED1); // Light blue to cyan gradient
+  background: linear-gradient(to right, #007FAE); // Light blue to cyan gradient
+  //background: #3291B6;
   color: white;
   padding: 0 24px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -64,7 +65,7 @@
 .mobile-menu-button {
   display: none; // Hidden by default on desktop
   color: white;
-  
+
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
@@ -109,7 +110,7 @@
 // Register Button - Different background and slightly bigger
 .register-button {
   background-color: #ffffff;
-  color: #00CED1;
+  color: darkslategray;
   font-weight: 600;
   text-transform: none;
   font-size: 16px;
@@ -119,6 +120,60 @@
   &:hover {
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// User Greeting - Desktop
+.user-greeting {
+  display: flex;
+  align-items: center;
+}
+
+.user-menu-button {
+  color: white;
+  font-weight: 500;
+  text-transform: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .greeting-text {
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .dropdown-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    color: white;
+  }
+}
+
+.user-menu {
+  mat-icon {
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+}
+
+// Mobile User Greeting
+.mobile-user-greeting {
+  padding: 16px;
+  text-align: center;
+
+  .greeting-text {
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
   }
 }
 
@@ -208,6 +263,7 @@ mat-card-actions {
     font-weight: 500;
     text-transform: none;
     padding: 10px 0;
+    color: #007FAE;
   }
 }
 
@@ -221,29 +277,29 @@ mat-card-actions {
       max-width: 100%;
     }
   }
-  
+
   .header-toolbar {
     padding: 0 16px;
   }
-  
+
   .nav-menu.desktop-menu {
     gap: 4px;
-    
+
     .nav-item {
       font-size: 14px;
       padding: 6px 12px;
     }
   }
-  
+
   .auth-buttons.desktop-auth {
     gap: 4px;
-    
+
     .login-button,
     .register-button {
       font-size: 14px;
       padding: 6px 16px;
     }
-    
+
     .register-button {
       padding: 8px 20px;
       min-width: 100px;
@@ -258,50 +314,50 @@ mat-card-actions {
     min-height: 64px;
     padding: 8px 12px;
   }
-  
+
   .header-content {
     flex-wrap: nowrap;
     gap: 8px;
   }
-  
+
   .logo-container {
     flex-shrink: 0;
-    
+
     .logo {
       height: 40px;
     }
   }
-  
+
   // Hide desktop menu and auth buttons on mobile
   .nav-menu.desktop-menu {
     display: none;
   }
-  
+
   .auth-buttons.desktop-auth {
     display: none;
   }
-  
+
   // Show mobile menu button
   .mobile-menu-button {
     display: block;
   }
-  
+
   .header-actions {
     gap: 4px;
     flex-shrink: 0;
   }
-  
+
   .language-selector {
     .lang-button {
       width: 40px;
       height: 40px;
     }
-    
+
     .flag-icon {
       font-size: 18px;
     }
   }
-  
+
   .categories-grid {
     .category-card {
       flex: 0 0 100%; // 1 card per row on mobile
@@ -319,24 +375,24 @@ mat-card-actions {
   .header-toolbar {
     padding: 6px 8px;
   }
-  
+
   .logo-container .logo {
     height: 35px;
   }
-  
+
   .header-actions {
     gap: 2px;
   }
-  
+
   .language-selector .lang-button {
     width: 36px;
     height: 36px;
-    
+
     .flag-icon {
       font-size: 16px;
     }
   }
-  
+
   .mobile-menu-button {
     width: 36px;
     height: 36px;

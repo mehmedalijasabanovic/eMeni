@@ -3,7 +3,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 /**
  * Global toaster service for displaying notifications.
- * Uses Material Snackbar for consistent UI.
+ * Uses Material Snackbar for consistent UI with smooth animations.
  */
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,9 @@ export class ToasterService {
 
   private defaultConfig: MatSnackBarConfig = {
     duration: 3000,
-    horizontalPosition: 'end',
-    verticalPosition: 'top'
+    horizontalPosition: 'center',
+    verticalPosition: 'top',
+    panelClass: ['snackbar-animated']
   };
 
   /**

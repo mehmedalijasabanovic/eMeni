@@ -13,5 +13,33 @@
   },
   "CATEGORIES": {
     "VIEW_MENUS": "Pogledaj eMenije"
+  },
+  "LOGIN": {
+    "TITLE": "Prijavi se",
+    "SUBTITLE": "Unesite vase podatke",
+    "BACK": "Nazad",
+    "EMAIL": "Email",
+    "PASSWORD": "Lozinka",
+    "REMEMBER_ME": "Zapamti me",
+    "FORGOT_PASSWORD": "Zaboravljena lozinka?",
+    "BUTTON": "Login",
+    "LOGGING_IN": "Prijavljivanje...",
+    "EMAIL_REQUIRED": "Email je obavezan",
+    "EMAIL_INVALID": "Unesite validan email",
+    "PASSWORD_REQUIRED": "Lozinka je obavezna",
+    "NO_ACCOUNT": "Nemate nalog?",
+    "REGISTER": "Registrujte se",
+    "HIDE_PASSWORD": "Sakrij lozinku",
+    "ERROR_GENERIC": "Greška pri prijavljivanju. Molimo pokušajte ponovo.",
+    "ERROR_AUTH_FAILED": "Autentifikacija nije uspjela. Molimo pokušajte ponovo.",
+    "FORM_INVALID": "Molimo popunite sva polja ispravno.",
+    "SUCCESS": "Uspešno ste se prijavili!"
+  },
+  "CATEGORIES": {
+    "VIEW_MENUS": "Pogledaj eMenije",
+    "LOADING": "Učitavanje kategorija...",
+    "LOADED_SUCCESS": "Učitano {{count}} kategorija",
+    "NO_CATEGORIES": "Nema dostupnih kategorija",
+    "LOAD_ERROR": "Greška pri učitavanju kategorija. Molimo pokušajte ponovo."
   }
 }

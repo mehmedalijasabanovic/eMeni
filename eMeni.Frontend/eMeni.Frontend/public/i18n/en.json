@@ -13,5 +13,33 @@
   },
   "CATEGORIES": {
     "VIEW_MENUS": "View eMenus"
+  },
+  "LOGIN": {
+    "TITLE": "Login",
+    "SUBTITLE": "Enter your credentials",
+    "BACK": "Back",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "REMEMBER_ME": "Remember me",
+    "FORGOT_PASSWORD": "Forgot password?",
+    "BUTTON": "Login",
+    "LOGGING_IN": "Logging in...",
+    "EMAIL_REQUIRED": "Email is required",
+    "EMAIL_INVALID": "Please enter a valid email",
+    "PASSWORD_REQUIRED": "Password is required",
+    "NO_ACCOUNT": "Don't have an account?",
+    "REGISTER": "Register",
+    "HIDE_PASSWORD": "Hide password",
+    "ERROR_GENERIC": "Login error. Please try again.",
+    "ERROR_AUTH_FAILED": "Authentication failed. Please try again.",
+    "FORM_INVALID": "Please fill in all fields correctly.",
+    "SUCCESS": "Successfully logged in!"
+  },
+  "CATEGORIES": {
+    "VIEW_MENUS": "View eMenus",
+    "LOADING": "Loading categories...",
+    "LOADED_SUCCESS": "Loaded {{count}} categories",
+    "NO_CATEGORIES": "No categories available",
+    "LOAD_ERROR": "Error loading categories. Please try again."
   }
 }
