@@ -150,21 +150,49 @@ export class AuthFacadeService {
    */
   private decodeAndSetUser(token: string): void {
     try {
-      const payload = jwtDecode<JwtPayloadDto>(token);
+      // Decode without type constraint first to see all actual keys
+      const rawPayload = jwtDecode<any>(token);
+      
+      const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+      if (rawPayload.exp && rawPayload.exp < currentTimeInSeconds) {
+        console.warn('JWT token has expired. Clearing user state.');
+        this._currentUser.set(null);
+        this.storage.clear(); // Clear expired tokens
+        return;
+      }
+
+      // .NET ClaimTypes.Email maps to this URI in JWT tokens
+      const emailClaimUri = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress';
+      
+      // Try to get email from different possible claim names
+      const email = rawPayload.email || 
+                   rawPayload[emailClaimUri] ||
+                   rawPayload.Email ||
+                   rawPayload.emailaddress;
+
+      if (!email) {
+        console.error('Email claim not found in JWT token. Available keys:', Object.keys(rawPayload));
+        console.error('Full payload:', rawPayload);
+        this._currentUser.set(null);
+        this.storage.clear();
+        return;
+      }
 
       const user: CurrentUserDto = {
-        userId: Number(payload.sub),
-        email: payload.email,
-        isAdmin: payload.is_admin === 'true',
-        isOwner: payload.is_owner === 'true',
-        isUser: payload.is_user === 'true',
-        tokenVersion: Number(payload.ver),
+        userId: Number(rawPayload.sub),
+        email: email,
+        isAdmin: rawPayload.is_admin === 'true' || rawPayload.is_admin === true,
+        isOwner: rawPayload.is_owner === 'true' || rawPayload.is_owner === true,
+        isUser: rawPayload.is_user === 'true' || rawPayload.is_user === true,
+        tokenVersion: Number(rawPayload.ver),
       };
 
+      console.log('User decoded successfully:', user);
       this._currentUser.set(user);
     } catch (error) {
       console.error('Failed to decode JWT token:', error);
       this._currentUser.set(null);
+      this.storage.clear();
     }
   }
 
