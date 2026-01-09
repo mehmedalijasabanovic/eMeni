@@ -1,0 +1,44 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 450px;
+  padding: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+}
+
+mat-card-header {
+  padding: 24px 24px 16px 24px;
+  text-align: center;
+
+  mat-card-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+}
+
+mat-card-content {
+  padding: 24px;
+}
+
+// Responsive design
+@media (max-width: 600px) {
+  .register-container {
+    padding: 16px;
+  }
+
+  .register-card {
+    max-width: 100%;
+  }
+}
+
