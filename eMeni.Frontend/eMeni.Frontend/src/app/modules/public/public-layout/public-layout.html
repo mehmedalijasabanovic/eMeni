@@ -85,7 +85,6 @@
           @if (currentUserService.currentUser()?.email) {
             <div class="mobile-user-greeting">
               <span class="greeting-text">Zdravo, {{ currentUserService.currentUser()?.email }}</span>
-              <button mat-button class="nav-item" routerLink="/kontakt">{{ 'HEADER.KONTAKT' | translate }}</button>
             </div>
             <mat-divider></mat-divider>
             <button mat-menu-item (click)="logout(); closeMobileMenu()">
