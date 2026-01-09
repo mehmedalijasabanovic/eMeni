@@ -3,6 +3,7 @@ using eMeni.Application.Modules.Menu.Menu.Commands.Delete;
 using eMeni.Application.Modules.Menu.Menu.Commands.Update;
 using eMeni.Application.Modules.Menu.Menu.Commands.UpdatePromotionRank;
 using eMeni.Application.Modules.Menu.Menu.Queries.List;
+using eMeni.Application.Modules.Menu.Menu.Queries.ListOnlyMenus;
 using eMeni.Application.Modules.Menu.MenuCategory.Commands.Create;
 using eMeni.Application.Modules.Menu.MenuCategory.Commands.Delete;
 using eMeni.Application.Modules.Menu.MenuCategory.Commands.Update;
@@ -43,7 +44,12 @@ namespace eMeni.API.Controllers
         {
             return await sender.Send(query, ct);
         }
-
+        [HttpGet("/only-menus")]
+        [AllowAnonymous]
+        public async Task<PageResult<ListOnlyMenusQueryDto>> GetOnlyMenus([FromQuery]ListOnlyMenusQuery query, CancellationToken ct)
+        {
+            return await sender.Send(query, ct);
+        }
         [HttpPut("{id:int}")]
         public async Task UpdateMenu(int id,UpdateMenuCommand command,CancellationToken ct)
         {

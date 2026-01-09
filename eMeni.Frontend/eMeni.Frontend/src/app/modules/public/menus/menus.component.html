@@ -1,0 +1,125 @@
+<!-- Loading Bar - Shows automatically during HTTP requests -->
+<app-fit-loading-bar></app-fit-loading-bar>
+
+<!-- Header -->
+<mat-toolbar class="header-toolbar">
+  <div class="header-content">
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="/images/eMeni-Logo.png" alt="eMeni Logo" class="logo" />
+    </div>
+
+    <!-- Right side: Language selector, Login, Register -->
+    <div class="header-actions">
+      <!-- Language Selector -->
+      <div class="language-selector">
+        <button mat-icon-button [matMenuTriggerFor]="langMenu" class="lang-button">
+          <span class="flag-icon">{{ getCurrentLanguage()?.flag }}</span>
+          <mat-icon class="lang-dropdown-icon">arrow_drop_down</mat-icon>
+        </button>
+
+        <mat-menu #langMenu="matMenu">
+          <button
+            mat-menu-item
+            *ngFor="let lang of languages"
+            (click)="switchLanguage(lang.code)"
+            [class.active-lang]="currentLang === lang.code"
+          >
+            <span class="flag-icon">{{ lang.flag }}</span>
+            <span>{{ lang.name }}</span>
+            <mat-icon *ngIf="currentLang === lang.code" class="check-icon">check</mat-icon>
+          </button>
+        </mat-menu>
+      </div>
+
+      <!-- Login and Register Buttons - Desktop (shown when NOT authenticated) -->
+      @if (!currentUserService.isAuthenticated()) {
+        <div class="auth-buttons desktop-auth">
+          <button mat-button class="login-button" routerLink="/auth/login">{{ 'HEADER.LOGIN' | translate }}</button>
+          <button mat-raised-button class="register-button" routerLink="/auth/register">{{ 'HEADER.REGISTER' | translate }}</button>
+        </div>
+      }
+
+      <!-- User Greeting with Dropdown - Desktop (shown when authenticated) -->
+      @if (currentUserService.isAuthenticated() && currentUserService.currentUser()?.email) {
+        <div class="user-greeting desktop-auth">
+          <button mat-button [matMenuTriggerFor]="userMenu" class="user-menu-button">
+            <span class="greeting-text">Zdravo, {{ currentUserService.currentUser()?.email }}</span>
+            <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
+          </button>
+          <mat-menu #userMenu="matMenu" class="user-menu">
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </div>
+      }
+    </div>
+  </div>
+</mat-toolbar>
+
+<!-- Divider -->
+<mat-divider></mat-divider>
+
+<!-- Main Content -->
+<div class="menus-container" [@fadeAnimation]>
+  <!-- Title Section -->
+  <div class="title-section" *ngIf="categoryName">
+    <h2 class="page-title">
+      <span class="title-text">{{ 'MENUS.TITLE' | translate }}</span>
+      <span class="category-name">{{ categoryName }}</span>
+    </h2>
+  </div>
+
+  <!-- Divider above filter -->
+  <mat-divider class="filter-divider"></mat-divider>
+
+  <!-- Filter Section -->
+  <div class="filter-section">
+    <div class="filter-wrapper">
+      <label class="filter-label">{{ 'MENUS.FILTER_BY' | translate }}</label>
+      <mat-form-field appearance="outline" class="city-filter">
+        <mat-select [value]="selectedCity" (selectionChange)="onCityChange($event.value)" [placeholder]="'MENUS.ALL_CITIES' | translate">
+          <mat-option [value]="null">{{ 'MENUS.ALL_CITIES' | translate }}</mat-option>
+          <mat-option *ngFor="let city of cities" [value]="city.name">
+            {{ city.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Loading Skeleton -->
+  <app-cards-skeleton *ngIf="isLoading" [cards]="6"></app-cards-skeleton>
+
+  <!-- Actual Menu Cards -->
+  <div class="menus-grid" *ngIf="!isLoading">
+    <mat-card class="menu-card" *ngFor="let menu of items">
+      <!-- Picture placeholder -->
+      <div class="card-image-placeholder">
+        <!-- Image will be added here later -->
+      </div>
+
+      <mat-card-content>
+        <h3 class="menu-title">{{ menu.menuTitle }}</h3>
+        <p class="menu-description">{{ menu.menuDescription }}</p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" class="view-menu-button">
+          {{ 'MENUS.VIEW_MENU' | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="!isLoading && items.length === 0">
+    <p>{{ ('MENUS.NO_MENUS' | translate) || 'No menus found' }}</p>
+  </div>
+
+  <!-- Paginator Bar -->
+  <app-fit-paginator-bar [vm]="this"></app-fit-paginator-bar>
+</div>
+

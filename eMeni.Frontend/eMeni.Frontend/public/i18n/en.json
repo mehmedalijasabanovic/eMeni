@@ -41,5 +41,15 @@
     "LOADED_SUCCESS": "Loaded {{count}} categories",
     "NO_CATEGORIES": "No categories available",
     "LOAD_ERROR": "Error loading categories. Please try again."
+  },
+  "MENUS": {
+    "TITLE": "Here you can view menus related to",
+    "FILTER_BY": "Filter by:",
+    "ALL_CITIES": "All cities",
+    "VIEW_MENU": "View Menu",
+    "NO_MENUS": "No menus found",
+    "NO_MENUS_IN_CATEGORY": "No menus in this category",
+    "LOAD_ERROR": "Error loading menus. Please try again.",
+    "CITIES_LOAD_ERROR": "Error loading cities. Please try again."
   }
 }

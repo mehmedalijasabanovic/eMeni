@@ -1,0 +1,428 @@
+.header-toolbar {
+  background: linear-gradient(to right, #007FAE);
+  color: white;
+  padding: 0 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 70px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 24px;
+}
+
+// Logo
+.logo-container {
+  display: flex;
+  align-items: center;
+
+  .logo {
+    height: 50px;
+    width: 100px;
+    object-fit: contain;
+  }
+}
+
+// Header Actions (Language selector, Login, Register)
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+// Auth Buttons - Desktop
+.auth-buttons.desktop-auth {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+// Language selector icon
+.lang-dropdown-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+// Language Selector
+.language-selector {
+  .lang-button {
+    color: white;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .flag-icon {
+    font-size: 20px;
+    margin-right: 4px;
+  }
+}
+
+// Login Button
+.login-button {
+  color: white;
+  font-weight: 500;
+  text-transform: none;
+  font-size: 16px;
+  padding: 8px 20px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+// Register Button
+.register-button {
+  background-color: #ffffff;
+  color: darkslategray;
+  font-weight: 600;
+  text-transform: none;
+  font-size: 16px;
+  padding: 10px 24px;
+  min-width: 110px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// User Greeting - Desktop
+.user-greeting {
+  display: flex;
+  align-items: center;
+}
+
+.user-menu-button {
+  color: white;
+  font-weight: 500;
+  text-transform: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .greeting-text {
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .dropdown-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    color: white;
+  }
+}
+
+.user-menu {
+  mat-icon {
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+}
+
+// Divider
+mat-divider {
+  margin: 0;
+}
+
+// Menus Container
+.menus-container {
+  padding: 40px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// Title Section
+.title-section {
+  text-align: center;
+  margin-bottom: 32px;
+
+  .page-title {
+    font-size: 28px;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    .title-text {
+      color: #555;
+      font-weight: 400;
+    }
+
+    .category-name {
+      color: #007FAE;
+      font-weight: 600;
+      font-size: 32px;
+      margin-top: 4px;
+    }
+  }
+}
+
+// Divider above filter
+.filter-divider {
+  margin: 24px 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Filter Section
+.filter-section {
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 24px; // Match container padding to align with cards
+
+  .filter-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .filter-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #666;
+      margin: 0;
+    }
+
+    .city-filter {
+      width: 250px; // Smaller dropdown
+    }
+  }
+}
+
+// Menus Grid - Max 3 cards per row, centered layout
+.menus-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+
+  .menu-card {
+    flex: 0 0 calc(33.333% - 16px); // 3 cards per row with gap calculation
+    max-width: 350px;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+// Card Image Placeholder
+.card-image-placeholder {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+  }
+}
+
+// Card Content
+mat-card-content {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-title {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.menu-description {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  flex: 1;
+}
+
+// Card Actions
+mat-card-actions {
+  padding: 0 16px 16px 16px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+
+  .view-menu-button {
+    width: 100%;
+    font-weight: 500;
+    text-transform: none;
+    padding: 10px 0;
+    color: #007FAE;
+  }
+}
+
+// Empty State
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+
+  p {
+    font-size: 18px;
+    margin: 0;
+  }
+}
+
+// Responsive adjustments
+
+// Tablet and below (992px)
+@media (max-width: 992px) {
+  .menus-grid {
+    .menu-card {
+      flex: 0 0 calc(50% - 12px); // 2 cards per row on medium screens
+      max-width: 100%;
+    }
+  }
+
+  .header-toolbar {
+    padding: 0 16px;
+  }
+
+  .auth-buttons.desktop-auth {
+    gap: 4px;
+
+    .login-button,
+    .register-button {
+      font-size: 14px;
+      padding: 6px 16px;
+    }
+
+    .register-button {
+      padding: 8px 20px;
+      min-width: 100px;
+    }
+  }
+}
+
+// Mobile (768px and below)
+@media (max-width: 768px) {
+  .header-toolbar {
+    height: auto;
+    min-height: 64px;
+    padding: 8px 12px;
+  }
+
+  .header-content {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .logo-container {
+    flex-shrink: 0;
+
+    .logo {
+      height: 40px;
+    }
+  }
+
+  .auth-buttons.desktop-auth {
+    display: none;
+  }
+
+  .header-actions {
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .language-selector {
+    .lang-button {
+      width: 40px;
+      height: 40px;
+    }
+
+    .flag-icon {
+      font-size: 18px;
+    }
+  }
+
+  .title-section {
+    .page-title {
+      font-size: 22px;
+    }
+  }
+
+  .filter-section {
+    .filter-wrapper {
+      .city-filter {
+        width: 100%;
+        max-width: 250px;
+      }
+    }
+  }
+
+  .menus-grid {
+    .menu-card {
+      flex: 0 0 100%; // 1 card per row on mobile
+      min-width: 100%;
+    }
+  }
+
+  .menus-container {
+    padding: 24px 16px;
+  }
+}
+
+// Small mobile (480px and below)
+@media (max-width: 480px) {
+  .header-toolbar {
+    padding: 6px 8px;
+  }
+
+  .logo-container .logo {
+    height: 35px;
+  }
+
+  .header-actions {
+    gap: 2px;
+  }
+
+  .language-selector .lang-button {
+    width: 36px;
+    height: 36px;
+
+    .flag-icon {
+      font-size: 16px;
+    }
+  }
+}
+

@@ -117,7 +117,7 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-raised-button color="primary" class="view-menus-button">
+        <button mat-raised-button color="primary" class="view-menus-button" (click)="viewMenus(category.id)">
           {{ 'CATEGORIES.VIEW_MENUS' | translate }}
         </button>
       </mat-card-actions>

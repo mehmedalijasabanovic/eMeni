@@ -102,6 +102,12 @@ export class PublicLayout extends BaseListPagedComponent<ListBusinessCategoriesD
     });
   }
 
+  viewMenus(categoryId: number): void {
+    this.router.navigate(['/menus'], { queryParams: { categoryId: categoryId } }).catch((err: any) => {
+      console.error('Navigation error:', err);
+    });
+  }
+
   logout(): void {
     this.authFacade.logout().subscribe({
       next: () => {

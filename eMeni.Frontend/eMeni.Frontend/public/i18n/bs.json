@@ -41,5 +41,15 @@
     "LOADED_SUCCESS": "Učitano {{count}} kategorija",
     "NO_CATEGORIES": "Nema dostupnih kategorija",
     "LOAD_ERROR": "Greška pri učitavanju kategorija. Molimo pokušajte ponovo."
+  },
+  "MENUS": {
+    "TITLE": "Ovdje možete pogledati menije vezane za",
+    "FILTER_BY": "Filtriraj po:",
+    "ALL_CITIES": "Svi gradovi",
+    "VIEW_MENU": "Pogledaj meni",
+    "NO_MENUS": "Nema pronađenih menija",
+    "NO_MENUS_IN_CATEGORY": "Nema menija u ovoj kategoriji",
+    "LOAD_ERROR": "Greška pri učitavanju menija. Molimo pokušajte ponovo.",
+    "CITIES_LOAD_ERROR": "Greška pri učitavanju gradova. Molimo pokušajte ponovo."
   }
 }
