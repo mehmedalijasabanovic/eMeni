@@ -64,7 +64,7 @@ export class PublicLayout extends BaseListPagedComponent<ListBusinessCategoriesD
         this.stopLoading();
         this.cdr.markForCheck(); // Mark component for change detection
 
-       
+
       },
       error:(err )=>{
         this.stopLoading("Failed to load business categories.");
