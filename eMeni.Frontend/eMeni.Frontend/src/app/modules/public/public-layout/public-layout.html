@@ -1,0 +1,126 @@
+<!-- Loading Bar - Shows automatically during HTTP requests -->
+<app-fit-loading-bar></app-fit-loading-bar>
+
+<mat-toolbar class="header-toolbar">
+  <div class="header-content">
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="/images/eMeni-Logo.png" alt="eMeni Logo" class="logo" />
+    </div>
+
+    <!-- Navigation Menu Items - Desktop -->
+    <div class="nav-menu desktop-menu">
+      <button mat-button class="nav-item" routerLink="/">{{ 'HEADER.PREGLED' | translate }}</button>
+      <button mat-button class="nav-item" routerLink="/o-nama">{{ 'HEADER.O_NAMA' | translate }}</button>
+      <button mat-button class="nav-item" routerLink="/paketi">{{ 'HEADER.PAKETI' | translate }}</button>
+      <button mat-button class="nav-item" routerLink="/qr-dekoracije">{{ 'HEADER.QR_DEKORACIJE' | translate }}</button>
+      <button mat-button class="nav-item" routerLink="/kontakt">{{ 'HEADER.KONTAKT' | translate }}</button>
+    </div>
+
+    <!-- Right side: Language selector, Login, Register -->
+    <div class="header-actions">
+      <!-- Language Selector -->
+      <div class="language-selector">
+        <button mat-icon-button [matMenuTriggerFor]="langMenu" class="lang-button">
+          <span class="flag-icon">{{ getCurrentLanguage()?.flag }}</span>
+          <mat-icon class="lang-dropdown-icon">arrow_drop_down</mat-icon>
+        </button>
+
+        <mat-menu #langMenu="matMenu">
+
+          <button
+            mat-menu-item
+            *ngFor="let lang of languages"
+            (click)="switchLanguage(lang.code)"
+            [class.active-lang]="currentLang === lang.code"
+          >
+            <span class="flag-icon">{{ lang.flag }}</span>
+            <span>{{ lang.name }}</span>
+            <mat-icon *ngIf="currentLang === lang.code" class="check-icon">check</mat-icon>
+          </button>
+        </mat-menu>
+      </div>
+
+      <!-- Login and Register Buttons - Desktop (shown when NOT authenticated) -->
+      @if (!currentUserService.isAuthenticated()) {
+        <div class="auth-buttons desktop-auth">
+          <button mat-button class="login-button" routerLink="/auth/login">{{ 'HEADER.LOGIN' | translate }}</button>
+          <button mat-raised-button class="register-button" routerLink="/auth/register">{{ 'HEADER.REGISTER' | translate }}</button>
+        </div>
+      }
+
+      <!-- User Greeting with Dropdown - Desktop (shown when authenticated) -->
+      @if (currentUserService.isAuthenticated() && currentUserService.currentUser()?.email) {
+        <div class="user-greeting desktop-auth">
+          <button mat-button [matMenuTriggerFor]="userMenu" class="user-menu-button">
+            <span class="greeting-text">Zdravo, {{ currentUserService.currentUser()?.email }}</span>
+            <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
+          </button>
+          <mat-menu #userMenu="matMenu" class="user-menu">
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </div>
+      }
+
+
+      <!-- Mobile Menu Button -->
+      <button mat-icon-button class="mobile-menu-button" [matMenuTriggerFor]="mobileMenu" aria-label="Menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <mat-menu #mobileMenu="matMenu" class="mobile-nav-menu">
+        <button mat-menu-item routerLink="/" (click)="closeMobileMenu()">{{ 'HEADER.PREGLED' | translate }}</button>
+        <button mat-menu-item routerLink="/o-nama" (click)="closeMobileMenu()">{{ 'HEADER.O_NAMA' | translate }}</button>
+        <button mat-menu-item routerLink="/paketi" (click)="closeMobileMenu()">{{ 'HEADER.PAKETI' | translate }}</button>
+        <button mat-menu-item routerLink="/qr-dekoracije" (click)="closeMobileMenu()">{{ 'HEADER.QR_DEKORACIJE' | translate }}</button>
+        <button mat-menu-item routerLink="/kontakt" (click)="closeMobileMenu()">{{ 'HEADER.KONTAKT' | translate }}</button>
+        <mat-divider></mat-divider>
+        @if (!currentUserService.isAuthenticated()) {
+          <button mat-menu-item routerLink="/auth/login" (click)="closeMobileMenu()">{{ 'HEADER.LOGIN' | translate }}</button>
+          <button mat-menu-item routerLink="/auth/register" (click)="closeMobileMenu()">{{ 'HEADER.REGISTER' | translate }}</button>
+        } @else {
+          @if (currentUserService.currentUser()?.email) {
+            <div class="mobile-user-greeting">
+              <span class="greeting-text">Zdravo, {{ currentUserService.currentUser()?.email }}</span>
+            </div>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="logout(); closeMobileMenu()">
+              <mat-icon>logout</mat-icon>
+              <span>Logout</span>
+            </button>
+          }
+        }
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>
+
+<!-- Categories Cards Grid -->
+<div class="categories-container" [@fadeAnimation]>
+  <!-- Loading Skeleton -->
+  <app-cards-skeleton *ngIf="isLoading" [cards]="6"></app-cards-skeleton>
+
+  <!-- Actual Cards -->
+  <div class="categories-grid" *ngIf="!isLoading">
+    <mat-card class="category-card" *ngFor="let category of items">
+      <!-- Picture placeholder -->
+      <div class="card-image-placeholder">
+        <!-- Image will be added here later -->
+      </div>
+
+      <mat-card-content>
+        <h3 class="category-title">{{ category.categoryName }}</h3>
+        <p class="category-description">{{ category.categoryDescription }}</p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" class="view-menus-button">
+          {{ 'CATEGORIES.VIEW_MENUS' | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

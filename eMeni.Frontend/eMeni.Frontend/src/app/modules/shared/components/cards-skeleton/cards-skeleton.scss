@@ -1,0 +1,153 @@
+// Cards Skeleton Component Styles
+// Matches the category cards design in public-layout
+
+$skeleton-bg: #e0e0e0;
+$skeleton-bg-light: #f5f5f5;
+
+.skeleton-cards-container {
+  padding: 40px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skeleton-cards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.skeleton-card {
+  flex: 0 0 calc(33.333% - 16px);
+  max-width: 350px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+// Image skeleton
+.skeleton-image {
+  width: 100%;
+  height: 200px;
+  background: $skeleton-bg-light;
+  border-radius: 4px 4px 0 0;
+}
+
+// Content skeleton
+.skeleton-content {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+// Title skeleton
+.skeleton-title {
+  height: 24px;
+  width: 70%;
+  border-radius: 4px;
+  background: $skeleton-bg;
+}
+
+// Description skeleton
+.skeleton-description {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.skeleton-line {
+  height: 14px;
+  width: 100%;
+  border-radius: 4px;
+  background: $skeleton-bg;
+  
+  &.skeleton-line-short {
+    width: 60%;
+  }
+}
+
+// Button skeleton
+.skeleton-actions {
+  padding: 0 16px 16px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.skeleton-button {
+  width: 100%;
+  height: 40px;
+  border-radius: 4px;
+  background: $skeleton-bg;
+}
+
+// Shimmer animation (same as fit-table-skeleton)
+.skeleton-shine {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 20%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0.3) 80%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmer 2s infinite;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+// Responsive adjustments (matching public-layout)
+@media (max-width: 992px) {
+  .skeleton-card {
+    flex: 0 0 calc(50% - 12px);
+    max-width: 100%;
+  }
+  
+  .skeleton-cards-container {
+    padding: 40px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .skeleton-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+  
+  .skeleton-cards-container {
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skeleton-cards-container {
+    padding: 24px 8px;
+  }
+  
+  .skeleton-cards-grid {
+    gap: 16px;
+  }
+}
+
