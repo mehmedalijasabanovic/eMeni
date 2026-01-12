@@ -74,11 +74,8 @@ export class LoginComponent extends BaseComponent{
 
     this.authFacade.login(loginCommand).subscribe({
       next: () => {
-        // Signals update synchronously, but we need to ensure change detection runs
-        // Verify user is authenticated before redirecting
+
         if (this.currentUserService.isAuthenticated()) {
-          const user = this.currentUserService.currentUser();
-          console.log('Login successful, user:', user);
           const defaultRoute = this.currentUserService.getDefaultRoute();
           this.stopLoading();
           this.cdr.detectChanges();

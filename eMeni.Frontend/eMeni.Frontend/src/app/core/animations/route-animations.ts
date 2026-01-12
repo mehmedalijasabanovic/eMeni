@@ -17,26 +17,26 @@ export const routeAnimations = trigger('routeAnimations', [
         opacity: 0
       })
     ], { optional: true }),
-    
+
     // Group animations for smooth transition
     group([
       // Animate the leaving view out (fade and slide left)
       query(':leave', [
-        animate('400ms ease-in-out', style({ 
-          opacity: 0, 
-          transform: 'translateX(-30px) scale(0.98)' 
+        animate('400ms ease-in-out', style({
+          opacity: 0,
+          transform: 'translateX(-30px) scale(0.98)'
         }))
       ], { optional: true }),
-      
+
       // Animate the entering view in (fade and slide from right)
       query(':enter', [
-        style({ 
+        style({
           transform: 'translateX(30px) scale(0.98)',
-          opacity: 0 
+          opacity: 0
         }),
-        animate('400ms ease-in-out', style({ 
-          opacity: 1, 
-          transform: 'translateX(0) scale(1)' 
+        animate('400ms ease-in-out', style({
+          opacity: 1,
+          transform: 'translateX(0) scale(1)'
         }))
       ], { optional: true })
     ])

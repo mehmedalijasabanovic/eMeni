@@ -21,7 +21,7 @@ namespace eMeni.API.Controllers
             await sender.Send(new DeleteCityCommand { Id = id }, ct);
         }
         [HttpGet]
-
+        [AllowAnonymous]
         public async Task<PageResult<ListCityQueryDto>> List([FromQuery] ListCityQuery query,CancellationToken ct)
         {
             return await sender.Send(query, ct);
