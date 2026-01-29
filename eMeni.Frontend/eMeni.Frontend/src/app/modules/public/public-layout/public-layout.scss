@@ -176,7 +176,24 @@
     font-size: 16px;
   }
 }
-
+.hero-section{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+ h1{
+   margin:20px 0 15px 0;
+   padding-top: 6px;
+   font-size: 30px;
+   font-weight: 700;
+   color: #333;
+ }
+  p{
+    margin:5px;
+    font-size: 20px;
+    color: #666;
+  }
+}
 // Categories Container
 .categories-container {
   padding: 40px 24px;
@@ -328,6 +345,8 @@ mat-card-actions {
     }
   }
 
+
+
   // Hide desktop menu and auth buttons on mobile
   .nav-menu.desktop-menu {
     display: none;
@@ -364,7 +383,6 @@ mat-card-actions {
       min-width: 100%;
     }
   }
-
   .categories-container {
     padding: 24px 16px;
   }
@@ -375,7 +393,6 @@ mat-card-actions {
   .header-toolbar {
     padding: 6px 8px;
   }
-
   .logo-container .logo {
     height: 35px;
   }

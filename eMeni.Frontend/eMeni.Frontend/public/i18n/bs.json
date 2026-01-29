@@ -11,6 +11,11 @@
     "LOGIN": "Login",
     "REGISTER": "Register"
   },
+
+  "HERO": {
+    "TITLE": "Pogledaj eMenije",
+    "TEXT": "Pogledaj cijene, napravi rezervaciju i ostavi recenziju - bez dolaska u objekt."
+  },
   "CATEGORIES": {
     "VIEW_MENUS": "Pogledaj eMenije"
   },

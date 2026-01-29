@@ -98,8 +98,15 @@
   </div>
 </mat-toolbar>
 
+<div class="hero-section">
+    <h1>{{'HERO.TITLE'|translate}}</h1>
+    <p>{{'HERO.TEXT'|translate}}</p>
+</div>
+
 <!-- Categories Cards Grid -->
 <div class="categories-container" [@fadeAnimation]>
+
+
   <!-- Loading Skeleton -->
   <app-cards-skeleton *ngIf="isLoading" [cards]="6"></app-cards-skeleton>
 

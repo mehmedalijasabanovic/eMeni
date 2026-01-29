@@ -35,6 +35,10 @@
     "FORM_INVALID": "Please fill in all fields correctly.",
     "SUCCESS": "Successfully logged in!"
   },
+  "HERO": {
+    "TITLE": "View eMenus",
+    "TEXT": "Check prices, make a reservation, and leave a review — without visiting the venue."
+  },
   "CATEGORIES": {
     "VIEW_MENUS": "View eMenus",
     "LOADING": "Loading categories...",
