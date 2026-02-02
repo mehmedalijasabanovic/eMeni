@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'menus',
     component: MenusComponent,
+  },
+  {
+    path: 'menus/:categorySlug',
+    component: MenusComponent,
   }
 
 ];

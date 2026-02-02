@@ -11,7 +11,7 @@ html {
   @include mat.theme((
     color: (
       primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
+      tertiary: mat.$azure-palette,
     ),
     typography: Roboto,
     density: 0,
@@ -90,6 +90,6 @@ body {
 
 // Info snackbar styling
 .snackbar-info {
-  background-color: #2196f3 !important;
+  background-color: #2475AA !important;
   color: white !important;
 }

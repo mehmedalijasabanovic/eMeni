@@ -119,7 +119,10 @@
     <p>{{ ('MENUS.NO_MENUS' | translate) || 'No menus found' }}</p>
   </div>
 
-  <!-- Paginator Bar -->
-  <app-fit-paginator-bar [vm]="this"></app-fit-paginator-bar>
+  <!-- Load more -->
+  <div *ngIf="!isLoading && items.length!==0 &&!(totalItems<=request.paging.pageSize)" class="load-more-container">
+    <button mat-raised-button matButton="filled"  class="load-more" (click)="loadMoreMenus()">{{'MENUS.LOAD_MORE'|translate}}</button>
+  </div>
+
 </div>
 

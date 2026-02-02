@@ -6,6 +6,7 @@ import {MenusComponent} from './menus/menus.component';
 import {CommonModule} from '@angular/common';
 import {TranslatePipe} from '@ngx-translate/core';
 import {RouterModule} from '@angular/router';
+import { MenusItems } from './menus/menus-items/menus-items';
 
 
 
@@ -14,6 +15,7 @@ import {RouterModule} from '@angular/router';
   declarations: [
     PublicLayout,
     MenusComponent,
+    MenusItems,
   ],
   imports: [
     CommonModule,

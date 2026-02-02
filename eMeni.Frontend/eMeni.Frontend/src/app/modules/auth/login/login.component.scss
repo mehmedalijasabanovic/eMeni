@@ -69,7 +69,7 @@ mat-form-field {
   gap: 8px;
 
   .forgot-password-link {
-    color: #007FAE;
+    color: #2475AA;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -77,7 +77,7 @@ mat-form-field {
     transition: color 0.2s;
 
     &:hover {
-      color: #005a7a;
+      color: #1a5a7a;
       text-decoration: underline;
     }
   }
@@ -118,14 +118,14 @@ mat-card-footer {
   color: #666;
 
   .register-link {
-    color: #007FAE;
+    color: #2475AA;
     text-decoration: none;
     font-weight: 500;
     cursor: pointer;
     transition: color 0.2s;
 
     &:hover {
-      color: #005a7a;
+      color: #1a5a7a;
       text-decoration: underline;
     }
   }

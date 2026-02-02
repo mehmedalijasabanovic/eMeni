@@ -58,26 +58,89 @@ export class MenusComponent extends BaseListPagedComponent<ListOnlyMenusDto, Lis
     super();
     this.request = new ListOnlyMenusRequest();
     this.currentLang = this.translate.currentLang || 'bs';
+    this.request.paging.pageSize = 9;
   }
 
   ngOnInit() {
     console.log('MenusComponent ngOnInit called');
-    
-    // Get categoryId from query params
-    this.route.queryParams.subscribe(params => {
-      const categoryIdParam = params['categoryId'];
-      if (categoryIdParam) {
-        this.categoryId = +categoryIdParam; // Convert to number
-        console.log('CategoryId from route:', this.categoryId);
-        this.loadCategoryName();
-      } else {
-        this.categoryId = null; // Clear categoryId if not in route
-        this.categoryName = null;
-      }
-    });
 
     this.loadCities();
-    this.initList();
+
+    // Get category slug from route params (new way)
+    this.route.params.subscribe(params => {
+      const categorySlug = params['categorySlug'];
+      if (categorySlug) {
+        console.log('Category slug from route:', categorySlug);
+        this.loadCategoryBySlug(categorySlug);
+      } else {
+        // No category slug in route, check query params for backward compatibility
+        const categoryIdParam = this.route.snapshot.queryParams['categoryId'];
+        if (categoryIdParam) {
+          this.categoryId = +categoryIdParam; // Convert to number
+          console.log('CategoryId from query params:', this.categoryId);
+          this.loadCategoryName();
+          this.initList();
+        } else {
+          this.categoryId = null; // Clear categoryId if not in route
+          this.categoryName = null;
+          this.initList(); // Load all menus if no category filter
+        }
+      }
+    });
+  }
+
+  /**
+   * Converts a category name to a URL-friendly slug
+   * Example: "Ugostiteljstvo" -> "ugostiteljstvo"
+   */
+  private categoryNameToSlug(categoryName: string): string {
+    return categoryName
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+      .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+  }
+
+  /**
+   * Loads category by slug from route parameter
+   */
+  loadCategoryBySlug(categorySlug: string): void {
+    const categoriesRequest = new ListBusinessCategoriesRequest();
+    this.categoriesApi.list(categoriesRequest).subscribe({
+      next: (response) => {
+        // Find category by matching slug
+        const category = response.items.find(cat => {
+          const slug = this.categoryNameToSlug(cat.categoryName);
+          return slug === categorySlug;
+        });
+        
+        if (category) {
+          this.categoryId = category.id;
+          this.categoryName = category.categoryName;
+          console.log('Category found:', category);
+          this.cdr.markForCheck();
+          // Initialize list with the found categoryId
+          this.initList();
+        } else {
+          console.warn('Category not found for slug:', categorySlug);
+          this.categoryId = null;
+          this.categoryName = null;
+          this.cdr.markForCheck();
+          // Still load menus without category filter
+          this.initList();
+        }
+      },
+      error: (err) => {
+        console.error('Failed to load categories:', err);
+        this.categoryId = null;
+        this.categoryName = null;
+        this.cdr.markForCheck();
+        // Still load menus without category filter
+        this.initList();
+      }
+    });
   }
 
   loadCategoryName(): void {
@@ -123,12 +186,12 @@ export class MenusComponent extends BaseListPagedComponent<ListOnlyMenusDto, Lis
       next: (response) => {
         this.handlePageResult(response);
         console.log('Menus loaded:', response);
-        
+
         // Check if no menus found and categoryId is set
         if (this.categoryId && response.items.length === 0) {
           this.toaster.error(this.translate.instant('MENUS.NO_MENUS_IN_CATEGORY') || 'No menus in this category');
         }
-        
+
         this.stopLoading();
         this.cdr.markForCheck();
       },
@@ -172,7 +235,10 @@ export class MenusComponent extends BaseListPagedComponent<ListOnlyMenusDto, Lis
   getCurrentLanguage() {
     return this.languages.find(lang => lang.code === this.currentLang);
   }
-
+  loadMoreMenus(){
+    this.request.paging.pageSize += 6;
+    this.loadPagedData();
+  }
   logout(): void {
     this.authFacade.logout().subscribe({
       next: () => {

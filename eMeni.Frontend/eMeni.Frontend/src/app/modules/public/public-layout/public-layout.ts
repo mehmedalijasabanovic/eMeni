@@ -102,10 +102,34 @@ export class PublicLayout extends BaseListPagedComponent<ListBusinessCategoriesD
     });
   }
 
+  /**
+   * Converts a category name to a URL-friendly slug
+   * Example: "Ugostiteljstvo" -> "ugostiteljstvo"
+   */
+  private categoryNameToSlug(categoryName: string): string {
+    return categoryName
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+      .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+  }
+
   viewMenus(categoryId: number): void {
-    this.router.navigate(['/menus'], { queryParams: { categoryId: categoryId } }).catch((err: any) => {
-      console.error('Navigation error:', err);
-    });
+    // Find the category by ID to get its name
+    const category = this.items.find(cat => cat.id === categoryId);
+    if (category) {
+      const slug = this.categoryNameToSlug(category.categoryName);
+      this.router.navigate(['/menus', slug]).catch((err: any) => {
+        console.error('Navigation error:', err);
+      });
+    } else {
+      // Fallback to old query param method if category not found
+      this.router.navigate(['/menus'], { queryParams: { categoryId: categoryId } }).catch((err: any) => {
+        console.error('Navigation error:', err);
+      });
+    }
   }
 
   logout(): void {

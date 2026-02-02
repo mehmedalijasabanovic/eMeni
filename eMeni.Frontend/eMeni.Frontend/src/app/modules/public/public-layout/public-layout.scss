@@ -1,5 +1,5 @@
 .header-toolbar {
-  background: linear-gradient(to right, #007FAE); // Light blue to cyan gradient
+  background: linear-gradient(to right, #2475AA); // Light blue to cyan gradient
   //background: #3291B6;
   color: white;
   padding: 0 24px;
@@ -96,30 +96,136 @@
 
 // Login Button
 .login-button {
-  color: white;
+  color: white !important;
   font-weight: 500;
   text-transform: none;
   font-size: 16px;
   padding: 8px 20px;
 
+  ::ng-deep {
+    .mat-mdc-button-persistent-ripple {
+      color: white !important;
+    }
+
+    .mdc-button__label {
+      color: white !important;
+    }
+
+    .mat-mdc-button-ripple {
+      color: white !important;
+    }
+  }
+
+  .mdc-button__label {
+    color: white !important;
+  }
+
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+
+    ::ng-deep .mdc-button__label {
+      color: white !important;
+    }
+  }
+
+  &:focus {
+    color: white !important;
+
+    ::ng-deep .mdc-button__label {
+      color: white !important;
+    }
+  }
+
+  &:active {
+    color: white !important;
+
+    ::ng-deep .mdc-button__label {
+      color: white !important;
+    }
   }
 }
 
 // Register Button - Different background and slightly bigger
 .register-button {
-  background-color: #ffffff;
-  color: darkslategray;
+  background-color: #ffffff !important;
+  color: darkslategray !important;
   font-weight: 600;
   text-transform: none;
   font-size: 16px;
   padding: 10px 24px; // Slightly bigger than login
   min-width: 110px; // Ensure it's a bit bigger
 
+  ::ng-deep {
+    .mat-mdc-button-persistent-ripple {
+      color: darkslategray !important;
+    }
+
+    .mdc-button__label {
+      color: darkslategray !important;
+    }
+
+    .mat-mdc-button-ripple {
+      color: darkslategray !important;
+    }
+
+    .mdc-button {
+      background-color: #ffffff !important;
+      color: darkslategray !important;
+    }
+  }
+
+  .mdc-button__label {
+    color: darkslategray !important;
+  }
+
   &:hover {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    color: darkslategray !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    ::ng-deep {
+      .mdc-button__label {
+        color: darkslategray !important;
+      }
+
+      .mdc-button {
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        color: darkslategray !important;
+      }
+    }
+  }
+
+  &:focus {
+    background-color: #ffffff !important;
+    color: darkslategray !important;
+
+    ::ng-deep {
+      .mdc-button__label {
+        color: darkslategray !important;
+      }
+
+      .mdc-button {
+        background-color: #ffffff !important;
+        color: darkslategray !important;
+      }
+    }
+  }
+
+  &:active {
+    background-color: #ffffff !important;
+    color: darkslategray !important;
+
+    ::ng-deep {
+      .mdc-button__label {
+        color: darkslategray !important;
+      }
+
+      .mdc-button {
+        background-color: #ffffff !important;
+        color: darkslategray !important;
+      }
+    }
   }
 }
 
@@ -280,7 +386,7 @@ mat-card-actions {
     font-weight: 500;
     text-transform: none;
     padding: 10px 0;
-    color: #007FAE;
+    color: #2475AA;
   }
 }
 

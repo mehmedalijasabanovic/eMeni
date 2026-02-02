@@ -54,6 +54,7 @@
     "NO_MENUS": "No menus found",
     "NO_MENUS_IN_CATEGORY": "No menus in this category",
     "LOAD_ERROR": "Error loading menus. Please try again.",
-    "CITIES_LOAD_ERROR": "Error loading cities. Please try again."
+    "CITIES_LOAD_ERROR": "Error loading cities. Please try again.",
+    "LOAD_MORE": "Load more eMenus"
   }
 }

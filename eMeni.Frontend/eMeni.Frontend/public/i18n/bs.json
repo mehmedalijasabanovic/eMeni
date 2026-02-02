@@ -55,6 +55,7 @@
     "NO_MENUS": "Nema pronađenih menija",
     "NO_MENUS_IN_CATEGORY": "Nema menija u ovoj kategoriji",
     "LOAD_ERROR": "Greška pri učitavanju menija. Molimo pokušajte ponovo.",
-    "CITIES_LOAD_ERROR": "Greška pri učitavanju gradova. Molimo pokušajte ponovo."
+    "CITIES_LOAD_ERROR": "Greška pri učitavanju gradova. Molimo pokušajte ponovo.",
+    "LOAD_MORE": "Učitaj još eMenija"
   }
 }

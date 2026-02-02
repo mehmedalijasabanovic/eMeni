@@ -2,14 +2,14 @@
 // Matches your existing table card design
 
 $primary-lighter: #e8f0f9;
-$border-color: rgba(73, 118, 181, 0.15);
+$border-color: rgba(36, 117, 170, 0.15);
 $skeleton-bg: #e0e0e0;
 
 .skeleton-table {
   background: white;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(73, 118, 181, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(36, 117, 170, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
   border: 1px solid $border-color;
 
   .skeleton-header {
@@ -17,13 +17,13 @@ $skeleton-bg: #e0e0e0;
     gap: 16px;
     padding: 20px 16px;
     background: linear-gradient(135deg, $primary-lighter 0%, #f5f9fd 100%);
-    border-bottom: 2px solid rgba(73, 118, 181, 0.15);
+    border-bottom: 2px solid rgba(36, 117, 170, 0.15);
 
     .skeleton-cell {
       flex: 1;
       height: 24px;
       border-radius: 4px;
-      background: rgba(73, 118, 181, 0.1);
+      background: rgba(36, 117, 170, 0.1);
     }
   }
 
