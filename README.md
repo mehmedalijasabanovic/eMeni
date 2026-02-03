@@ -97,7 +97,7 @@ The system consists of an **Angular frontend** and an **ASP.NET-based backend** 
   - Swagger / OpenAPI
 
 - **Data & Infrastructure**
-  - Relational database (e.g., SQL Server or PostgreSQL; see backend README for exact configuration)
+  - Relational database
   - Logging to files and/or external sinks
 
 ---
