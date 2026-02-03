@@ -8,6 +8,7 @@ namespace eMeni.Application.Modules.Menu.Menu.Commands.Update
 {
     public sealed class UpdateMenuCommand:IRequest<Unit>
     {
+        [JsonIgnore]
         public int Id { get; set; }
         public string MenuTitle { get; set; }
         public string MenuDescription { get; set; }

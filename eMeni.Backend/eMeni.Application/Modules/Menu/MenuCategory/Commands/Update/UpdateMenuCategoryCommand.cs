@@ -8,6 +8,7 @@ namespace eMeni.Application.Modules.Menu.MenuCategory.Commands.Update
 {
     public sealed class UpdateMenuCategoryCommand:IRequest<Unit>
     {
+        [JsonIgnore]
         public int Id { get; set; }
         public string CategoryName { get; set; }
         public int OrderIndex { get; set; }

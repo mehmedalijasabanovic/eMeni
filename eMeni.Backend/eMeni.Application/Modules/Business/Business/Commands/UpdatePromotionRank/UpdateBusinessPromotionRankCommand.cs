@@ -8,6 +8,7 @@ namespace eMeni.Application.Modules.Business.Business.Commands.UpdatePromotionRa
 {
     public sealed class UpdateBusinessPromotionRankCommand:IRequest<Unit>
     {
+        [JsonIgnore]
         public int Id { get; set; }
         public byte PromotionRank { get; set; }
     }

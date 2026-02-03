@@ -8,6 +8,7 @@ namespace eMeni.Application.Modules.Business.Business.Commands.Update
 {
     public sealed class UpdateBusinessCommand : IRequest<Unit>
     {
+        [JsonIgnore]
         public int Id { get; set; }
         public string? BusinessName { get; set; }
         public string? Description { get; set; }
