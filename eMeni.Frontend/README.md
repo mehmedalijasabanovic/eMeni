@@ -209,18 +209,3 @@ ng generate --help
 
 ---
 
-### Extending the Frontend
-
-- **New features and views**
-  - Add new feature modules under `src/app/modules` for clear separation
-  - Use shared components and Material design to remain visually consistent
-
-- **Animations and UX polish**
-  - Reuse and extend existing route and component animations from `core/animations`
-  - Introduce micro-interactions (hover, focus, loading states) using Angular animations and Material states
-
-- **Internationalization**
-  - Extend translation JSON files in `public/i18n`
-  - Wire translations into components and services using your chosen i18n strategy
-
-If you share more about your deployment environment (e.g., how the frontend is hosted and how it reaches the backend), this README can be enhanced with deployment-specific instructions as well.
