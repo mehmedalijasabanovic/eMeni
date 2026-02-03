@@ -37,7 +37,7 @@ The backend solution (`eMeni.Backend.sln`) is organized into the following proje
   - Shared DTOs, options, constants, and helpers that are used across layers
 
 - **`eMeni.Tests`**
-  - Automated tests (e.g., integration tests) for critical behaviors and endpoints
+  - Automated tests for critical behaviors and endpoints
 
 ---
 
@@ -234,19 +234,4 @@ The `eMeni.Tests` project uses a custom web application factory to spin up an in
 
 ---
 
-### Extending the Backend
 
-- **Add new business capabilities**
-  - Create new commands/queries in the `eMeni.Application` modules
-  - Add or update domain entities in `eMeni.Domain`
-  - Map new entities in `eMeni.Infrastructure` configurations and migrations
-
-- **Adjust rate limiting or security**
-  - Update the `RateLimiting` configuration and policies
-  - Extend JWT claims and authorization rules in the Application layer
-
-- **Enhance analytics and AI**
-  - Add new endpoints and handlers for analytics
-  - Extend AI chat logging and analysis features
-
-If you provide more details about your deployment and environment (database type, hosting provider, CI/CD), this README can be adapted with production-specific guidance as well.
