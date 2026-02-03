@@ -6,6 +6,8 @@ eMeni is a web platform for **digitalizing menus and service catalogs** for any 
 End users can discover services, check prices, read reviews, and make reservations, while business owners manage their digital menus, promotional packages, and QR-code decorations.  
 The system consists of an **Angular frontend** and an **ASP.NET-based backend** built with **Clean Architecture**, **CQRS**, **JWT authentication**, and **rate limiting**.
 
+
+**The project is currently still in the development phase, so many of the things listed below have not yet been implemented.**
 ---
 
 ### Core Product Idea
