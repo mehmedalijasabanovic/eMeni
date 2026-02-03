@@ -179,12 +179,3 @@ Make sure the backend is running and that the environment configuration in the f
    - Open the backend Swagger UI (e.g., `https://localhost:<port>/swagger`) to inspect and test endpoints.
 
 ---
-
-### Contributing & Next Steps
-
-- Extend business categories and cities to cover more use cases.
-- Enhance AI chat support to offer more personalized recommendations.
-- Add more dashboard analytics and filters for business owners.
-- Improve QR-code decoration configuration (styles, materials, and branding options).
-
-If you need this README tailored further (for example, to match exact database technology, deployment setup, or CI/CD workflow), please provide those details and it can be extended accordingly.
