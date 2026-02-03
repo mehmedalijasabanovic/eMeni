@@ -7,7 +7,9 @@ namespace eMeni.Application.Modules.Business.Business.Commands.Update
         public async Task<Unit> Handle(UpdateBusinessCommand command,CancellationToken ct)
         {
             auth.EnsureOwner();
-            bool exist = await db.Business.AnyAsync(x => x.UserId == user.UserId && 
+            
+            bool exist = await db.Business.Include(b=>b.BusinessProfile).ThenInclude(bp=>bp.User)
+                .AnyAsync(x => x.BusinessProfile.UserId == user.UserId && 
             x.BusinessName == command.BusinessName&&
             x.Id!=command.Id,ct);
             if (exist)
@@ -16,18 +18,11 @@ namespace eMeni.Application.Modules.Business.Business.Commands.Update
             }
 
             var business=await db.Business.FirstOrDefaultAsync(x=>x.Id==command.Id,ct);
-            if (!command.BusinessName.isNullOrWhiteSpace())
-            {
+        
             business.BusinessName = command.BusinessName;
-            }
-            if (!command.Address.isNullOrWhiteSpace())
-            {
-                business.Address = command.Address;
-            }
-            if (!command.Description.isNullOrWhiteSpace())
-            {
-                business.Description = command.Description;
-            }
+            business.Address = command.Address;
+            business.Description = command.Description;
+ 
             await db.SaveChangesAsync(ct);
 
             return Unit.Value;

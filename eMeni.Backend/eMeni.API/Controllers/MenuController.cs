@@ -1,7 +1,7 @@
-﻿using eMeni.Application.Modules.Menu.Menu.Commands.Create;
+﻿using eMeni.Application.Modules.Business.Business.Commands.UpdatePromotionRank;
+using eMeni.Application.Modules.Menu.Menu.Commands.Create;
 using eMeni.Application.Modules.Menu.Menu.Commands.Delete;
 using eMeni.Application.Modules.Menu.Menu.Commands.Update;
-using eMeni.Application.Modules.Menu.Menu.Commands.UpdatePromotionRank;
 using eMeni.Application.Modules.Menu.Menu.Queries.List;
 using eMeni.Application.Modules.Menu.Menu.Queries.ListOnlyMenus;
 using eMeni.Application.Modules.Menu.MenuCategory.Commands.Create;
@@ -56,14 +56,6 @@ namespace eMeni.API.Controllers
             command.Id = id;
             await sender.Send(command, ct);
         }
-
-        [HttpPut("{id:int}/promotion-rank")]
-        public async Task UpdateMenuPromotionRank(int id,UpdateMenuPromotionRankCommand command,CancellationToken ct)
-        {
-            command.Id = id;
-            await sender.Send(command, ct);
-        }
-
 
         [HttpPut("categories/{id:int}")]
         public async Task UpdateMenuCategory( int id,UpdateMenuCategoryCommand command,CancellationToken ct)

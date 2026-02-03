@@ -21,7 +21,6 @@ namespace eMeni.Application.Modules.Menu.Menu.Queries.List
                     Id = x.Id,
                     MenuTitle = x.MenuTitle,
                     MenuDescription = x.MenuDescription,
-                    PromotionRank = x.PromotionRank,
                     Categories = x.MenuCategories
                         .Where(c => !c.IsDeleted)
                         .OrderBy(c => c.OrderIndex)

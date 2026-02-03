@@ -11,6 +11,5 @@ namespace eMeni.Application.Modules.Menu.Menu.Queries.ListOnlyMenus
         public int Id { get; set; }
         public string MenuTitle { get; set; }
         public string? MenuDescription { get; set; }
-        public int? PromotionRank { get; set; }
     }
 }

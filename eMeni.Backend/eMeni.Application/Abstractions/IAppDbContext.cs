@@ -1,4 +1,5 @@
-﻿using eMeni.Infrastructure.Models;
+﻿using eMeni.Domain.Entities.Business;
+using eMeni.Infrastructure.Models;
 using System.ComponentModel.Design;
 
 namespace eMeni.Application.Abstractions;
@@ -16,5 +17,6 @@ public interface IAppDbContext
     DbSet<MenuCategoryEntity> MenuCategories { get; }
     DbSet<MenuItemEntity> MenuItems { get; }
     DbSet<PackageEntity> PackageEntity { get; }
+    DbSet<BusinessProfileEntity> BusinessProfiles { get; }
     Task<int> SaveChangesAsync(CancellationToken ct);
 }

@@ -19,5 +19,4 @@ public sealed class PackageEntity:BaseEntity
 
     public string Description { get; set; }
 
-    public ICollection<BusinessEntity> Businesses { get; set; } = new List<BusinessEntity>();
 }

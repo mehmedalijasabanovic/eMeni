@@ -17,6 +17,7 @@ namespace eMeni.Infrastructure.Models.Configurations
                 .HasMaxLength(100);
             entity.Property(e => e.Description).HasMaxLength(400);
             entity.Property(e => e.IsDeleted).HasDefaultValue(false);
+            entity.Property(e => e.PromotionRank).HasDefaultValue((byte)0);
 
             entity.HasOne(d => d.BusinessCategory).WithMany(p => p.Businesses)
                 .HasForeignKey(d => d.BusinessCategoryId)
@@ -28,14 +29,10 @@ namespace eMeni.Infrastructure.Models.Configurations
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Business_City");
 
-            entity.HasOne(d => d.Package).WithMany(p => p.Businesses)
-                .HasForeignKey(d => d.PackageId)
-                .HasConstraintName("FK_Business_Packages");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Businesses)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Business_Users");
+            entity.HasOne(d => d.BusinessProfile).
+                WithMany(p => p.Businesses).
+                HasForeignKey(d => d.BusinessProfileId).
+                OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Business_BusinessProfile");
 
             OnConfigurePartial(entity);
         }

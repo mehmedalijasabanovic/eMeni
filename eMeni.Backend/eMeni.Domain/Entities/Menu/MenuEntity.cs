@@ -15,8 +15,6 @@ public sealed class MenuEntity:BaseEntity
 
     public string MenuDescription { get; set; }
 
-    public byte? PromotionRank { get; set; }
-
     public BusinessEntity Business { get; set; }
 
     public ICollection<MenuCategoryEntity> MenuCategories { get; set; } = new List<MenuCategoryEntity>();

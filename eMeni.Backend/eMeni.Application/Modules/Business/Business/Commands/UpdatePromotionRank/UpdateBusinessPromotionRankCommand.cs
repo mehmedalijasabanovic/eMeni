@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eMeni.Application.Modules.Menu.Menu.Commands.UpdatePromotionRank
+namespace eMeni.Application.Modules.Business.Business.Commands.UpdatePromotionRank
 {
-    public sealed class UpdateMenuPromotionRankCommand:IRequest<Unit>
+    public sealed class UpdateBusinessPromotionRankCommand:IRequest<Unit>
     {
         public int Id { get; set; }
         public byte PromotionRank { get; set; }

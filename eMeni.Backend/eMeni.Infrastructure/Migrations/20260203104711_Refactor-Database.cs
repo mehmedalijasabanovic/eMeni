@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eMeni.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedNewColumnBusinessCategory : Migration
+    public partial class RefactorDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -139,42 +139,27 @@ namespace eMeni.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Business",
+                name: "BusinessProfiles",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BusinessName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    BusinessCategoryId = table.Column<int>(type: "int", nullable: false),
-                    PackageId = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    CityId = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    PackageId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Business", x => x.Id);
+                    table.PrimaryKey("PK_BusinessProfiles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Business_BusinessesCategory",
-                        column: x => x.BusinessCategoryId,
-                        principalTable: "BusinessesCategory",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Business_City",
-                        column: x => x.CityId,
-                        principalTable: "City",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Business_Packages",
+                        name: "FK_BusinessProfile_Package",
                         column: x => x.PackageId,
                         principalTable: "PackageEntity",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Business_Users",
+                        name: "FK_BusinessProfile_User",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id");
@@ -208,6 +193,43 @@ namespace eMeni.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Business",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BusinessName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    BusinessCategoryId = table.Column<int>(type: "int", nullable: false),
+                    BusinessProfileId = table.Column<int>(type: "int", nullable: false),
+                    PromotionRank = table.Column<byte>(type: "tinyint", nullable: true, defaultValue: (byte)0),
+                    Description = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CityId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    CreatedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Business", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Business_BusinessProfile",
+                        column: x => x.BusinessProfileId,
+                        principalTable: "BusinessProfiles",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Business_BusinessesCategory",
+                        column: x => x.BusinessCategoryId,
+                        principalTable: "BusinessesCategory",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Business_City",
+                        column: x => x.CityId,
+                        principalTable: "City",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Menus",
                 columns: table => new
                 {
@@ -216,7 +238,6 @@ namespace eMeni.Infrastructure.Migrations
                     BusinessId = table.Column<int>(type: "int", nullable: true),
                     MenuTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     MenuDescription = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: true),
-                    PromotionRank = table.Column<byte>(type: "tinyint", nullable: true, defaultValue: (byte)0),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     CreatedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -467,18 +488,23 @@ namespace eMeni.Infrastructure.Migrations
                 column: "BusinessCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Business_BusinessProfileId",
+                table: "Business",
+                column: "BusinessProfileId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Business_CityId",
                 table: "Business",
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Business_PackageId",
-                table: "Business",
+                name: "IX_BusinessProfiles_PackageId",
+                table: "BusinessProfiles",
                 column: "PackageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Business_UserId",
-                table: "Business",
+                name: "IX_BusinessProfiles_UserId",
+                table: "BusinessProfiles",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -603,6 +629,9 @@ namespace eMeni.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Business");
+
+            migrationBuilder.DropTable(
+                name: "BusinessProfiles");
 
             migrationBuilder.DropTable(
                 name: "BusinessesCategory");

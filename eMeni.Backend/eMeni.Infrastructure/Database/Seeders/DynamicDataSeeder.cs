@@ -1,4 +1,5 @@
-﻿using eMeni.Infrastructure.Models;
+﻿using eMeni.Domain.Entities.Business;
+using eMeni.Infrastructure.Models;
 
 namespace eMeni.Infrastructure.Database.Seeders;
 
@@ -173,8 +174,8 @@ public static class DynamicDataSeeder
         {
             Description = "Start paket",
             PackageName = "Start",
-            MaxImages = 1,
-            MaxMenus = 1,
+            MaxImages = 20,
+            MaxMenus = 20,
             Price = 1,
             IsDeleted = false,
             CreatedAtUtc = DateTime.UtcNow
@@ -198,16 +199,24 @@ public static class DynamicDataSeeder
             return;
         }
 
+        var businessProfile = new BusinessProfileEntity
+        {
+            UserId = ownerUser.Id,
+            PackageId = 1
+
+        };
+        context.BusinessProfiles.Add(businessProfile);
+        await context.SaveChangesAsync();
         // Business 1: Restaurant (CategoryId = 1 - Ugostiteljstvo)
         var restaurant1 = new BusinessEntity
         {
             BusinessName = "Restoran Burek",
             BusinessCategoryId = 1,
-            UserId = ownerUser.Id,
             Description = "Tradicionalni restoran sa domaćom kuhinjom i autentičnim bosanskim jelima.",
             Address = "Trg 1, Konjic",
+            BusinessProfileId=businessProfile.Id,
+            PromotionRank = 0,
             CityId = 1,
-            PackageId = 1,
             IsDeleted = false,
             CreatedAtUtc = DateTime.UtcNow,
         };
@@ -217,11 +226,11 @@ public static class DynamicDataSeeder
         {
             BusinessName = "Quick Van Rent",
             BusinessCategoryId = 2,
-            UserId = ownerUser.Id,
             Description = "Pružamo usluge iznajmljivanja kombija za prijevoz i selidbe.",
             Address = "Mostarska 15, Mostar",
             CityId = 2,
-            PackageId = 1,
+            BusinessProfileId = businessProfile.Id,
+            PromotionRank = 1,
             IsDeleted = false,
             CreatedAtUtc = DateTime.UtcNow,
         };
@@ -231,11 +240,11 @@ public static class DynamicDataSeeder
         {
             BusinessName = "Super Market Plus",
             BusinessCategoryId = 3,
-            UserId = ownerUser.Id,
             Description = "Moderna trgovina sa širokim asortimanom proizvoda svakodnevne potrebe.",
             Address = "Ferhadija 20, Sarajevo",
             CityId = 3,
-            PackageId = 1,
+            BusinessProfileId = businessProfile.Id,
+            PromotionRank = 1,
             IsDeleted = false,
             CreatedAtUtc = DateTime.UtcNow,
         };
@@ -245,11 +254,11 @@ public static class DynamicDataSeeder
         {
             BusinessName = "Ćevabdžinica Kod Muje",
             BusinessCategoryId = 1,
-            UserId = ownerUser.Id,
             Description = "Najbolji ćevapi u gradu! Tradicionalna ćevabdžinica sa dugom tradicijom.",
             Address = "Stari Grad 5, Sarajevo",
             CityId = 3,
-            PackageId = 1,
+            BusinessProfileId = businessProfile.Id,
+            PromotionRank = 2,
             IsDeleted = false,
             CreatedAtUtc = DateTime.UtcNow,
         };
@@ -264,7 +273,6 @@ public static class DynamicDataSeeder
             BusinessId = restaurant1.Id,
             MenuTitle = "Glavni Meni",
             MenuDescription = "Ponuda tradicionalnih bosanskih jela i pića.",
-            PromotionRank = 1,
             IsDeleted = false,
             CreatedAtUtc = DateTime.UtcNow,
         };
@@ -275,7 +283,6 @@ public static class DynamicDataSeeder
             BusinessId = rentAVan.Id,
             MenuTitle = "Usluge Iznajmljivanja",
             MenuDescription = "Pregled dostupnih vozila i cjenovnika usluga.",
-            PromotionRank = 0,
             IsDeleted = false,
             CreatedAtUtc = DateTime.UtcNow,
         };
@@ -286,7 +293,6 @@ public static class DynamicDataSeeder
             BusinessId = store.Id,
             MenuTitle = "Katalog Proizvoda",
             MenuDescription = "Pregled dostupnih proizvoda i cijena.",
-            PromotionRank = 0,
             IsDeleted = false,
             CreatedAtUtc = DateTime.UtcNow,
         };
@@ -297,7 +303,6 @@ public static class DynamicDataSeeder
             BusinessId = restaurant2.Id,
             MenuTitle = "Meni Ćevabdžinice",
             MenuDescription = "Specijaliteti naše ćevabdžinice - ćevapi, pljeskavice i više.",
-            PromotionRank = 2,
             IsDeleted = false,
             CreatedAtUtc = DateTime.UtcNow,
         };

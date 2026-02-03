@@ -14,7 +14,6 @@ namespace eMeni.Infrastructure.Models.Configurations
             entity.Property(e => e.IsDeleted).HasDefaultValue(false);
             entity.Property(e => e.MenuDescription).HasMaxLength(400);
             entity.Property(e => e.MenuTitle).HasMaxLength(100);
-            entity.Property(e => e.PromotionRank).HasDefaultValue((byte)0);
 
             entity.HasOne(d => d.Business).WithMany(p => p.Menus)
                 .HasForeignKey(d => d.BusinessId)

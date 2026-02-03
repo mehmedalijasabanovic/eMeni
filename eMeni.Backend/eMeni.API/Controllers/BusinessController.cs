@@ -1,6 +1,7 @@
 ﻿using eMeni.Application.Modules.Business.Business.Commands.Create;
 using eMeni.Application.Modules.Business.Business.Commands.Delete;
 using eMeni.Application.Modules.Business.Business.Commands.Update;
+using eMeni.Application.Modules.Business.Business.Commands.UpdatePromotionRank;
 using eMeni.Application.Modules.Business.Business.Queries.GetByUserId;
 using eMeni.Application.Modules.Business.Business.Queries.List;
 
@@ -29,6 +30,13 @@ namespace eMeni.API.Controllers
             command.Id = id;
             await sender.Send(command, ct);
         }
+        [HttpPut("{id:int}/promotion-rank")]
+        public async Task UpdateBusinessPromotionRank(int id, UpdateBusinessPromotionRankCommand command, CancellationToken ct)
+        {
+            command.Id = id;
+            await sender.Send(command, ct);
+        }
+
         [HttpGet]
         public async Task<PageResult<ListBusinessQueryDto>> List([FromQuery]ListBusinessQuery query,CancellationToken ct)
         {

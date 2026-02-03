@@ -19,8 +19,7 @@ namespace eMeni.Application.Modules.Menu.Menu.Queries.ListOnlyMenus
             {
                 Id = x.Id,
                 MenuDescription=x.MenuDescription,
-                MenuTitle=x.MenuTitle,
-                PromotionRank=x.PromotionRank
+                MenuTitle=x.MenuTitle
             }
             );
             return await PageResult<ListOnlyMenusQueryDto>

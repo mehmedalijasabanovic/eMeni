@@ -10,7 +10,7 @@ namespace eMeni.Application.Modules.Business.Business.Commands.Create
     {
         public string BusinessName { get; set; }
         public int BusinessCategoryId { get; set; }
-        public int PackageId { get; set; }
+        public int BusinessProfileId { get; set; }
         public string Description { get; set; }
         public string Address { get; set; }
         public int CityId { get; set; }

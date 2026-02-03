@@ -31,8 +31,6 @@ public sealed class eMeniUserEntity : BaseEntity
 
     public ICollection<AiChatLogEntity> AiChatLogs { get; set; } = new List<AiChatLogEntity>();
 
-    public ICollection<BusinessEntity> Businesses { get; set; } = new List<BusinessEntity>();
-
     public CityEntity City { get; set; }
 
     public ICollection<OrderEntity> Orders { get; set; } = new List<OrderEntity>();

@@ -20,7 +20,8 @@ namespace eMeni.Application.Modules.Business.Business.Queries.List
                     Id = x.Id,
                     BusinessName = x.BusinessName,
                     Description = x.Description,
-                    Address = x.Address
+                    Address = x.Address,
+                    PromotionRank = x.PromotionRank
                 });
             return await PageResult<ListBusinessQueryDto>.FromQueryableAsync(projectedQuery,query.Paging,ct);
         }

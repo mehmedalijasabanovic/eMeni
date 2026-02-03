@@ -1,6 +1,7 @@
 ﻿
 #nullable disable
 using eMeni.Domain.Common;
+using eMeni.Domain.Entities.Business;
 using System;
 using System.Collections.Generic;
 
@@ -11,11 +12,8 @@ public sealed class BusinessEntity : BaseEntity
     public string BusinessName { get; set; }
 
     public int BusinessCategoryId { get; set; }
-
-    public int? PackageId { get; set; }
-
-    public int UserId { get; set; }
-
+    public int BusinessProfileId { get; set; }
+    public byte? PromotionRank { get; set; }
     public string Description { get; set; }
 
     public string Address { get; set; }
@@ -30,15 +28,12 @@ public sealed class BusinessEntity : BaseEntity
 
     public ICollection<OrderEntity> Orders { get; set; } = new List<OrderEntity>();
 
-    public PackageEntity Package { get; set; }
-
+    public BusinessProfileEntity BusinessProfile { get; set; }
     public ICollection<ReservationEntity> Reservations { get; set; } = new List<ReservationEntity>();
 
     public ICollection<ReviewEntity> Reviews { get; set; } = new List<ReviewEntity>();
 
     public ICollection<StatisticEntity> Statistics { get; set; } = new List<StatisticEntity>();
-
-    public eMeniUserEntity User { get; set; }
     public static class Constraint
     {
         public const int AddressMaxLength = 100;

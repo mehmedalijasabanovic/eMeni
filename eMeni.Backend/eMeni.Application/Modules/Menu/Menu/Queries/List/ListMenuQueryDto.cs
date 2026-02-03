@@ -5,7 +5,6 @@
         public int Id { get; set; }
         public string MenuTitle { get; set; }
         public string? MenuDescription { get; set; }
-        public int? PromotionRank { get; set; }
         public List<MenuCategoryDto>? Categories { get; set; }
     }
     public sealed class MenuCategoryDto

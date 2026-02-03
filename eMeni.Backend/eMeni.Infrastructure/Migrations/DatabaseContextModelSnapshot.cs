@@ -22,6 +22,38 @@ namespace eMeni.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("eMeni.Domain.Entities.Business.BusinessProfileEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PackageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PackageId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BusinessProfiles");
+                });
+
             modelBuilder.Entity("eMeni.Domain.Entities.Identity.RefreshTokenEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -126,6 +158,9 @@ namespace eMeni.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("BusinessProfileId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
@@ -144,21 +179,18 @@ namespace eMeni.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAtUtc")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("PackageId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<byte?>("PromotionRank")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint")
+                        .HasDefaultValue((byte)0);
 
                     b.HasKey("Id");
 
                     b.HasIndex("BusinessCategoryId");
 
+                    b.HasIndex("BusinessProfileId");
+
                     b.HasIndex("CityId");
-
-                    b.HasIndex("PackageId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Business");
                 });
@@ -172,6 +204,7 @@ namespace eMeni.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CategoryDescription")
+                        .IsRequired()
                         .HasMaxLength(400)
                         .HasColumnType("nvarchar(400)");
 
@@ -295,11 +328,6 @@ namespace eMeni.Infrastructure.Migrations
 
                     b.Property<DateTime?>("ModifiedAtUtc")
                         .HasColumnType("datetime2");
-
-                    b.Property<byte?>("PromotionRank")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint")
-                        .HasDefaultValue((byte)0);
 
                     b.HasKey("Id");
 
@@ -813,6 +841,25 @@ namespace eMeni.Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("eMeni.Domain.Entities.Business.BusinessProfileEntity", b =>
+                {
+                    b.HasOne("eMeni.Infrastructure.Models.PackageEntity", "Package")
+                        .WithMany()
+                        .HasForeignKey("PackageId")
+                        .IsRequired()
+                        .HasConstraintName("FK_BusinessProfile_Package");
+
+                    b.HasOne("eMeni.Infrastructure.Models.eMeniUserEntity", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .IsRequired()
+                        .HasConstraintName("FK_BusinessProfile_User");
+
+                    b.Navigation("Package");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("eMeni.Domain.Entities.Identity.RefreshTokenEntity", b =>
                 {
                     b.HasOne("eMeni.Infrastructure.Models.eMeniUserEntity", "User")
@@ -842,30 +889,23 @@ namespace eMeni.Infrastructure.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Business_BusinessesCategory");
 
+                    b.HasOne("eMeni.Domain.Entities.Business.BusinessProfileEntity", "BusinessProfile")
+                        .WithMany("Businesses")
+                        .HasForeignKey("BusinessProfileId")
+                        .IsRequired()
+                        .HasConstraintName("FK_Business_BusinessProfile");
+
                     b.HasOne("eMeni.Infrastructure.Models.CityEntity", "City")
                         .WithMany("Businesses")
                         .HasForeignKey("CityId")
                         .IsRequired()
                         .HasConstraintName("FK_Business_City");
 
-                    b.HasOne("eMeni.Infrastructure.Models.PackageEntity", "Package")
-                        .WithMany("Businesses")
-                        .HasForeignKey("PackageId")
-                        .HasConstraintName("FK_Business_Packages");
-
-                    b.HasOne("eMeni.Infrastructure.Models.eMeniUserEntity", "User")
-                        .WithMany("Businesses")
-                        .HasForeignKey("UserId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Business_Users");
-
                     b.Navigation("BusinessCategory");
 
+                    b.Navigation("BusinessProfile");
+
                     b.Navigation("City");
-
-                    b.Navigation("Package");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("eMeni.Infrastructure.Models.MenuCategoryEntity", b =>
@@ -1013,6 +1053,11 @@ namespace eMeni.Infrastructure.Migrations
                     b.Navigation("City");
                 });
 
+            modelBuilder.Entity("eMeni.Domain.Entities.Business.BusinessProfileEntity", b =>
+                {
+                    b.Navigation("Businesses");
+                });
+
             modelBuilder.Entity("eMeni.Infrastructure.Models.BusinessEntity", b =>
                 {
                     b.Navigation("Menus");
@@ -1055,11 +1100,6 @@ namespace eMeni.Infrastructure.Migrations
                     b.Navigation("Payments");
                 });
 
-            modelBuilder.Entity("eMeni.Infrastructure.Models.PackageEntity", b =>
-                {
-                    b.Navigation("Businesses");
-                });
-
             modelBuilder.Entity("eMeni.Infrastructure.Models.QRCodeProductEntity", b =>
                 {
                     b.Navigation("OrderItems");
@@ -1068,8 +1108,6 @@ namespace eMeni.Infrastructure.Migrations
             modelBuilder.Entity("eMeni.Infrastructure.Models.eMeniUserEntity", b =>
                 {
                     b.Navigation("AiChatLogs");
-
-                    b.Navigation("Businesses");
 
                     b.Navigation("Orders");
 
