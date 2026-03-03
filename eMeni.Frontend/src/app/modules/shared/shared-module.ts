@@ -4,11 +4,13 @@ import {FitPaginatorBarComponent} from './components/fit-paginator-bar/fit-pagin
 import {materialModules} from './material-modules';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TranslatePipe} from '@ngx-translate/core';
+import {RouterModule} from '@angular/router';
 import { FitConfirmDialogComponent } from './components/fit-confirm-dialog/fit-confirm-dialog.component';
 import {DialogHelperService} from './services/dialog-helper.service';
 import { FitLoadingBarComponent } from './components/fit-loading-bar/fit-loading-bar.component';
 import { FitTableSkeletonComponent } from './components/fit-table-skeleton/fit-table-skeleton.component';
 import { CardsSkeleton } from './components/cards-skeleton/cards-skeleton';
+import { FitNavbarComponent } from './components/fit-navbar/fit-navbar.component';
 
 
 
@@ -18,10 +20,12 @@ import { CardsSkeleton } from './components/cards-skeleton/cards-skeleton';
     FitConfirmDialogComponent,
     FitLoadingBarComponent,
     FitTableSkeletonComponent,
-    CardsSkeleton
+    CardsSkeleton,
+    FitNavbarComponent
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     FormsModule,
     TranslatePipe,
@@ -33,12 +37,14 @@ import { CardsSkeleton } from './components/cards-skeleton/cards-skeleton';
   exports:[
     FitPaginatorBarComponent,
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     TranslatePipe,
     FormsModule,
     FitLoadingBarComponent,
     FitTableSkeletonComponent,
     CardsSkeleton,
+    FitNavbarComponent,
     materialModules
   ]
 })
