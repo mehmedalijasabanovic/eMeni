@@ -9,7 +9,8 @@ import {
 import { ListBusinessCategoriesRequest } from '../../../api-services/busines-categories/business-categories-api.model';
 import {
   ListBusinessesDto,
-  ListBusinessesRequest
+  ListBusinessesRequest,
+  Promotion
 } from '../../../api-services/businesses/businesses-api.model';
 import { BusinessesApiService } from '../../../api-services/businesses/businesses-api.service';
 import { BaseListPagedComponent } from '../../../core/components/base-classes/base-list-paged-component';
@@ -26,6 +27,8 @@ import { fadeAnimation } from '../../../core/animations/route-animations';
 })
 export class BusinessesComponent extends BaseListPagedComponent<ListBusinessesDto, ListBusinessesRequest>
   implements OnInit {
+
+  protected readonly Promotion = Promotion;
 
   private businessesApi = inject(BusinessesApiService);
   private citiesApi = inject(CityApiService);

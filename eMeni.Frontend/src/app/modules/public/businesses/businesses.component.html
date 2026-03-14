@@ -47,7 +47,19 @@
   <div class="menus-grid" *ngIf="!isLoading">
     <mat-card class="menu-card" *ngFor="let business of items">
       <mat-card-content>
-        <h3 class="menu-title">{{ business.businessName }}</h3>
+        <div class="promotion-label" *ngIf="business.promotionRank === Promotion.Premium">
+          {{ 'BUSINESSES.PROMOTION_PREMIUM' | translate }}
+        </div>
+        <h3 class="menu-title">
+          <span>{{ business.businessName }}</span>
+          <mat-icon
+            *ngIf="business.promotionRank === Promotion.Basic"
+            class="promotion-icon"
+            aria-hidden="true"
+          >
+            verified
+          </mat-icon>
+        </h3>
         <p class="menu-description">
           {{ business.description }}
         </p>
