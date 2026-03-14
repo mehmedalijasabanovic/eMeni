@@ -102,6 +102,29 @@ mat-card-content {
   font-size: 20px;
   font-weight: 600;
   color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.promotion-label {
+  align-self: flex-start;
+  margin-bottom: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: #f6e9c6;
+  color: #8a5a00;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.promotion-icon {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  color: #2475aa;
 }
 
 .menu-description {

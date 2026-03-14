@@ -65,6 +65,7 @@
     "NO_BUSINESSES_IN_CATEGORY": "No businesses in this category",
     "LOAD_ERROR": "Error loading businesses. Please try again.",
     "CITIES_LOAD_ERROR": "Error loading cities. Please try again.",
-    "LOAD_MORE": "Load more businesses"
+    "LOAD_MORE": "Load more businesses",
+    "PROMOTION_PREMIUM": "Recommended"
   }
 }

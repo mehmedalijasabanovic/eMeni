@@ -66,6 +66,7 @@
     "NO_BUSINESSES_IN_CATEGORY": "Nema biznisa u ovoj kategoriji",
     "LOAD_ERROR": "Greška pri učitavanju biznisa. Molimo pokušajte ponovo.",
     "CITIES_LOAD_ERROR": "Greška pri učitavanju gradova. Molimo pokušajte ponovo.",
-    "LOAD_MORE": "Učitaj još biznisa"
+    "LOAD_MORE": "Učitaj još biznisa",
+    "PROMOTION_PREMIUM": "Preporučeno"
   }
 }

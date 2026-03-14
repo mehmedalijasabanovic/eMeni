@@ -14,7 +14,7 @@ namespace eMeni.Application.Modules.Business.Business.Queries.List
                 businesses = businesses.
                     Where(x => x.City.CityName.ToLower().Trim() == query.City.ToLower().Trim());
             }
-            var projectedQuery = businesses.OrderBy(x => x.PromotionRank).
+            var projectedQuery = businesses.OrderByDescending(x=>x.PromotionRank).
                 Select(x => new ListBusinessQueryDto
                 {
                     Id = x.Id,
