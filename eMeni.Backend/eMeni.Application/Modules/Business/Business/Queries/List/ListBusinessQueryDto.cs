@@ -1,4 +1,6 @@
-﻿namespace eMeni.Application.Modules.Business.Business.Queries.List
+﻿using eMeni.Domain.Entities.Business;
+
+namespace eMeni.Application.Modules.Business.Business.Queries.List
 {
     public sealed class ListBusinessQueryDto
     {
@@ -6,6 +8,6 @@
         public string BusinessName { get; set; }
         public string Description { get; set; }
         public string Address { get; set; }
-        public byte? PromotionRank { get; set; }
+        public Promotions PromotionRank { get; set; }
     }
 }

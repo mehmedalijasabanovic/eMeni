@@ -9,15 +9,13 @@
     "QR_DEKORACIJE": "QR dekoracije",
     "KONTAKT": "Kontakt",
     "LOGIN": "Login",
-    "REGISTER": "Register"
+    "REGISTER": "Register",
+    "PROFILE": "Profil"
   },
 
   "HERO": {
     "TITLE": "Pogledaj eMenije",
     "TEXT": "Pogledaj cijene, napravi rezervaciju i ostavi recenziju - bez dolaska u objekt."
-  },
-  "CATEGORIES": {
-    "VIEW_MENUS": "Pogledaj eMenije"
   },
   "LOGIN": {
     "TITLE": "Prijavi se",
@@ -42,6 +40,7 @@
   },
   "CATEGORIES": {
     "VIEW_MENUS": "Pogledaj eMenije",
+    "VIEW_BUSINESSES": "Pogledaj biznise",
     "LOADING": "Učitavanje kategorija...",
     "LOADED_SUCCESS": "Učitano {{count}} kategorija",
     "NO_CATEGORIES": "Nema dostupnih kategorija",
@@ -57,5 +56,16 @@
     "LOAD_ERROR": "Greška pri učitavanju menija. Molimo pokušajte ponovo.",
     "CITIES_LOAD_ERROR": "Greška pri učitavanju gradova. Molimo pokušajte ponovo.",
     "LOAD_MORE": "Učitaj još eMenija"
+  },
+  "BUSINESSES": {
+    "TITLE": "Ovdje možete pogledati biznise vezane za",
+    "FILTER_BY": "Filtriraj po:",
+    "ALL_CITIES": "Svi gradovi",
+    "VIEW_BUSINESS": "Pogledaj biznis",
+    "NO_BUSINESSES": "Nema pronađenih biznisa",
+    "NO_BUSINESSES_IN_CATEGORY": "Nema biznisa u ovoj kategoriji",
+    "LOAD_ERROR": "Greška pri učitavanju biznisa. Molimo pokušajte ponovo.",
+    "CITIES_LOAD_ERROR": "Greška pri učitavanju gradova. Molimo pokušajte ponovo.",
+    "LOAD_MORE": "Učitaj još biznisa"
   }
 }

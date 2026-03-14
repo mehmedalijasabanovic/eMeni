@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eMeni.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class RefactorDatabase : Migration
+    public partial class refactordatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -201,7 +201,7 @@ namespace eMeni.Infrastructure.Migrations
                     BusinessName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     BusinessCategoryId = table.Column<int>(type: "int", nullable: false),
                     BusinessProfileId = table.Column<int>(type: "int", nullable: false),
-                    PromotionRank = table.Column<byte>(type: "tinyint", nullable: true, defaultValue: (byte)0),
+                    PromotionRank = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: true),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     CityId = table.Column<int>(type: "int", nullable: false),

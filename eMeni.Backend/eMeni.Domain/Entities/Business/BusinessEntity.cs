@@ -13,7 +13,7 @@ public sealed class BusinessEntity : BaseEntity
 
     public int BusinessCategoryId { get; set; }
     public int BusinessProfileId { get; set; }
-    public byte? PromotionRank { get; set; }
+    public Promotions PromotionRank { get; set; }
     public string Description { get; set; }
 
     public string Address { get; set; }

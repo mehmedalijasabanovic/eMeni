@@ -1,30 +1,33 @@
 import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MenusApiService } from '../../../api-services/menus/menus-api.service';
 import { CityApiService } from '../../../api-services/cities/cities-api.service';
 import { BusinessCategoriesApiService } from '../../../api-services/busines-categories/business-categories-api.service';
 import {
-  ListOnlyMenusDto,
-  ListOnlyMenusRequest
-} from '../../../api-services/menus/menus-api.model';
-import { ListCitiesDto, ListCitiesRequest } from '../../../api-services/cities/cities-api.model';
+  ListCitiesDto,
+  ListCitiesRequest
+} from '../../../api-services/cities/cities-api.model';
 import { ListBusinessCategoriesRequest } from '../../../api-services/busines-categories/business-categories-api.model';
+import {
+  ListBusinessesDto,
+  ListBusinessesRequest
+} from '../../../api-services/businesses/businesses-api.model';
+import { BusinessesApiService } from '../../../api-services/businesses/businesses-api.service';
 import { BaseListPagedComponent } from '../../../core/components/base-classes/base-list-paged-component';
 import { TranslateService } from '@ngx-translate/core';
 import { ToasterService } from '../../../core/services/toaster.service';
 import { fadeAnimation } from '../../../core/animations/route-animations';
 
 @Component({
-  selector: 'app-menus',
+  selector: 'app-businesses',
   standalone: false,
-  templateUrl: './menus.component.html',
-  styleUrl: './menus.component.scss',
+  templateUrl: './businesses.component.html',
+  styleUrl: './businesses.component.scss',
   animations: [fadeAnimation]
 })
-export class MenusComponent extends BaseListPagedComponent<ListOnlyMenusDto, ListOnlyMenusRequest>
+export class BusinessesComponent extends BaseListPagedComponent<ListBusinessesDto, ListBusinessesRequest>
   implements OnInit {
 
-  private menusApi = inject(MenusApiService);
+  private businessesApi = inject(BusinessesApiService);
   private citiesApi = inject(CityApiService);
   private categoriesApi = inject(BusinessCategoriesApiService);
   private translate = inject(TranslateService);
@@ -39,7 +42,7 @@ export class MenusComponent extends BaseListPagedComponent<ListOnlyMenusDto, Lis
 
   constructor() {
     super();
-    this.request = new ListOnlyMenusRequest();
+    this.request = new ListBusinessesRequest();
     this.request.paging.pageSize = 9;
   }
 
@@ -141,21 +144,26 @@ export class MenusComponent extends BaseListPagedComponent<ListOnlyMenusDto, Lis
       delete this.request.city;
     }
 
-    this.menusApi.listonlymenus(this.request).subscribe({
+    this.businessesApi.list(this.request).subscribe({
       next: (response) => {
         this.handlePageResult(response);
 
         if (this.categoryId && response.items.length === 0) {
-          this.toaster.error(this.translate.instant('MENUS.NO_MENUS_IN_CATEGORY') || 'No menus in this category');
+          this.toaster.error(
+            this.translate.instant('BUSINESSES.NO_BUSINESSES_IN_CATEGORY') ||
+            'No businesses in this category'
+          );
         }
 
         this.stopLoading();
         this.cdr.markForCheck();
       },
       error: () => {
-        this.stopLoading('Failed to load menus.');
+        this.stopLoading('Failed to load businesses.');
         this.cdr.markForCheck();
-        this.toaster.error(this.translate.instant('MENUS.LOAD_ERROR') || 'Failed to load menus');
+        this.toaster.error(
+          this.translate.instant('BUSINESSES.LOAD_ERROR') || 'Failed to load businesses'
+        );
       }
     });
   }

@@ -58,17 +58,25 @@ export class PublicLayout extends BaseListPagedComponent<ListBusinessCategoriesD
       .replace(/^-|-$/g, '');
   }
 
-  viewMenus(categoryId: number): void {
+  viewBusinesses(categoryId: number): void {
     const category = this.items.find((cat) => cat.id === categoryId);
     if (category) {
       const slug = this.categoryNameToSlug(category.categoryName);
-      this.router.navigate(['/menus', slug]).catch((err: any) => {
-        console.error('Navigation error:', err);
-      });
+      this.router
+        .navigate(['/businesses', slug], {
+          queryParams: { categoryId }
+        })
+        .catch((err: any) => {
+          console.error('Navigation error:', err);
+        });
     } else {
-      this.router.navigate(['/menus'], { queryParams: { categoryId: categoryId } }).catch((err: any) => {
-        console.error('Navigation error:', err);
-      });
+      this.router
+        .navigate(['/businesses'], {
+          queryParams: { categoryId }
+        })
+        .catch((err: any) => {
+          console.error('Navigation error:', err);
+        });
     }
   }
 }

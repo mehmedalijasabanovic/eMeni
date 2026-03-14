@@ -179,10 +179,8 @@ namespace eMeni.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAtUtc")
                         .HasColumnType("datetime2");
 
-                    b.Property<byte?>("PromotionRank")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint")
-                        .HasDefaultValue((byte)0);
+                    b.Property<int>("PromotionRank")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PublicLayout } from './public-layout/public-layout';
-import { MenusComponent } from './menus/menus.component';
+import { BusinessesComponent } from './businesses/businesses.component';
 
 
 const routes: Routes = [
@@ -10,12 +10,12 @@ const routes: Routes = [
     component: PublicLayout,
   },
   {
-    path: 'menus',
-    component: MenusComponent,
+    path: 'businesses',
+    component: BusinessesComponent,
   },
   {
-    path: 'menus/:categorySlug',
-    component: MenusComponent,
+    path: 'businesses/:categorySlug',
+    component: BusinessesComponent,
   }
 
 ];

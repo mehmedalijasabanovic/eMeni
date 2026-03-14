@@ -9,6 +9,7 @@ namespace eMeni.Application.Modules.Business.Business.Queries.List
 {
     public sealed class ListBusinessQuery:BasePagedQuery<ListBusinessQueryDto>
     {
+        public int CategoryId { get; set; }
         public string? City { get; set; }
     }
 }

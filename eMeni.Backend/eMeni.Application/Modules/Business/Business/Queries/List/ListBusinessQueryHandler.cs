@@ -8,13 +8,13 @@ namespace eMeni.Application.Modules.Business.Business.Queries.List
      public async Task<PageResult<ListBusinessQueryDto>> Handle(ListBusinessQuery query,CancellationToken ct)
         {
 
-            var businesses = db.Business.AsNoTracking();
+            var businesses = db.Business.Where(x=>x.BusinessCategoryId==query.CategoryId).AsNoTracking();
             if (!query.City.isNullOrWhiteSpace())
             {
                 businesses = businesses.
                     Where(x => x.City.CityName.ToLower().Trim() == query.City.ToLower().Trim());
             }
-            var projectedQuery = businesses.OrderBy(x => x.BusinessName).
+            var projectedQuery = businesses.OrderBy(x => x.PromotionRank).
                 Select(x => new ListBusinessQueryDto
                 {
                     Id = x.Id,

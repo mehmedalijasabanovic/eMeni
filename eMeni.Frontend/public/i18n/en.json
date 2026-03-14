@@ -9,10 +9,16 @@
     "QR_DEKORACIJE": "QR Decorations",
     "KONTAKT": "Contact",
     "LOGIN": "Login",
-    "REGISTER": "Register"
+    "REGISTER": "Register",
+    "PROFILE": "Profile"
   },
   "CATEGORIES": {
-    "VIEW_MENUS": "View eMenus"
+    "VIEW_MENUS": "View eMenus",
+    "VIEW_BUSINESSES": "View businesses",
+    "LOADING": "Loading categories...",
+    "LOADED_SUCCESS": "Loaded {{count}} categories",
+    "NO_CATEGORIES": "No categories available",
+    "LOAD_ERROR": "Error loading categories. Please try again."
   },
   "LOGIN": {
     "TITLE": "Login",
@@ -39,13 +45,6 @@
     "TITLE": "View eMenus",
     "TEXT": "Check prices, make a reservation, and leave a review — without visiting the venue."
   },
-  "CATEGORIES": {
-    "VIEW_MENUS": "View eMenus",
-    "LOADING": "Loading categories...",
-    "LOADED_SUCCESS": "Loaded {{count}} categories",
-    "NO_CATEGORIES": "No categories available",
-    "LOAD_ERROR": "Error loading categories. Please try again."
-  },
   "MENUS": {
     "TITLE": "Here you can view menus related to",
     "FILTER_BY": "Filter by:",
@@ -56,5 +55,16 @@
     "LOAD_ERROR": "Error loading menus. Please try again.",
     "CITIES_LOAD_ERROR": "Error loading cities. Please try again.",
     "LOAD_MORE": "Load more eMenus"
+  },
+  "BUSINESSES": {
+    "TITLE": "Here you can view businesses related to",
+    "FILTER_BY": "Filter by:",
+    "ALL_CITIES": "All cities",
+    "VIEW_BUSINESS": "View business",
+    "NO_BUSINESSES": "No businesses found",
+    "NO_BUSINESSES_IN_CATEGORY": "No businesses in this category",
+    "LOAD_ERROR": "Error loading businesses. Please try again.",
+    "CITIES_LOAD_ERROR": "Error loading cities. Please try again.",
+    "LOAD_MORE": "Load more businesses"
   }
 }

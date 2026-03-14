@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eMeni.Domain.Entities.Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,6 @@ namespace eMeni.Application.Modules.Business.Business.Commands.UpdatePromotionRa
     {
         [JsonIgnore]
         public int Id { get; set; }
-        public byte PromotionRank { get; set; }
+        public Promotions PromotionRank { get; set; }
     }
 }

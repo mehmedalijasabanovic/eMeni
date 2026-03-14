@@ -1,4 +1,6 @@
-﻿namespace eMeni.Application.Modules.Business.Business.Queries.GetByUserId
+﻿using eMeni.Domain.Entities.Business;
+
+namespace eMeni.Application.Modules.Business.Business.Queries.GetByUserId
 {
     public sealed class GetBusinessByUserIdQueryDto
     {
@@ -7,6 +9,6 @@
         public string Description { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
-        public byte? PromotionRank { get; set; }
+        public Promotions PromotionRank { get; set; }
     }
 }

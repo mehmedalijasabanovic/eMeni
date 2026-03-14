@@ -40,7 +40,7 @@
 
       <div class="user-greeting desktop-auth" *ngIf="currentUserService.isAuthenticated() && currentUserService.currentUser()?.email">
         <button mat-button [matMenuTriggerFor]="userMenu" class="user-menu-button">
-          <span class="greeting-text">Zdravo, {{ currentUserService.currentUser()?.email }}</span>
+          <span class="greeting-text">{{ 'HEADER.PROFILE' | translate }}</span>
           <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
         </button>
         <mat-menu #userMenu="matMenu" class="user-menu">

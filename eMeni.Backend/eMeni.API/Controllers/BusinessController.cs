@@ -38,6 +38,7 @@ namespace eMeni.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<PageResult<ListBusinessQueryDto>> List([FromQuery]ListBusinessQuery query,CancellationToken ct)
         {
             return await sender.Send(query,ct);

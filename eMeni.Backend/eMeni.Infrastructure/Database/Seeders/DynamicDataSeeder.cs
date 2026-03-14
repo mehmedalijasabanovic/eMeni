@@ -230,7 +230,7 @@ public static class DynamicDataSeeder
             Address = "Mostarska 15, Mostar",
             CityId = 2,
             BusinessProfileId = businessProfile.Id,
-            PromotionRank = 1,
+            PromotionRank = Promotions.Basic,
             IsDeleted = false,
             CreatedAtUtc = DateTime.UtcNow,
         };
@@ -244,7 +244,7 @@ public static class DynamicDataSeeder
             Address = "Ferhadija 20, Sarajevo",
             CityId = 3,
             BusinessProfileId = businessProfile.Id,
-            PromotionRank = 1,
+            PromotionRank = Promotions.Premium,
             IsDeleted = false,
             CreatedAtUtc = DateTime.UtcNow,
         };
@@ -258,7 +258,7 @@ public static class DynamicDataSeeder
             Address = "Stari Grad 5, Sarajevo",
             CityId = 3,
             BusinessProfileId = businessProfile.Id,
-            PromotionRank = 2,
+            PromotionRank = Promotions.Basic,
             IsDeleted = false,
             CreatedAtUtc = DateTime.UtcNow,
         };

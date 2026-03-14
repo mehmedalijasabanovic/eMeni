@@ -29,8 +29,13 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-raised-button color="primary" class="view-menus-button" (click)="viewMenus(category.id)">
-          {{ 'CATEGORIES.VIEW_MENUS' | translate }}
+        <button
+          mat-raised-button
+          color="primary"
+          class="view-menus-button"
+          (click)="viewBusinesses(category.id)"
+        >
+          {{ 'CATEGORIES.VIEW_BUSINESSES' | translate }}
         </button>
       </mat-card-actions>
     </mat-card>

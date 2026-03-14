@@ -12,8 +12,8 @@ using eMeni.Infrastructure.Database;
 namespace eMeni.Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20260203104711_Refactor-Database")]
-    partial class RefactorDatabase
+    [Migration("20260314112149_refactor-database")]
+    partial class refactordatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -182,10 +182,8 @@ namespace eMeni.Infrastructure.Migrations
                     b.Property<DateTime?>("ModifiedAtUtc")
                         .HasColumnType("datetime2");
 
-                    b.Property<byte?>("PromotionRank")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint")
-                        .HasDefaultValue((byte)0);
+                    b.Property<int>("PromotionRank")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
