@@ -13,7 +13,8 @@ namespace eMeni.Application.Modules.Identity.Queries.List
             {
                 Email = x.Email,
                 Id = x.Id,
-                FullName = x.FullName,
+                FirstName = x.FirstName,
+                LastName = x.LastName,
                 Phone = x.Phone
             });
             return await PageResult<ListUserQueryDto>.FromQueryableAsync(projectedquery, query.Paging, ct);

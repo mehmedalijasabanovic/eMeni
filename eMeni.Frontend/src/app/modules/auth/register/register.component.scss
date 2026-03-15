@@ -7,12 +7,26 @@
   padding: 20px;
 }
 
+.register-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .register-card {
   width: 100%;
-  max-width: 450px;
+  max-width: 520px;
   padding: 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
   border-radius: 8px;
+  position: relative;
+}
+
+.back-button-container {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
 }
 
 mat-card-header {
@@ -25,10 +39,91 @@ mat-card-header {
     color: #333;
     margin: 0;
   }
+
+  .register-subtitle {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+  }
 }
 
 mat-card-content {
-  padding: 24px;
+  padding: 0 24px 24px 24px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.phone-prefix {
+  margin-right: 8px;
+  font-weight: 600;
+  color: #444;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.register-button {
+  height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: none;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.inline-spinner {
+  display: inline-block;
+}
+
+.spinner-text {
+  display: inline-block;
+}
+
+mat-card-footer {
+  padding: 16px 24px 24px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.login-link-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+
+  .login-link {
+    color: #2475AA;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #1a5a7a;
+      text-decoration: underline;
+    }
+  }
 }
 
 // Responsive design
@@ -39,6 +134,49 @@ mat-card-content {
 
   .register-card {
     max-width: 100%;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  mat-card-header {
+    padding: 20px 20px 12px 20px;
+
+    mat-card-title {
+      font-size: 24px;
+    }
+  }
+
+  mat-card-content {
+    padding: 0 20px 20px 20px;
+  }
+
+  mat-card-footer {
+    padding: 12px 20px 20px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 12px;
+  }
+
+  mat-card-header {
+    padding: 16px 16px 8px 16px;
+
+    mat-card-title {
+      font-size: 22px;
+    }
+  }
+
+  mat-card-content {
+    padding: 0 16px 16px 16px;
+  }
+
+  mat-card-footer {
+    padding: 8px 16px 16px 16px;
   }
 }
 

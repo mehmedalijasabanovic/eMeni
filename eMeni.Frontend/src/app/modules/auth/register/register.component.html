@@ -1,11 +1,150 @@
-<div class="register-container">
-  <mat-card class="register-card">
-    <mat-card-header>
-      <mat-card-title>Register</mat-card-title>
+<div class="register-container" [@fadeAnimation]>
+  <mat-card class="register-card" [@scaleFade]>
+    <div class="back-button-container">
+      <button mat-icon-button (click)="goBack()" [attr.aria-label]="'REGISTER.BACK' | translate">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+
+    <mat-card-header class="register-title">
+      <mat-card-title>{{ 'REGISTER.TITLE' | translate }}</mat-card-title>
+      <mat-card-subtitle class="register-subtitle">{{ 'REGISTER.SUBTITLE' | translate }}</mat-card-subtitle>
     </mat-card-header>
+
     <mat-card-content>
-      <p>Register form will be implemented here.</p>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'REGISTER.FIRST_NAME' | translate }}</mat-label>
+            <input matInput type="text" formControlName="firstName" required>
+            <mat-icon matPrefix>person</mat-icon>
+            @if (registerForm.get('firstName')?.hasError('required') && registerForm.get('firstName')?.touched) {
+              <mat-error>{{ 'REGISTER.FIRST_NAME_REQUIRED' | translate }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'REGISTER.LAST_NAME' | translate }}</mat-label>
+            <input matInput type="text" formControlName="lastName" required>
+            <mat-icon matPrefix>person_outline</mat-icon>
+            @if (registerForm.get('lastName')?.hasError('required') && registerForm.get('lastName')?.touched) {
+              <mat-error>{{ 'REGISTER.LAST_NAME_REQUIRED' | translate }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'REGISTER.EMAIL' | translate }}</mat-label>
+            <input matInput type="email" formControlName="email" required>
+            <mat-icon matPrefix>email</mat-icon>
+            @if (registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched) {
+              <mat-error>{{ 'REGISTER.EMAIL_REQUIRED' | translate }}</mat-error>
+            }
+            @if (registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched) {
+              <mat-error>{{ 'REGISTER.EMAIL_INVALID' | translate }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'REGISTER.PHONE' | translate }}</mat-label>
+            <span matPrefix class="phone-prefix">+387</span>
+            <input matInput type="tel" formControlName="phone" required>
+            <mat-icon matSuffix>phone</mat-icon>
+            @if (registerForm.get('phone')?.hasError('required') && registerForm.get('phone')?.touched) {
+              <mat-error>{{ 'REGISTER.PHONE_REQUIRED' | translate }}</mat-error>
+            }
+            @if (registerForm.get('phone')?.hasError('pattern') && registerForm.get('phone')?.touched) {
+              <mat-error>{{ 'REGISTER.PHONE_INVALID' | translate }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'REGISTER.CITY' | translate }}</mat-label>
+          <mat-select formControlName="cityId" required>
+            @for (city of cities; track city.id) {
+              <mat-option [value]="city.id">{{ city.name }}</mat-option>
+            }
+          </mat-select>
+          <mat-icon matPrefix>location_city</mat-icon>
+          @if (registerForm.get('cityId')?.hasError('required') && registerForm.get('cityId')?.touched) {
+            <mat-error>{{ 'REGISTER.CITY_REQUIRED' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'REGISTER.PASSWORD' | translate }}</mat-label>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            formControlName="password"
+            required>
+          <mat-icon matPrefix>lock</mat-icon>
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="togglePasswordVisibility()"
+            [attr.aria-label]="'REGISTER.HIDE_PASSWORD' | translate"
+            [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          @if (registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched) {
+            <mat-error>{{ 'REGISTER.PASSWORD_REQUIRED' | translate }}</mat-error>
+          }
+          @if (registerForm.get('password')?.hasError('pattern') && registerForm.get('password')?.touched) {
+            <mat-error>{{ 'REGISTER.PASSWORD_RULES' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</mat-label>
+          <input
+            matInput
+            [type]="hideConfirmPassword ? 'password' : 'text'"
+            formControlName="confirmPassword"
+            required>
+          <mat-icon matPrefix>lock</mat-icon>
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="toggleConfirmPasswordVisibility()"
+            [attr.aria-label]="'REGISTER.HIDE_PASSWORD' | translate"
+            [attr.aria-pressed]="hideConfirmPassword">
+            <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          @if (registerForm.get('confirmPassword')?.hasError('required') && registerForm.get('confirmPassword')?.touched) {
+            <mat-error>{{ 'REGISTER.CONFIRM_PASSWORD_REQUIRED' | translate }}</mat-error>
+          }
+          @if (registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched) {
+            <mat-error>{{ 'REGISTER.PASSWORD_MISMATCH' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="register-button full-width"
+          [disabled]="registerForm.invalid || isLoading">
+          @if (isLoading) {
+            <mat-spinner diameter="20" class="inline-spinner"></mat-spinner>
+            <span class="spinner-text">{{ 'REGISTER.CREATING' | translate }}</span>
+          } @else {
+            {{ 'REGISTER.BUTTON' | translate }}
+          }
+        </button>
+      </form>
     </mat-card-content>
+
+    <mat-card-footer>
+      <div class="login-link-container">
+        <span>{{ 'REGISTER.HAVE_ACCOUNT' | translate }}</span>
+        <a routerLink="/auth/login" class="login-link">{{ 'REGISTER.LOGIN' | translate }}</a>
+      </div>
+    </mat-card-footer>
   </mat-card>
 </div>
 

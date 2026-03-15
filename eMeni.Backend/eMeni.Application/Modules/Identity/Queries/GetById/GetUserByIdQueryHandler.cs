@@ -14,7 +14,8 @@
                 Email=user.Email,
                 Phone=user.Phone,
                 City=city.CityName,
-                FullName=user.FullName
+                FirstName=user.FirstName,
+                LastName=user.LastName,
             };
             return queryUser;
         }

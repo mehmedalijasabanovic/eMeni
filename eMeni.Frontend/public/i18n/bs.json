@@ -1,4 +1,4 @@
-{
+﻿{
   "APP": {
     "TITLE": "test"
   },
@@ -38,6 +38,38 @@
     "FORM_INVALID": "Molimo popunite sva polja ispravno.",
     "SUCCESS": "Uspešno ste se prijavili!"
   },
+  "REGISTER": {
+    "TITLE": "Registracija",
+    "SUBTITLE": "Kreirajte nalog",
+    "BACK": "Nazad",
+    "FIRST_NAME": "Ime",
+    "LAST_NAME": "Prezime",
+    "EMAIL": "Email",
+    "PHONE": "Telefon",
+    "CITY": "Grad",
+    "PASSWORD": "Lozinka",
+    "CONFIRM_PASSWORD": "Potvrdi lozinku",
+    "BUTTON": "Kreiraj nalog",
+    "CREATING": "Kreiranje naloga...",
+    "HAVE_ACCOUNT": "Imate nalog?",
+    "LOGIN": "Prijavi se",
+    "HIDE_PASSWORD": "Sakrij lozinku",
+    "FIRST_NAME_REQUIRED": "Ime je obavezno",
+    "LAST_NAME_REQUIRED": "Prezime je obavezno",
+    "EMAIL_REQUIRED": "Email je obavezan",
+    "EMAIL_INVALID": "Unesite validan email",
+    "PHONE_REQUIRED": "Telefon je obavezan",
+    "PHONE_INVALID": "Unesite validan broj telefona",
+    "CITY_REQUIRED": "Grad je obavezan",
+    "PASSWORD_REQUIRED": "Lozinka je obavezna",
+    "PASSWORD_RULES": "Lozinka mora imati najmanje 6 karaktera i sadrzati slova i broj",
+    "CONFIRM_PASSWORD_REQUIRED": "Potvrda lozinke je obavezna",
+    "PASSWORD_MISMATCH": "Lozinke se ne poklapaju",
+    "FORM_INVALID": "Molimo popunite sva polja ispravno.",
+    "CITIES_LOAD_ERROR": "Greska pri ucitavanju gradova. Molimo pokusajte ponovo.",
+    "ERROR_GENERIC": "Greska pri registraciji. Molimo pokusajte ponovo.",
+    "SUCCESS": "Uspesno ste kreirali nalog!"
+  },
   "CATEGORIES": {
     "VIEW_MENUS": "Pogledaj eMenije",
     "VIEW_BUSINESSES": "Pogledaj biznise",
@@ -51,7 +83,7 @@
     "FILTER_BY": "Filtriraj po:",
     "ALL_CITIES": "Svi gradovi",
     "VIEW_MENU": "Pogledaj meni",
-    "NO_MENUS": "Nema pronađenih menija",
+    "NO_MENUS": "Nema pronadjenih menija",
     "NO_MENUS_IN_CATEGORY": "Nema menija u ovoj kategoriji",
     "LOAD_ERROR": "Greška pri učitavanju menija. Molimo pokušajte ponovo.",
     "CITIES_LOAD_ERROR": "Greška pri učitavanju gradova. Molimo pokušajte ponovo.",
@@ -62,11 +94,13 @@
     "FILTER_BY": "Filtriraj po:",
     "ALL_CITIES": "Svi gradovi",
     "VIEW_BUSINESS": "Pogledaj biznis",
-    "NO_BUSINESSES": "Nema pronađenih biznisa",
+    "NO_BUSINESSES": "Nema pronadjenih biznisa",
     "NO_BUSINESSES_IN_CATEGORY": "Nema biznisa u ovoj kategoriji",
     "LOAD_ERROR": "Greška pri učitavanju biznisa. Molimo pokušajte ponovo.",
     "CITIES_LOAD_ERROR": "Greška pri učitavanju gradova. Molimo pokušajte ponovo.",
-    "LOAD_MORE": "Učitaj još biznisa",
+    "LOAD_MORE": "Učitaj još biznisa",
+
     "PROMOTION_PREMIUM": "Preporučeno"
   }
 }
+
