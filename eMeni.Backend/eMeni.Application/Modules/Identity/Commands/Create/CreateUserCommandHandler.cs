@@ -21,7 +21,8 @@ namespace eMeni.Application.Modules.Identity.Commands.Create
             var hasher=new PasswordHasher<eMeniUserEntity>();
             var newUser = new eMeniUserEntity
             {
-                FullName = command.FullName.Trim(),
+                FirstName = command.FirstName.Trim(),
+                LastName = command.LastName.Trim(),
                 CityId = command.CityId,
                 Phone = command.Phone.Trim(),
                 Email = command.Email.Trim(),

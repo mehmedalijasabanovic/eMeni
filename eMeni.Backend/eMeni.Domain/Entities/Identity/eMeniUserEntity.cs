@@ -20,7 +20,8 @@ public sealed class eMeniUserEntity : BaseEntity
 
     public int TokenVersion { get; set; }
 
-    public string FullName { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
 
     public string Phone { get; set; }
 
@@ -45,7 +46,8 @@ public sealed class eMeniUserEntity : BaseEntity
     public static class UserConstraints
     {
         public const int EmailMaxLength = 100;
-        public const int FullNameMaxLength = 80;
+        public const int FirstNameMaxLength = 80;
+        public const int LastNameMaxLength = 80;
         public const int PhoneMaxLength = 15;
     }
 }

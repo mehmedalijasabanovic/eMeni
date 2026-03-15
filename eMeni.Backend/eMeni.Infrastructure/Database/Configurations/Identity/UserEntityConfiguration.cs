@@ -16,7 +16,10 @@ namespace eMeni.Infrastructure.Models.Configurations
             entity.Property(e => e.Email)
                 .IsRequired()
                 .HasMaxLength(100);
-            entity.Property(e => e.FullName)
+            entity.Property(e => e.FirstName)
+                .IsRequired()
+                .HasMaxLength(80);
+            entity.Property(e => e.LastName)
                 .IsRequired()
                 .HasMaxLength(80);
             entity.Property(e => e.IsAdmin).HasDefaultValue(false);
