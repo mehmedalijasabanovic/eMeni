@@ -49,6 +49,23 @@ export class FitNavbarComponent {
     });
   }
 
+  scrollTo(fragment: string): void {
+    const isHome = this.router.url === '/' || this.router.url.startsWith('/?');
+    if (isHome) {
+      const el = document.getElementById(fragment);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      this.router.navigate(['/'], { fragment }).then(() => {
+        setTimeout(() => {
+          const el = document.getElementById(fragment);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 400);
+      });
+    }
+  }
+
   logout(): void {
     this.authFacade.logout().subscribe({
       next: () => {

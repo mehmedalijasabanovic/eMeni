@@ -11,6 +11,7 @@ import {HttpClient} from '@angular/common/http';
 import { loadingBarInterceptor } from './core/interceptors/loading-bar-interceptor.service';
 import { authInterceptor } from './core/interceptors/auth-interceptor.service';
 import { errorLoggingInterceptor } from './core/interceptors/error-logging-interceptor.service';
+import { SharedModule } from './modules/shared/shared-module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { errorLoggingInterceptor } from './core/interceptors/error-logging-inter
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

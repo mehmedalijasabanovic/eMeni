@@ -101,6 +101,68 @@
     "LOAD_MORE": "Učitaj još biznisa",
 
     "PROMOTION_PREMIUM": "Preporučeno"
+  },
+  "PROFILE": {
+    "TITLE": "Moj Profil",
+    "INFO_TITLE": "Lični Podaci",
+    "INFO_SUBTITLE": "Ažurirajte ime, email i broj telefona",
+    "FIRST_NAME": "Ime",
+    "LAST_NAME": "Prezime",
+    "EMAIL": "Email",
+    "PHONE": "Telefon",
+    "SAVE": "Sačuvaj Izmjene",
+    "FIRST_NAME_REQUIRED": "Ime je obavezno",
+    "LAST_NAME_REQUIRED": "Prezime je obavezno",
+    "EMAIL_REQUIRED": "Email je obavezan",
+    "EMAIL_INVALID": "Unesite validan email",
+    "PHONE_REQUIRED": "Broj telefona je obavezan",
+    "LOAD_ERROR": "Greška pri učitavanju profila. Molimo pokušajte ponovo.",
+    "UPDATE_SUCCESS": "Profil uspješno ažuriran!",
+    "UPDATE_ERROR": "Greška pri ažuriranju profila. Molimo pokušajte ponovo.",
+    "PASSWORD_TITLE": "Promjena Lozinke",
+    "PASSWORD_SUBTITLE": "Unesite trenutnu lozinku kako biste postavili novu",
+    "CURRENT_PASSWORD": "Trenutna lozinka",
+    "NEW_PASSWORD": "Nova lozinka",
+    "CONFIRM_PASSWORD": "Potvrdi novu lozinku",
+    "PASSWORD_HINT": "Minimum 6 karaktera, mora sadržavati slova i broj",
+    "CHANGE_PASSWORD": "Promijeni lozinku",
+    "CURRENT_PASSWORD_REQUIRED": "Trenutna lozinka je obavezna",
+    "NEW_PASSWORD_REQUIRED": "Nova lozinka je obavezna",
+    "PASSWORD_INVALID": "Lozinka mora imati najmanje 6 karaktera i sadržavati slova i broj",
+    "CONFIRM_PASSWORD_REQUIRED": "Molimo potvrdite novu lozinku",
+    "PASSWORD_MISMATCH": "Lozinke se ne poklapaju",
+    "PASSWORD_SUCCESS": "Lozinka uspješno promijenjena!",
+    "PASSWORD_ERROR": "Greška pri promjeni lozinke. Provjerite trenutnu lozinku."
+  },
+  "FOOTER": {
+    "TAGLINE": "Digitalni meniji za svaki biznis. Jednostavno, brzo, moderno.",
+    "CONTACT_TITLE": "Kontakt",
+    "ADDRESS": "Bosna i Hercegovina",
+    "LINKS_TITLE": "Brzi Linkovi",
+    "LINK_HOME": "Početna",
+    "LINK_ABOUT": "O Nama",
+    "LINK_QR": "QR Dekoracije",
+    "LINK_LOGIN": "Prijava",
+    "RIGHTS": "Sva prava pridržana."
+  },
+  "ABOUT": {
+    "BADGE": "O eMeniju",
+    "TITLE": "Više od Jelovnika",
+    "LEAD": "eMeni omogućava digitalni prikaz svih vrsta menija — ne samo za ugostiteljske objekte, već za svaki biznis ili subjekt koji pruža bilo kakvu uslugu.",
+    "FEATURE1_TITLE": "Za Svaki Biznis",
+    "FEATURE1_TEXT": "Restorani, prodavnice, pružatelji usluga — svaki subjekt može kreirati i podijeliti svoj eMeni za samo nekoliko klikova.",
+    "FEATURE2_TITLE": "QR Dekoracije",
+    "FEATURE2_TEXT": "Naručite premium QR dekoraciju za vaš objekt. Elegantna, trajna i uvijek povezana s vašim eMenijem.",
+    "FEATURE3_TITLE": "Rezerviši i Istraži",
+    "FEATURE3_TEXT": "Potencijalni kupci mogu provjeriti cijene i rezervisati mjesto — bez potrebe da fizički posjete vaš objekt."
+  },
+  "QR": {
+    "BADGE": "QR Dekoracije",
+    "TITLE": "Oživite Vaš eMeni",
+    "SUBTITLE": "Naručite prilagođenu QR dekoraciju za vaš objekt. Birajte između metala, drveta, plastike ili stikera.",
+    "ADD_TO_CART": "Dodaj u Korpu",
+    "ADDED_TO_CART": "{{name}} dodan u korpu!",
+    "NO_PRODUCTS": "Trenutno nema dostupnih proizvoda."
   }
 }
 

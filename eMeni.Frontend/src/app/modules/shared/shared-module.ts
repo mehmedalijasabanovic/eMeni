@@ -11,6 +11,7 @@ import { FitLoadingBarComponent } from './components/fit-loading-bar/fit-loading
 import { FitTableSkeletonComponent } from './components/fit-table-skeleton/fit-table-skeleton.component';
 import { CardsSkeleton } from './components/cards-skeleton/cards-skeleton';
 import { FitNavbarComponent } from './components/fit-navbar/fit-navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -21,7 +22,8 @@ import { FitNavbarComponent } from './components/fit-navbar/fit-navbar.component
     FitLoadingBarComponent,
     FitTableSkeletonComponent,
     CardsSkeleton,
-    FitNavbarComponent
+    FitNavbarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -45,6 +47,7 @@ import { FitNavbarComponent } from './components/fit-navbar/fit-navbar.component
     FitTableSkeletonComponent,
     CardsSkeleton,
     FitNavbarComponent,
+    FooterComponent,
     materialModules
   ]
 })

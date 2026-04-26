@@ -18,5 +18,6 @@ public interface IAppDbContext
     DbSet<MenuItemEntity> MenuItems { get; }
     DbSet<PackageEntity> PackageEntity { get; }
     DbSet<BusinessProfileEntity> BusinessProfiles { get; }
+    DbSet<QRCodeProductEntity> QrProducts { get; }
     Task<int> SaveChangesAsync(CancellationToken ct);
 }

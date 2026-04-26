@@ -17,6 +17,7 @@ public partial class DatabaseContext : DbContext, IAppDbContext
     public DbSet<MenuItemEntity> MenuItems => Set<MenuItemEntity>();
     public DbSet<PackageEntity> PackageEntity => Set<PackageEntity>();
     public DbSet<BusinessProfileEntity> BusinessProfiles => Set<BusinessProfileEntity>();
+    public DbSet<QRCodeProductEntity> QrProducts => Set<QRCodeProductEntity>();
 
     private readonly TimeProvider _clock;
     public DatabaseContext(DbContextOptions<DatabaseContext> options, TimeProvider clock) : base(options)

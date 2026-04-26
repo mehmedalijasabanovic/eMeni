@@ -7,6 +7,7 @@ import {CommonModule} from '@angular/common';
 import {TranslatePipe} from '@ngx-translate/core';
 import {RouterModule} from '@angular/router';
 import { MenusItems } from './menus/menus-items/menus-items';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 
@@ -16,6 +17,7 @@ import { MenusItems } from './menus/menus-items/menus-items';
     PublicLayout,
     BusinessesComponent,
     MenusItems,
+    UserProfileComponent,
   ],
   imports: [
     CommonModule,

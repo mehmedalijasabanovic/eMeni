@@ -7,6 +7,12 @@ import {
 } from '../../../api-services/busines-categories/business-categories-api.model';
 import { BaseListPagedComponent } from '../../../core/components/base-classes/base-list-paged-component';
 import { fadeAnimation } from '../../../core/animations/route-animations';
+import { QrProductsApiService } from '../../../api-services/qr-products/qr-products-api.service';
+import { ListQrProductDto, ListQrProductsRequest } from '../../../api-services/qr-products/qr-products-api.model';
+import { CartService } from '../../../core/services/cart.service';
+import { CurrentUserService } from '../../../core/services/auth/current-user.service';
+import { ToasterService } from '../../../core/services/toaster.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-public-layout',
@@ -20,6 +26,18 @@ export class PublicLayout extends BaseListPagedComponent<ListBusinessCategoriesD
 
   private api = inject(BusinessCategoriesApiService);
   private router = inject(Router);
+  private qrApi = inject(QrProductsApiService);
+  private cartService = inject(CartService);
+  private currentUserService = inject(CurrentUserService);
+  private toaster = inject(ToasterService);
+  private translate = inject(TranslateService);
+
+  qrProducts: ListQrProductDto[] = [];
+  qrLoading = false;
+
+  get isOwner(): boolean {
+    return this.currentUserService.isOwner();
+  }
 
   constructor() {
     super();
@@ -28,6 +46,27 @@ export class PublicLayout extends BaseListPagedComponent<ListBusinessCategoriesD
 
   ngOnInit() {
     this.initList();
+    this.loadQrProducts();
+  }
+
+  private loadQrProducts(): void {
+    this.qrLoading = true;
+    this.qrApi.list(new ListQrProductsRequest()).subscribe({
+      next: (response) => {
+        this.qrProducts = response.items;
+        this.qrLoading = false;
+      },
+      error: () => {
+        this.qrLoading = false;
+      }
+    });
+  }
+
+  addToCart(product: ListQrProductDto): void {
+    this.cartService.addProduct(product);
+    this.toaster.success(
+      this.translate.instant('QR.ADDED_TO_CART', { name: product.productName })
+    );
   }
 
   protected loadPagedData(): void {

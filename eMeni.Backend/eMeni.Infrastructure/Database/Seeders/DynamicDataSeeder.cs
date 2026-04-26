@@ -20,6 +20,7 @@ public static class DynamicDataSeeder
         await SeedBusinessCategoryAsync(context);
         await SeedPackageAsync(context);
         await SeedBusinesseesAsync(context);
+        await SeedQrProductsAsync(context);
         
         
     }
@@ -316,5 +317,63 @@ public static class DynamicDataSeeder
         await context.SaveChangesAsync();
 
         Console.WriteLine("✅ Dynamic seed: demo businesses and menus added.");
+    }
+
+    private static async Task SeedQrProductsAsync(DatabaseContext context)
+    {
+        if (await context.QrProducts.AnyAsync())
+            return;
+
+        var products = new List<QRCodeProductEntity>
+        {
+            new QRCodeProductEntity
+            {
+                ProductName = "Metalna dekoracija",
+                Description = "Elegantna metalna QR dekoracija za profesionalni izgled.",
+                Price = 29.99m,
+                ImageUrl = "",
+                MaterialType = "Metal",
+                Size = "10x10cm",
+                IsDeleted = false,
+                CreatedAtUtc = DateTime.UtcNow,
+            },
+            new QRCodeProductEntity
+            {
+                ProductName = "Drvena dekoracija",
+                Description = "Prirodna drvena QR dekoracija za topliji ambijent.",
+                Price = 19.99m,
+                ImageUrl = "",
+                MaterialType = "Drvo",
+                Size = "10x10cm",
+                IsDeleted = false,
+                CreatedAtUtc = DateTime.UtcNow,
+            },
+            new QRCodeProductEntity
+            {
+                ProductName = "Plastična dekoracija",
+                Description = "Pristupačna plastična QR dekoracija, lagana i trajna.",
+                Price = 9.99m,
+                ImageUrl = "",
+                MaterialType = "Plastika",
+                Size = "10x10cm",
+                IsDeleted = false,
+                CreatedAtUtc = DateTime.UtcNow,
+            },
+            new QRCodeProductEntity
+            {
+                ProductName = "Nalepnica (stiker)",
+                Description = "Praktičan QR stiker koji se lijepi na bilo koju površinu.",
+                Price = 4.99m,
+                ImageUrl = "",
+                MaterialType = "Papir/Vinil",
+                Size = "5x5cm",
+                IsDeleted = false,
+                CreatedAtUtc = DateTime.UtcNow,
+            }
+        };
+
+        context.QrProducts.AddRange(products);
+        await context.SaveChangesAsync();
+        Console.WriteLine("✅ Dynamic seed: QR products added.");
     }
 }

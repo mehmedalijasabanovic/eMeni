@@ -1,0 +1,97 @@
+.profile-page {
+  min-height: calc(100vh - 70px);
+  background: #f5f7fa;
+  padding: 40px 24px;
+}
+
+.profile-container {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a3a5c;
+  margin: 0;
+
+  .title-icon {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+    color: #2475aa;
+  }
+}
+
+.profile-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+  mat-card-header {
+    padding-bottom: 8px;
+  }
+
+  .card-avatar-icon {
+    font-size: 32px;
+    width: 40px;
+    height: 40px;
+    color: #2475aa;
+    background: #e8f4fd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+  }
+}
+
+.loading-state {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.half-width {
+  flex: 1;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.save-button {
+  margin: 8px 0;
+  min-width: 160px;
+  gap: 8px;
+
+  mat-icon {
+    margin-right: 4px;
+  }
+}
+
+mat-card-actions {
+  padding: 8px 16px 16px;
+}

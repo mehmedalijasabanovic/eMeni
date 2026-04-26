@@ -1,4 +1,5 @@
-﻿using eMeni.Application.Modules.Identity.Commands.Create;
+﻿using eMeni.Application.Modules.Identity.Commands.ChangePassword;
+using eMeni.Application.Modules.Identity.Commands.Create;
 using eMeni.Application.Modules.Identity.Commands.Delete;
 using eMeni.Application.Modules.Identity.Commands.Update;
 using eMeni.Application.Modules.Identity.Queries.GetById;
@@ -37,6 +38,13 @@ namespace eMeni.API.Controllers
         public async Task<GetUserByIdQueryDto> GetById(int id,CancellationToken ct)
         {
             return await sender.Send(new GetUserByIdQuery { Id=id}, ct);
+        }
+
+        [HttpPut("{id:int}/change-password")]
+        public async Task ChangePassword(int id, ChangePasswordCommand command, CancellationToken ct)
+        {
+            command.Id = id;
+            await sender.Send(command, ct);
         }
     }
 }

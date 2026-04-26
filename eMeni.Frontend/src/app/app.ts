@@ -1,7 +1,8 @@
-import { Component,OnInit, signal } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit, signal, computed } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { routeAnimations } from './core/animations/route-animations';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,12 @@ import { routeAnimations } from './core/animations/route-animations';
   styleUrl: './app.scss',
   animations: [routeAnimations]
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('eMeni');
   currentLang: string = 'bs';
+  showFooter = signal(true);
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private router: Router) {
     console.log('AppComponent constructor - initializing TranslateService');
 
     // Inicijalizacija translate servisa
@@ -43,12 +45,19 @@ export class App {
       console.log('Translation for APP.TITLE:', res);
       if (res === 'APP.TITLE') {
         console.error('⚠️ Translation not working! Key returned instead of value.');
-        console.error('Possible causes:');
-        console.error('1. Translation files not in /i18n/ folder');
-        console.error('2. JSON files have syntax errors');
-        console.error('3. TranslateService not properly initialized');
       }
     });
+
+    // Hide footer on auth routes
+    this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd),
+      map((e) => (e as NavigationEnd).urlAfterRedirects)
+    ).subscribe(url => {
+      this.showFooter.set(!url.startsWith('/auth'));
+    });
+
+    // Set initial value
+    this.showFooter.set(!this.router.url.startsWith('/auth'));
   }
 
   prepareRoute(outlet: RouterOutlet): string {

@@ -41,3 +41,94 @@
     </mat-card>
   </div>
 </div>
+
+<!-- ======================== -->
+<!-- ABOUT US SECTION         -->
+<!-- ======================== -->
+<section id="about" class="about-section">
+  <div class="about-container">
+    <div class="about-badge">
+      <mat-icon>info</mat-icon>
+      <span>{{ 'ABOUT.BADGE' | translate }}</span>
+    </div>
+    <h2 class="about-title">{{ 'ABOUT.TITLE' | translate }}</h2>
+    <p class="about-lead">{{ 'ABOUT.LEAD' | translate }}</p>
+
+    <div class="about-features">
+      <div class="about-feature">
+        <div class="feature-icon-wrapper">
+          <mat-icon class="feature-icon">menu_book</mat-icon>
+        </div>
+        <h3>{{ 'ABOUT.FEATURE1_TITLE' | translate }}</h3>
+        <p>{{ 'ABOUT.FEATURE1_TEXT' | translate }}</p>
+      </div>
+      <div class="about-feature">
+        <div class="feature-icon-wrapper">
+          <mat-icon class="feature-icon">qr_code_2</mat-icon>
+        </div>
+        <h3>{{ 'ABOUT.FEATURE2_TITLE' | translate }}</h3>
+        <p>{{ 'ABOUT.FEATURE2_TEXT' | translate }}</p>
+      </div>
+      <div class="about-feature">
+        <div class="feature-icon-wrapper">
+          <mat-icon class="feature-icon">event_seat</mat-icon>
+        </div>
+        <h3>{{ 'ABOUT.FEATURE3_TITLE' | translate }}</h3>
+        <p>{{ 'ABOUT.FEATURE3_TEXT' | translate }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== -->
+<!-- QR DECORATIONS SECTION   -->
+<!-- ======================== -->
+<section id="qr-decorations" class="qr-section">
+  <div class="qr-container">
+    <div class="about-badge qr-badge">
+      <mat-icon>qr_code</mat-icon>
+      <span>{{ 'QR.BADGE' | translate }}</span>
+    </div>
+    <h2 class="section-title">{{ 'QR.TITLE' | translate }}</h2>
+    <p class="section-subtitle">{{ 'QR.SUBTITLE' | translate }}</p>
+
+    <app-cards-skeleton *ngIf="qrLoading" [cards]="4"></app-cards-skeleton>
+
+    <div class="qr-grid" *ngIf="!qrLoading">
+      <mat-card class="qr-card" *ngFor="let product of qrProducts">
+        <div class="qr-card-image">
+          <mat-icon class="qr-placeholder-icon">qr_code_2</mat-icon>
+        </div>
+
+        <mat-card-content>
+          <div class="qr-material-badge">{{ product.materialType }}</div>
+          <h3 class="qr-product-name">{{ product.productName }}</h3>
+          <p class="qr-product-description">{{ product.description }}</p>
+          <div class="qr-product-meta">
+            <span class="qr-size">
+              <mat-icon class="meta-icon">straighten</mat-icon>
+              {{ product.size }}
+            </span>
+            <span class="qr-price">{{ product.price | number:'1.2-2' }} KM</span>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions *ngIf="isOwner">
+          <button
+            mat-raised-button
+            class="add-to-cart-button"
+            (click)="addToCart(product)"
+          >
+            <mat-icon>add_shopping_cart</mat-icon>
+            {{ 'QR.ADD_TO_CART' | translate }}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+      <div class="no-products" *ngIf="qrProducts.length === 0">
+        <mat-icon>inventory_2</mat-icon>
+        <p>{{ 'QR.NO_PRODUCTS' | translate }}</p>
+      </div>
+    </div>
+  </div>
+</section>

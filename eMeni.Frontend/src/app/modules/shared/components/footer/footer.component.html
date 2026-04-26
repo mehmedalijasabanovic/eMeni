@@ -1,0 +1,40 @@
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="/images/eMeni-Logo.png" alt="eMeni Logo" class="footer-logo" />
+      <p class="footer-tagline">{{ 'FOOTER.TAGLINE' | translate }}</p>
+    </div>
+
+    <div class="footer-contact">
+      <h4 class="footer-section-title">{{ 'FOOTER.CONTACT_TITLE' | translate }}</h4>
+      <ul class="contact-list">
+        <li>
+          <mat-icon class="contact-icon">phone</mat-icon>
+          <span>+387 61 000 000</span>
+        </li>
+        <li>
+          <mat-icon class="contact-icon">email</mat-icon>
+          <a href="mailto:info@emeni.ba">info&#64;emeni.ba</a>
+        </li>
+        <li>
+          <mat-icon class="contact-icon">location_on</mat-icon>
+          <span>{{ 'FOOTER.ADDRESS' | translate }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4 class="footer-section-title">{{ 'FOOTER.LINKS_TITLE' | translate }}</h4>
+      <ul class="links-list">
+        <li><a routerLink="/">{{ 'FOOTER.LINK_HOME' | translate }}</a></li>
+        <li><a routerLink="/" fragment="about">{{ 'FOOTER.LINK_ABOUT' | translate }}</a></li>
+        <li><a routerLink="/" fragment="qr-decorations">{{ 'FOOTER.LINK_QR' | translate }}</a></li>
+        <li><a routerLink="/auth/login">{{ 'FOOTER.LINK_LOGIN' | translate }}</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© {{ currentYear }} eMeni. {{ 'FOOTER.RIGHTS' | translate }}</p>
+  </div>
+</footer>

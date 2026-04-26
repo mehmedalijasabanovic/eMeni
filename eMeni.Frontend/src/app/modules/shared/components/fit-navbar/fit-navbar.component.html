@@ -6,9 +6,9 @@
 
     <div class="nav-menu desktop-menu" *ngIf="showFullNavbar">
       <button mat-button class="nav-item" (click)="navigateTo('/')">{{ 'HEADER.PREGLED' | translate }}</button>
-      <button mat-button class="nav-item" (click)="navigateTo('/o-nama')">{{ 'HEADER.O_NAMA' | translate }}</button>
+      <button mat-button class="nav-item" (click)="scrollTo('about')">{{ 'HEADER.O_NAMA' | translate }}</button>
       <button mat-button class="nav-item" (click)="navigateTo('/paketi')">{{ 'HEADER.PAKETI' | translate }}</button>
-      <button mat-button class="nav-item" (click)="navigateTo('/qr-dekoracije')">{{ 'HEADER.QR_DEKORACIJE' | translate }}</button>
+      <button mat-button class="nav-item" (click)="scrollTo('qr-decorations')">{{ 'HEADER.QR_DEKORACIJE' | translate }}</button>
       <button mat-button class="nav-item" (click)="navigateTo('/kontakt')">{{ 'HEADER.KONTAKT' | translate }}</button>
     </div>
 
@@ -44,6 +44,11 @@
           <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
         </button>
         <mat-menu #userMenu="matMenu" class="user-menu">
+          <button mat-menu-item (click)="navigateTo('/profile')">
+            <mat-icon>account_circle</mat-icon>
+            <span>{{ 'HEADER.PROFILE' | translate }}</span>
+          </button>
+          <mat-divider></mat-divider>
           <button mat-menu-item (click)="logout()">
             <mat-icon>logout</mat-icon>
             <span>Logout</span>
@@ -58,9 +63,9 @@
 
         <mat-menu #mobileMenu="matMenu" class="mobile-nav-menu">
           <button mat-menu-item (click)="navigateTo('/'); closeMobileMenu()">{{ 'HEADER.PREGLED' | translate }}</button>
-          <button mat-menu-item (click)="navigateTo('/o-nama'); closeMobileMenu()">{{ 'HEADER.O_NAMA' | translate }}</button>
+          <button mat-menu-item (click)="scrollTo('about'); closeMobileMenu()">{{ 'HEADER.O_NAMA' | translate }}</button>
           <button mat-menu-item (click)="navigateTo('/paketi'); closeMobileMenu()">{{ 'HEADER.PAKETI' | translate }}</button>
-          <button mat-menu-item (click)="navigateTo('/qr-dekoracije'); closeMobileMenu()">{{ 'HEADER.QR_DEKORACIJE' | translate }}</button>
+          <button mat-menu-item (click)="scrollTo('qr-decorations'); closeMobileMenu()">{{ 'HEADER.QR_DEKORACIJE' | translate }}</button>
           <button mat-menu-item (click)="navigateTo('/kontakt'); closeMobileMenu()">{{ 'HEADER.KONTAKT' | translate }}</button>
           <mat-divider></mat-divider>
 
@@ -74,6 +79,10 @@
               <span class="greeting-text">Zdravo, {{ currentUserService.currentUser()?.email }}</span>
             </div>
             <mat-divider *ngIf="currentUserService.currentUser()?.email"></mat-divider>
+            <button mat-menu-item (click)="navigateTo('/profile'); closeMobileMenu()">
+              <mat-icon>account_circle</mat-icon>
+              <span>{{ 'HEADER.PROFILE' | translate }}</span>
+            </button>
             <button mat-menu-item (click)="logout(); closeMobileMenu()" *ngIf="currentUserService.currentUser()?.email">
               <mat-icon>logout</mat-icon>
               <span>Logout</span>
